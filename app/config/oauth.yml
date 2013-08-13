@@ -1,0 +1,4 @@
+parameters:
+    facebook_app_id: 207482139394568
+    facebook_app_secret: 12f52329643ca2ecc6a34f34e08e987c
+    facebook_app_scope: "email, user_birthday, user_likes, publish_stream, friends_birthday, friends_likes, user_interests, friends_interests"

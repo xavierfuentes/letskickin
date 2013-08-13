@@ -1,0 +1,7 @@
+letskickin_back:
+    resource: "@letskickinBackBundle/Resources/config/routing.yml"
+    prefix:   /
+
+letskickin_front:
+    resource: "@letskickinFrontBundle/Resources/config/routing.yml"
+    prefix:   /
