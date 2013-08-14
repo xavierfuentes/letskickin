@@ -1,0 +1,22 @@
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    #java: /usr/bin/java
+    #bundles:        [ ]
+    filters:
+        less:
+            node: %node_path%
+            node_paths: [%node_modules_path%]
+            apply_to: "\.less$"
+        #cssrewrite: ~
+        #yui_css:
+        #    jar: %kernel.root_dir%/../vendor/nervo/yuicompressor/yuicompressor.jar
+        #yui_js:
+        #    jar: %kernel.root_dir%/../vendor/nervo/yuicompressor/yuicompressor.jar
+
+    # assets:
+
+    #     handlebars:
+    #         inputs:
+    #             - '%kernel.root_dir%/../components/handlebars/handlebars.js'
