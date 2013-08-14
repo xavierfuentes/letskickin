@@ -6,8 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class StaticController extends Controller
 {
-    public function indexAction()
+    public function landingAction()
     {
-        return $this->render('letskickinFrontBundle:Static:index.html.twig');
+        return $this->render('letskickinFrontBundle::landing.html.twig');
     }
 }

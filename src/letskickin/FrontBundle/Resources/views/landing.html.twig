@@ -1,0 +1,5 @@
+{% extends '@Layouts/default.html.twig' %}
+
+{% block content %}
+    Hola {{ app.user|default("desconocido!") }}!
+{% endblock %}
