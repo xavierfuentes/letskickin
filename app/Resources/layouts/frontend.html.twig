@@ -1,0 +1,75 @@
+{% extends '@Views/base.html.twig' %}
+
+{% block open_graph %}
+    {{ parent() }}
+
+    <meta property="fb:admins" content="admin ID" />
+{% endblock %}
+
+{% block meta %}
+    {# Zanox verification #}
+    <meta name="verification" content="c21e809446aeac1e0ed8949799ebaafa" />
+{% endblock %}
+
+{% block head_style %}
+    {{ parent() }}
+
+    {#{% stylesheets '@LetskickinAssetsBundle/Resources/less/app.less'
+        output='style/app.css' %}
+        <link href="{{ asset_url }}" rel="stylesheet" />
+    {% endstylesheets %}#}
+{% endblock %}
+
+{% block head_scripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        WebFontConfig = {
+            google: { families: [ 'Open Sans' ] },
+            timeout: 2000
+        };
+        (function() {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    {#{% javascripts '@modernizr'
+        output='scripts/modernizr.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}#}
+{% endblock %}
+
+{% block body_top %}
+    {#{{ include('@Blocks/metrics.html.twig') }}#}
+
+    <!--[if lt IE 9]>
+        {#{% javascripts '@respond' output='scripts/respond.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}#}
+    <![endif]-->
+{% endblock %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+
+    {#{% javascripts
+        '@jquery' '@bootstrap' '@underscore' '@handlebars' '@moment'
+        '@LetskickinAssetsBundle/Resources/scripts/main.js'
+        output='scripts/all.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}#}
+
+    <script>
+        $(function() {
+            // moment.lang('{{ app.request.locale }}');
+            // moment().format();
+            // main.performBinding(new main.CommunicationLayer(), "#app-wrapper");
+        });
+    </script>
+{% endblock %}

@@ -1,13 +1,91 @@
+{% block html_tag %}
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+{% endblock %}
+
+{% block head %}
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block head_top %}{% endblock %}
+        <meta charset="utf-8">
+
+        {% block dns_prefetch %}
+            {#
+            {% for domain in dns_prefetch %}
+                <link rel="dns-prefetch" href="{{ domain }}" />
+            {% endfor %}
+            #}
+        {% endblock dns_prefetch %}
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>{% block site_title %}{{ "site.title"|trans({}, "global") }}{% endblock %}</title>
+
+        <meta name="description" content="{% block site_description %}{{ "site.description"|trans({}, "global") }}{% endblock %}" />
+        <meta name="keywords" content="{% block site_keywords %}{{ "site.keywords"|trans({}, "global") }}{% endblock %}" />
+        <link rel="author" href="/humans.txt" title="{% block site_author %}{{ "site.author"|trans({}, "global") }}{% endblock %}" />
+
+        {% block open_graph %}
+        {#
+        <meta property="og:title" content="{% block og_title %}{{ site.title }}{% endblock %}" />
+        <meta property="og:site_name" content="{% block og_site_name %}{{ site.name }}{% endblock %}" />
+        <meta property="og:description" content="{% block og_description %}{{ site.description }}{% endblock %}" />
+        <meta property="og:url" content="{% block og_url %}{{ app.request.host }}{% endblock %}" />
+        <meta property="og:image" content="{% block og_image %}{{ site.image }}{% endblock %}" />
+        #}
+        {% endblock %}
+
+        {% block meta %}{% endblock %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% if site.sitemap is defined %}
+            <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.sitemap }}" />
+        {% endif %}
+
+        {% if google.verification_code is defined %}
+            <meta name="google-site-verification" content="{{ google.verification_code }}" />
+        {% endif %}
+
+        {# TODO: Pingbacks http://html5boilerplate.com/docs/html-head/#pingbacks #}
+
+        {# TODO: Site Search Browser plugin:
+           http://www.google.com/search?ie=UTF-8&q=how+to+make+browser+search+plugin
+        <link rel="search" title="" type="application/opensearchdescription+xml" href=""> #}
+
+        {% block pre_style %}
+            {% if site.diagnostic_mode %}
+                <link href="//meyerweb.com/eric/tools/css/diagnostics/diagnostic.css" type="text/css" rel="stylesheet" media="screen" />
+            {% endif %}
+        {% endblock %}
+
+        {% block head_style %}{% endblock %}
+
+        {% block head_scripts %}
+            <!-- <script src="//cdn.strategiqcommerce.com/ajax/libs/hinclude/0.9.5/hinclude.min.js"></script> -->
+        {% endblock head_scripts %}
+
+        {% block head_bottom %}{% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+    <body id="{{ block('body_id') }}" data-spy="scroll" class="{{ block('body_class') }}">
+        {% block body_start %}
+            <!--[if lt IE 7]>
+                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <![endif]-->
+        {% endblock %}
+
+        {% block body_top %}{% endblock %}
+
+        {% block body_content %}{% endblock %}
+
+        {% block body_bottom %}{% endblock %}
+
+        {% block foot_scripts %}{% endblock %}
     </body>
+{% endblock %}
 </html>

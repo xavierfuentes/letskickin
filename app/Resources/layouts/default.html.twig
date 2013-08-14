@@ -1,0 +1,21 @@
+{% extends '@Layouts/frontend.html.twig' %}
+
+{% block body_class %}{{ parent() ~ 'default-layout' }}{% endblock %}
+
+{% block body_content %}
+    {% block wrap %}
+    <div id="wrap">
+        {% block page_container %}
+            {% block topbar %}{#{{ include('@Blocks/global/topbar.html.twig') }}#}{% endblock %}
+
+            <article id="page" class="container">
+                {% block content %}{% endblock %}
+            </article>
+        {% endblock %}
+    </div>
+    {% endblock %}
+
+    {% block footer %}
+        {#{{ include('@Blocks/global/footer.html.twig') }}#}
+    {% endblock %}
+{% endblock %}
