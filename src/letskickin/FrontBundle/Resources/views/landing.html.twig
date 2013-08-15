@@ -2,4 +2,6 @@
 
 {% block content %}
     Hola {{ app.user|default("desconocido!") }}!
+
+    <a href="#">{{ "button.create"|trans({}, "landing") }}</a>
 {% endblock %}

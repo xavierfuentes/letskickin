@@ -14,8 +14,8 @@
 {% block head_style %}
     {{ parent() }}
 
-    {#{% stylesheets '@LetskickinAssetsBundle/Resources/less/app.less'
-        output='style/app.css' %}
+    {#{% stylesheets '@letskickinFrontBundle/Resources/less/main.less'
+        output='style/main.css' %}
         <link href="{{ asset_url }}" rel="stylesheet" />
     {% endstylesheets %}#}
 {% endblock %}
@@ -39,37 +39,29 @@
         })();
     </script>
 
-    {#{% javascripts '@modernizr'
-        output='scripts/modernizr.js' %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}#}
+    <!--[if lt IE 9]>
+        <script src="<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.js"></script>"></script>
+    <![endif]-->
 {% endblock %}
 
 {% block body_top %}
-    {#{{ include('@Blocks/metrics.html.twig') }}#}
-
-    <!--[if lt IE 9]>
-        {#{% javascripts '@respond' output='scripts/respond.js' %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}#}
-    <![endif]-->
+    {{ include('@Blocks/metrics.html.twig') }}
 {% endblock %}
 
 {% block foot_scripts %}
     {{ parent() }}
 
     {#{% javascripts
-        '@jquery' '@bootstrap' '@underscore' '@handlebars' '@moment'
-        '@LetskickinAssetsBundle/Resources/scripts/main.js'
+        '@LetskickinFrontBundle/Resources/scripts/main.js'
         output='scripts/all.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}#}
 
     <script>
-        $(function() {
+        // $(function() {
             // moment.lang('{{ app.request.locale }}');
             // moment().format();
             // main.performBinding(new main.CommunicationLayer(), "#app-wrapper");
-        });
+        // });
     </script>
 {% endblock %}
