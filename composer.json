@@ -23,6 +23,7 @@
         ,"raulfraile/ladybug-bundle": "dev-master"
 
         ,"friendsofsymfony/user-bundle": "2.0.*@dev"
+        ,"craue/formflow-bundle": "~2.0.0"
 
         ,"hwi/oauth-bundle": "0.3.*@dev"
 

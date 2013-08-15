@@ -3,8 +3,62 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e2bf2981729b1e990c6b5b71311d921a",
+    "hash": "27058e1214a68377ab07251167de3482",
     "packages": [
+        {
+            "name": "craue/formflow-bundle",
+            "version": "2.0.1",
+            "target-dir": "Craue/FormFlowBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/craue/CraueFormFlowBundle.git",
+                "reference": "2.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/craue/CraueFormFlowBundle/zipball/2.0.1",
+                "reference": "2.0.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/form": "~2.1",
+                "symfony/framework-bundle": "~2.1"
+            },
+            "require-dev": {
+                "doctrine/common": "~2.3",
+                "phpunit/phpunit": "~3.7.10",
+                "sensio/framework-extra-bundle": "~2.1",
+                "symfony/symfony": "~2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Craue\\FormFlowBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Raue",
+                    "email": "christian.raue@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/craue/CraueFormFlowBundle/contributors"
+                }
+            ],
+            "description": "Multi-step forms for your Symfony2 project.",
+            "homepage": "https://github.com/craue/CraueFormFlowBundle",
+            "keywords": [
+                "Symfony2",
+                "form"
+            ],
+            "time": "2013-07-12 14:32:22"
+        },
         {
             "name": "dflydev/markdown",
             "version": "dev-master",
@@ -1337,16 +1391,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "2.0.0a3",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "2.0.0a3"
+                "reference": "2.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/2.0.0a3",
-                "reference": "2.0.0a3",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/2.0.0",
+                "reference": "2.0.0",
                 "shasum": ""
             },
             "require": {
@@ -1357,6 +1411,11 @@
                 "phpunit/phpunit": "3.7.*@stable"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "phpDocumentor": [
@@ -1374,7 +1433,7 @@
                     "email": "mike.vanriel@naenius.com"
                 }
             ],
-            "time": "2013-04-16 14:22:15"
+            "time": "2013-08-07 11:04:22"
         },
         {
             "name": "phpoption/phpoption",
@@ -1469,18 +1528,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/raulfraile/ladybug.git",
-                "reference": "44eb12e254564112280789aae7689eb00ceca1c1"
+                "reference": "88e7a36c02fbd1e2ca969745d4495ca53795b29d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/raulfraile/ladybug/zipball/44eb12e254564112280789aae7689eb00ceca1c1",
-                "reference": "44eb12e254564112280789aae7689eb00ceca1c1",
+                "url": "https://api.github.com/repos/raulfraile/ladybug/zipball/88e7a36c02fbd1e2ca969745d4495ca53795b29d",
+                "reference": "88e7a36c02fbd1e2ca969745d4495ca53795b29d",
                 "shasum": ""
             },
             "require": {
                 "jms/serializer": ">=0.11.0",
                 "php": ">=5.3.0",
-                "phpdocumentor/reflection-docblock": "2.0.0a3",
+                "phpdocumentor/reflection-docblock": "2.0.0",
                 "symfony/config": ">=2.0.4",
                 "symfony/console": ">=2.0.4",
                 "symfony/dependency-injection": ">=2.0.4",
@@ -1525,7 +1584,7 @@
                 "print_r",
                 "var_dump"
             ],
-            "time": "2013-08-11 10:13:39"
+            "time": "2013-08-15 00:03:34"
         },
         {
             "name": "raulfraile/ladybug-bundle",
@@ -1678,12 +1737,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "a8c497fb2d59d347fb6c22173827ae70d91d37fa"
+                "reference": "8daadf79d5f305fbcf4261c052968415f4e69a00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/a8c497fb2d59d347fb6c22173827ae70d91d37fa",
-                "reference": "a8c497fb2d59d347fb6c22173827ae70d91d37fa",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/8daadf79d5f305fbcf4261c052968415f4e69a00",
+                "reference": "8daadf79d5f305fbcf4261c052968415f4e69a00",
                 "shasum": ""
             },
             "require": {
@@ -1717,7 +1776,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2013-08-10 06:57:32"
+            "time": "2013-08-13 20:01:59"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1997,12 +2056,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "615bd0ba7d4ec48b5b73fb06db3a6cced5a2f2f6"
+                "reference": "e2f7d1e51a96d15be70303de72a4a66bc2b252a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/615bd0ba7d4ec48b5b73fb06db3a6cced5a2f2f6",
-                "reference": "615bd0ba7d4ec48b5b73fb06db3a6cced5a2f2f6",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/e2f7d1e51a96d15be70303de72a4a66bc2b252a8",
+                "reference": "e2f7d1e51a96d15be70303de72a4a66bc2b252a8",
                 "shasum": ""
             },
             "require": {
@@ -2097,7 +2156,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-08-11 17:29:22"
+            "time": "2013-08-15 12:51:56"
         },
         {
             "name": "twig/extensions",
@@ -2201,12 +2260,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "36c4223b1d316c391e62741d10ad16bcf58ee36a"
+                "reference": "fee3f1e733e80bd128736e1b9b403f49b701a6a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/36c4223b1d316c391e62741d10ad16bcf58ee36a",
-                "reference": "36c4223b1d316c391e62741d10ad16bcf58ee36a",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/fee3f1e733e80bd128736e1b9b403f49b701a6a9",
+                "reference": "fee3f1e733e80bd128736e1b9b403f49b701a6a9",
                 "shasum": ""
             },
             "type": "library",
@@ -2230,7 +2289,7 @@
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-08-13 07:04:58"
+            "time": "2013-08-15 07:46:18"
         }
     ],
     "packages-dev": [
