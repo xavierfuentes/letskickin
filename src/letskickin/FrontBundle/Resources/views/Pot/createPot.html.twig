@@ -1,0 +1,24 @@
+{% extends '@Layouts/default.html.twig' %}
+
+{% block content %}
+<div>
+    Steps:
+    {% include 'CraueFormFlowBundle:FormFlow:stepList.html.twig' %}
+</div>
+<form method="post" {{ form_enctype(form) }}>
+    {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
+
+    {{ form_errors(form) }}
+
+    {% if flow.getCurrentStepNumber() == 1 %}
+        <div>
+            When selecting four wheels you have to choose the engine in the next step.<br />
+            {{ form_widget(form) }}
+        </div>
+    {% endif %}
+
+    {{ form_rest(form) }}
+
+    {% include 'CraueFormFlowBundle:FormFlow:buttons.html.twig' %}
+</form>
+{% endblock %}

@@ -1,0 +1,32 @@
+letskickin\BackBundle\Entity\Pot:
+    properties:
+        occasion:
+            - NotBlank: { message: "pot.occasion.not_blank" }
+            - Length:
+                min: 5
+        user_name:
+            - NotBlank: ~
+            - Length:
+                min: 2
+        user_email:
+            - NotBlank: ~
+            - Email:
+                checkMX: true
+        deadline:
+            - NotBlank: ~
+            - Date: ~
+        currency:
+            - NotBlank: ~
+            - NotNull: ~
+            - Length:
+                min: 3
+                max: 3
+        amount_total:
+            - NotBlank: ~
+        amount_partial:
+            - NotBlank: ~
+        # notifications_active:
+        # guests_invite:
+        # reminders_active:
+        # tracking_active:
+        # message:

@@ -68,6 +68,16 @@ class User extends BaseUser
     }
 
     /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * @return string
      */
     public function getFirstname()
@@ -185,4 +195,5 @@ class User extends BaseUser
     {
         return $this->facebook_access_token;
     }
+
 }
