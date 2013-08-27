@@ -1,21 +1,38 @@
 parameters:
-    my_user_provider.class: letskickin\BackBundle\Security\Core\User\FOSUBUserProvider
+    letskickin.user_provider.class: letskickin\BackBundle\Security\Core\User\FOSUBUserProvider
+    letskickin.form.create_pot.type: letskickin\BackBundle\Form\CreatePotForm
+    letskickin.form.create_pot.flow: letskickin\BackBundle\Form\CreatePotFlow
+    letskickin.manager.pot_manager: letskickin\BackBundle\Doctrine\PotManager
+    letskickin.listener.guest: letskickin\BackBundle\EventListener\GuestListener
 
 services:
-    my_user_provider:
-        class: "%my_user_provider.class%"
+    letskickin.user_provider:
+        class: "%letskickin.user_provider.class%"
         #this is the place where the properties are passed to the UserProvider - see config.yml
         # arguments: [@fos_user.user_manager,{facebook: facebook_id, google: google_id}]
         arguments: [@fos_user.user_manager,{facebook: facebook_id}]
 
     letskickin.form.createPot:
-        class: letskickin\BackBundle\Form\CreatePotForm
+        class: "%letskickin.form.create_pot.type%"
         tags:
             - { name: form.type, alias: createPot }
 
     letskickin.form.flow.createPot:
-        class: letskickin\BackBundle\Form\CreatePotFlow
+        class: "%letskickin.form.create_pot.flow%"
         parent: craue.form.flow
         scope: request
         calls:
             - [ setFormType, [ @letskickin.form.createPot ] ]
+
+    letskickin.manager.pot:
+        class: "%letskickin.manager.pot_manager%"
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+            class: FooVendor\BarBundle\Entity\Comment
+
+    letskickin.listener.guest:
+        class: "%letskickin.listener.guest%"
+        arguments:
+            mailer: "@mailer"
+        tags:
+            - { name: kernel.event_listener, event: letskickin.pot.guest_added, method: onAddGuestEvent }

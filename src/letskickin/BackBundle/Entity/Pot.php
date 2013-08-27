@@ -5,6 +5,8 @@ namespace letskickin\BackBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Security\Core\Util\SecureRandom;
+
 use letskickin\BackBundle\Entity\Pot;
 
 /**
@@ -167,10 +169,14 @@ class Pot
     public function __construct()
     {
         $this->setStatus(self::INACTIVE);
+        $this->setCreationDate(new \DateTime);
+
         $this->setCurrency("EUR");
         $this->setCollectionMethod(self::TRANSFER);
+
         $this->guests = new \Doctrine\Common\Collections\ArrayCollection();
         $this->setTrackingActive(false);
+
         $this->setNotificationsActive(false);
         $this->setGuestsInvite(false);
         $this->setRemindersActive(false);

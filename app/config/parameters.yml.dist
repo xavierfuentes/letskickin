@@ -1,19 +1,19 @@
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_socket:
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
+    database_driver:    pdo_mysql
+    database_host:      127.0.0.1
+    database_port:      3306
+    database_socket:    ~
+    database_name:      symfony
+    database_user:      %database.user%
+    database_password:  %database.password%
 
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_transport:   smtp
+    mailer_host:        127.0.0.1
+    mailer_user:        null
+    mailer_password:    null
 
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    locale:             es
+    secret:             StayHungryStayFoolish
 
-    node_path: /opt/boxen/nodenv/versions/v0.10.3/bin/node
-    node_modules_path: /opt/boxen/nodenv/versions/v0.10.3/lib/node_modules
+    node_path:          /usr/bin/node
+    node_modules_path:  /usr/lib/node_modules

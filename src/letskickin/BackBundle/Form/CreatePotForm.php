@@ -13,8 +13,7 @@ class CreatePotForm extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         switch ($options['flowStep']) {
             case 1:
-                $builder->add('creation_date', 'hidden')
-                        ->add('pot_id', 'hidden')
+                $builder->add('pot_id', 'hidden')
                         ->add('user_id', 'hidden')
                         ->add('occasion', 'text')
                         ->add('user_name', 'text')

@@ -10,10 +10,10 @@ class PotController extends Controller
 {
     public function createPotAction()
     {
-        $formData = new Pot(); // Your form data class. Has to be an object, won't work properly with an array.
+        $pot = new Pot();
 
-        $flow = $this->get('letskickin.form.flow.createPot'); // must match the flow's service id
-        $flow->bind($formData);
+        $flow = $this->get('letskickin.form.flow.createPot');
+        $flow->bind($pot);
 
         // form of the current step
         $form = $flow->createForm();
@@ -25,11 +25,16 @@ class PotController extends Controller
                 $form = $flow->createForm();
             } else {
                 // flow finished
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($formData);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($pot);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('home')); // redirect when done
+                // use this when a guest is added
+                // logic to add a guest
+                // $dispatcher = $this->container->get('event_dispatcher');
+                // $dispatcher->dispatch('letskickin.pot.guest_added', new GuestEvent($pot, $guest));
+
+                return $this->redirect($this->generateUrl('home'));
             }
         }
 

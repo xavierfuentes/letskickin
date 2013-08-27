@@ -1010,19 +1010,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/metadata.git",
-                "reference": "b63f380d36a70586fd2abe518e35899d044745df"
+                "reference": "2b95de3ff995996cf068314bd4299dbfca2ca668"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/b63f380d36a70586fd2abe518e35899d044745df",
-                "reference": "b63f380d36a70586fd2abe518e35899d044745df",
+                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/2b95de3ff995996cf068314bd4299dbfca2ca668",
+                "reference": "2b95de3ff995996cf068314bd4299dbfca2ca668",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "doctrine/common": ">=2.0,<2.4-dev"
+                "doctrine/cache": "~1.0"
             },
             "type": "library",
             "extra": {
@@ -1054,7 +1054,7 @@
                 "xml",
                 "yaml"
             ],
-            "time": "2013-08-04 12:47:51"
+            "time": "2013-08-25 08:44:36"
         },
         {
             "name": "jms/parser-lib",
@@ -1164,12 +1164,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "v1.1.2"
+                "reference": "735cffd3982c6e8cdebe292d5db39d077f65890f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/v1.1.2",
-                "reference": "v1.1.2",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/735cffd3982c6e8cdebe292d5db39d077f65890f",
+                "reference": "735cffd3982c6e8cdebe292d5db39d077f65890f",
                 "shasum": ""
             },
             "require": {
@@ -1283,12 +1283,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "7a8844d4db868cf20040facb8c3413802dd0ec9b"
+                "reference": "933f7e26beb19ce15d97031a3fdd21d8bd83a3d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/7a8844d4db868cf20040facb8c3413802dd0ec9b",
-                "reference": "7a8844d4db868cf20040facb8c3413802dd0ec9b",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/933f7e26beb19ce15d97031a3fdd21d8bd83a3d3",
+                "reference": "933f7e26beb19ce15d97031a3fdd21d8bd83a3d3",
                 "shasum": ""
             },
             "require": {
@@ -1337,7 +1337,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-08-09 12:12:38"
+            "time": "2013-08-26 09:42:58"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -1528,23 +1528,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/raulfraile/ladybug.git",
-                "reference": "01ec4e7c15174477cf327b1cbed7b30ba20ea3a3"
+                "reference": "1941d1c29c2b691df2300ce017e1ce33c4fef18f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/raulfraile/ladybug/zipball/01ec4e7c15174477cf327b1cbed7b30ba20ea3a3",
-                "reference": "01ec4e7c15174477cf327b1cbed7b30ba20ea3a3",
+                "url": "https://api.github.com/repos/raulfraile/ladybug/zipball/1941d1c29c2b691df2300ce017e1ce33c4fef18f",
+                "reference": "1941d1c29c2b691df2300ce017e1ce33c4fef18f",
                 "shasum": ""
             },
             "require": {
                 "jms/serializer": ">=0.11.0",
                 "php": ">=5.3.0",
                 "phpdocumentor/reflection-docblock": "2.0.0",
+                "raulfraile/ladybug-helpers": "dev-master",
+                "raulfraile/ladybug-theme-modern": "dev-master",
                 "symfony/config": ">=2.0.4",
                 "symfony/console": ">=2.0.4",
                 "symfony/dependency-injection": ">=2.0.4",
                 "symfony/finder": ">=2.0.4",
-                "twig/twig": ">=v1.7.0"
+                "twig/twig": ">=1.7.0"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "0.1.*@dev",
@@ -1557,11 +1559,12 @@
             "type": "library",
             "autoload": {
                 "psr-0": {
+                    "Ladybug\\Theme": [
+                        "../ladybug-themes",
+                        "data/themes"
+                    ],
                     "Ladybug": "lib/"
-                },
-                "files": [
-                    "lib/Ladybug/helpers.php"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1584,7 +1587,7 @@
                 "print_r",
                 "var_dump"
             ],
-            "time": "2013-08-19 20:56:58"
+            "time": "2013-08-24 23:59:55"
         },
         {
             "name": "raulfraile/ladybug-bundle",
@@ -1636,6 +1639,107 @@
                 "twig"
             ],
             "time": "2013-08-19 07:30:27"
+        },
+        {
+            "name": "raulfraile/ladybug-helpers",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raulfraile/ladybug-helpers.git",
+                "reference": "d5332f80dab5530e234626363105e722994f95a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raulfraile/ladybug-helpers/zipball/d5332f80dab5530e234626363105e722994f95a1",
+                "reference": "d5332f80dab5530e234626363105e722994f95a1",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Helpers for ladybug",
+            "keywords": [
+                "ladybug",
+                "theme"
+            ],
+            "time": "2013-08-24 00:02:30"
+        },
+        {
+            "name": "raulfraile/ladybug-installer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raulfraile/ladybug-installer.git",
+                "reference": "6038289f0d50354eac10934340ee184af1ce722f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raulfraile/ladybug-installer/zipball/6038289f0d50354eac10934340ee184af1ce722f",
+                "reference": "6038289f0d50354eac10934340ee184af1ce722f",
+                "shasum": ""
+            },
+            "require-dev": {
+                "composer/composer": "~1.0@dev"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "\\Ladybug\\Installer\\Composer\\Installer"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Ladybug\\Installer\\Composer": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Unified installer for ladybug addons",
+            "keywords": [
+                "installer",
+                "ladybug",
+                "plugins",
+                "templates"
+            ],
+            "time": "2013-08-24 08:29:21"
+        },
+        {
+            "name": "raulfraile/ladybug-theme-modern",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raulfraile/ladybug-theme-modern.git",
+                "reference": "23708a054e8c42303fa61fd9ea2c07bf8c9a0a05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raulfraile/ladybug-theme-modern/zipball/23708a054e8c42303fa61fd9ea2c07bf8c9a0a05",
+                "reference": "23708a054e8c42303fa61fd9ea2c07bf8c9a0a05",
+                "shasum": ""
+            },
+            "require": {
+                "raulfraile/ladybug-installer": "dev-master"
+            },
+            "type": "ladybug-theme",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Modern theme for ladybug",
+            "keywords": [
+                "ladybug",
+                "theme"
+            ],
+            "time": "2013-08-24 23:03:21"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -2056,12 +2160,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "8e1cb3e3ca9c05064d827e58bd4dd406c317ea50"
+                "reference": "4ec3cd03db22a1d2f0a0d04b3e264a9b165f6c16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/8e1cb3e3ca9c05064d827e58bd4dd406c317ea50",
-                "reference": "8e1cb3e3ca9c05064d827e58bd4dd406c317ea50",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/4ec3cd03db22a1d2f0a0d04b3e264a9b165f6c16",
+                "reference": "4ec3cd03db22a1d2f0a0d04b3e264a9b165f6c16",
                 "shasum": ""
             },
             "require": {
@@ -2156,7 +2260,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-08-22 06:42:25"
+            "time": "2013-08-26 05:49:51"
         },
         {
             "name": "twig/extensions",
@@ -2211,12 +2315,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "fcf007e9a2e6c65594360ae7fa3c410ae8d56a11"
+                "reference": "cacbf201af1500852f83ad9c5d389a13d52f654e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/fcf007e9a2e6c65594360ae7fa3c410ae8d56a11",
-                "reference": "fcf007e9a2e6c65594360ae7fa3c410ae8d56a11",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/cacbf201af1500852f83ad9c5d389a13d52f654e",
+                "reference": "cacbf201af1500852f83ad9c5d389a13d52f654e",
                 "shasum": ""
             },
             "require": {
@@ -2252,7 +2356,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-08-07 12:53:34"
+            "time": "2013-08-26 08:23:34"
         },
         {
             "name": "twitter/bootstrap",
