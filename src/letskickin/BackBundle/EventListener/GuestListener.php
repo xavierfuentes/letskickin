@@ -18,6 +18,7 @@ class GuestListener
         $pot = $event->getPot();
         $guest = $event->getGuest();
 
+        // send an email to the guest
         /*foreach ($post->getSubscribers() as $subscriber) {
             $message = Swift_Message::newInstance()
                 ->setSubject('New comment posted on ' . $post->getTitle())

@@ -2,7 +2,13 @@ parameters:
     letskickin.user_provider.class: letskickin\BackBundle\Security\Core\User\FOSUBUserProvider
     letskickin.form.create_pot.type: letskickin\BackBundle\Form\CreatePotForm
     letskickin.form.create_pot.flow: letskickin\BackBundle\Form\CreatePotFlow
+
     letskickin.manager.pot_manager: letskickin\BackBundle\Doctrine\PotManager
+    letskickin.manager.pot_class: letskickin\BackBundle\Entity\Pot
+    letskickin.listener.pot: letskickin\BackBundle\EventListener\PotListener
+
+    letskickin.manager.guest_manager: letskickin\BackBundle\Doctrine\GuestManager
+    letskickin.manager.guest_class: letskickin\BackBundle\Entity\Guest
     letskickin.listener.guest: letskickin\BackBundle\EventListener\GuestListener
 
 services:
@@ -27,12 +33,29 @@ services:
     letskickin.manager.pot:
         class: "%letskickin.manager.pot_manager%"
         arguments:
+            dispatcher: "@event_dispatcher"
             em: "@doctrine.orm.entity_manager"
-            class: FooVendor\BarBundle\Entity\Comment
+            class: "%letskickin.manager.pot_class%"
 
-    letskickin.listener.guest:
-        class: "%letskickin.listener.guest%"
+    letskickin.listener.pot_created:
+        class: "%letskickin.listener.pot%"
         arguments:
             mailer: "@mailer"
         tags:
-            - { name: kernel.event_listener, event: letskickin.pot.guest_added, method: onAddGuestEvent }
+            - { name: kernel.event_subscriber, event: letskickin.pot.created, method: onCreatePotEvent }
+
+
+
+#    letskickin.manager.guest:
+#        class: "%letskickin.manager.guest_manager%"
+#        arguments:
+#            dispatcher: "@event_dispatcher"
+#            em: "@doctrine.orm.entity_manager"
+#            class: "%letskickin.manager.guest_class%"
+
+#    letskickin.listener.pot.guest_added:
+#        class: "%letskickin.listener.guest%"
+#        arguments:
+#            mailer: "@mailer"
+#        tags:
+#            - { name: kernel.event_listener, event: letskickin.pot.guest_added, method: onAddGuestEvent }

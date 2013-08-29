@@ -5,10 +5,6 @@ namespace letskickin\BackBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-use Symfony\Component\Security\Core\Util\SecureRandom;
-
-use letskickin\BackBundle\Entity\Pot;
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="pot")
@@ -131,7 +127,7 @@ class Pot
     /**
      * @var string $message
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $message;
 
@@ -168,18 +164,7 @@ class Pot
      */
     public function __construct()
     {
-        $this->setStatus(self::INACTIVE);
-        $this->setCreationDate(new \DateTime);
-
-        $this->setCurrency("EUR");
-        $this->setCollectionMethod(self::TRANSFER);
-
-        $this->guests = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->setTrackingActive(false);
-
-        $this->setNotificationsActive(false);
-        $this->setGuestsInvite(false);
-        $this->setRemindersActive(false);
+        $this->guests = new ArrayCollection();
     }
 
     /**
@@ -612,7 +597,7 @@ class Pot
      * @param \letskickin\BackBundle\Entity\Guest $guests
      * @return Pot
      */
-    public function addGuest(\letskickin\BackBundle\Entity\Guest $guests)
+    public function addGuest(Guest $guests)
     {
         $this->guests[] = $guests;
 
@@ -624,7 +609,7 @@ class Pot
      *
      * @param \letskickin\BackBundle\Entity\Guest $guests
      */
-    public function removeGuest(\letskickin\BackBundle\Entity\Guest $guests)
+    public function removeGuest(Guest $guests)
     {
         $this->guests->removeElement($guests);
     }

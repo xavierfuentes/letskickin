@@ -52,19 +52,16 @@ class CreatePotForm extends AbstractType {
                             'required' => false
                         ));
                 break;
-            case 4:
-                $builder->add('message', 'textarea', array(
-                            'required' => false
-                        ))
-                        ->add('tracking_active', 'checkbox', array(
-                            'required' => false
-                        ));
-                        // ->add('guests', 'collection', array(
-                        //     'type' => new CreateGuestForm(),
-                        //     'required' => false,
-                        //     'allow_add' => true,
-                        // ));
-                break;
+//            case 4:
+//                $builder->add('tracking_active', 'checkbox', array(
+//                            'required' => false
+//                        ))
+//                        ->add('guests', 'collection', array(
+//                            'type' => new CreateGuestForm(),
+//                            'required' => false,
+//                            'allow_add' => true,
+//                        ));
+//                break;
         }
     }
 
