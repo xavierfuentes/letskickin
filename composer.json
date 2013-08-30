@@ -20,7 +20,7 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0"
 
-        ,"raulfraile/ladybug-bundle": "dev-master"
+        ,"raulfraile/ladybug-bundle": "0.x-dev"
 
         ,"friendsofsymfony/user-bundle": "2.0.*@dev"
         ,"craue/formflow-bundle": "~2.0.0"
@@ -48,7 +48,7 @@
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",

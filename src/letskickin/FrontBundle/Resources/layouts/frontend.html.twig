@@ -14,9 +14,10 @@
 {% block head_style %}
     {{ parent() }}
 
-    {#{% stylesheets '@letskickinFrontBundle/Resources/less/main.less'
-        output='style/main.css' %}
-        <link href="{{ asset_url }}" rel="stylesheet" />
+    {#{% stylesheets output='/style/app.css' filter='less'
+        '@letskickinFrontBundle/Resources/less/main.less'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}#}
 {% endblock %}
 
@@ -51,17 +52,17 @@
 {% block foot_scripts %}
     {{ parent() }}
 
-    {#{% javascripts
-        '@LetskickinFrontBundle/Resources/scripts/main.js'
-        output='scripts/all.js' %}
+    {#{% javascripts output='/script/app.js'
+        '@letskickinFrontBundle/Resources/script/main.js'
+    %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}#}
 
     <script>
-        // $(function() {
-            // moment.lang('{{ app.request.locale }}');
-            // moment().format();
-            // main.performBinding(new main.CommunicationLayer(), "#app-wrapper");
-        // });
+        /*$(function() {
+            moment.lang('{{ app.request.locale }}');
+            moment().format();
+            main.performBinding(new main.CommunicationLayer(), "#app-wrapper");
+        });*/
     </script>
 {% endblock %}
