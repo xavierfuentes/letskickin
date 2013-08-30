@@ -85,14 +85,14 @@ class Pot
     /**
      * @var integer $amount_total
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $amount_total;
 
     /**
      * @var integer $amount_partial
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $amount_partial;
 

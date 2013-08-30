@@ -6,7 +6,7 @@ use Craue\FormFlowBundle\Form\FormFlow;
 use Craue\FormFlowBundle\Form\FormFlowInterface;
 use Symfony\Component\Form\FormTypeInterface;
 
-class CreatePotFlow extends FormFlow {
+class potFlow extends FormFlow {
 
     /**
      * @var FormTypeInterface

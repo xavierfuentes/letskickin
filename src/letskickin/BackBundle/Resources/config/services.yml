@@ -1,7 +1,7 @@
 parameters:
     letskickin.user_provider.class: letskickin\BackBundle\Security\Core\User\FOSUBUserProvider
-    letskickin.form.create_pot.type: letskickin\BackBundle\Form\CreatePotForm
-    letskickin.form.create_pot.flow: letskickin\BackBundle\Form\CreatePotFlow
+    letskickin.form.create_pot.type: letskickin\BackBundle\Form\potType
+    letskickin.form.create_pot.flow: letskickin\BackBundle\Form\potFlow
 
     letskickin.manager.pot_manager: letskickin\BackBundle\Doctrine\PotManager
     letskickin.manager.pot_class: letskickin\BackBundle\Entity\Pot

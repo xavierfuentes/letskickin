@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\DataTransformer\IntegerToLocalizedStri
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CreatePotForm extends AbstractType {
+class potType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         switch ($options['flowStep']) {
