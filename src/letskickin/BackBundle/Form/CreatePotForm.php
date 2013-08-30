@@ -47,7 +47,7 @@ class CreatePotForm extends AbstractType {
                 $builder->add('notifications_active', 'checkbox', array(
                             'required' => false
                         ))
-                        ->add('guests_invite', 'checkbox', array(
+                        ->add('participants_invite', 'checkbox', array(
                             'required' => false
                         ))
                         ->add('reminders_active', 'checkbox', array(
@@ -59,8 +59,8 @@ class CreatePotForm extends AbstractType {
                 $builder->add('tracking_active', 'checkbox', array(
                             'required' => false
                         ))
-//                        ->add('guests', 'collection', array(
-//                            'type' => new CreateGuestForm(),
+//                        ->add('participants', 'collection', array(
+//                            'type' => new CreateParticipantForm(),
 //                            'required' => false,
 //                            'allow_add' => true,
 //                        ))

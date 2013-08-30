@@ -87,7 +87,7 @@ class PotManager
 
         // Extra default values
         $pot->setNotificationsActive(false);
-        $pot->setGuestsInvite(false);
+        $pot->setParticipantsInvite(false);
         $pot->setRemindersActive(false);
 
         // Guests default values

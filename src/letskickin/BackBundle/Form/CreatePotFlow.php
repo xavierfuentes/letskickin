@@ -39,7 +39,7 @@ class CreatePotFlow extends FormFlow {
                 'type' => $this->formType,
             ),
             array(
-                'label' => 'guests',
+                'label' => 'participants',
                 'type' => $this->formType, // needed to avoid InvalidOptionsException regarding option 'flowStep'
             ),
         );

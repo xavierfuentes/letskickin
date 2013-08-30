@@ -19,6 +19,20 @@ class PotListener implements EventSubscriberInterface
     {
         $pot = $event->getPot();
 
+		$message = \Swift_Message::newInstance()
+			->setSubject($pot->getOccasion())
+			->setFrom('send@example.com')
+			->setTo($pot->getAdminEmail())
+//			->setBody(
+//				$this->renderView(
+//					'HelloBundle:Hello:email.txt.twig',
+//					array('name' => $name)
+//				)
+//			)
+			->setBody("Hi " . $pot->getAdminName() . ", you have created your pot: " . $pot->getOccasion())
+		;
+		$this->mailer->send($message);
+
         /*foreach ($pot->getGuests() as $subscriber) {
             $message = Swift_Message::newInstance()
                 ->setSubject($pot->getOccasion())

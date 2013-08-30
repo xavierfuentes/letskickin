@@ -9,9 +9,9 @@ use letskickin\BackBundle\Entity\Pot;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="guest")
+ * @ORM\Table(name="participant")
  */
-class Guest
+class Participant
 {
     /**
      * @var integer $id
@@ -23,7 +23,7 @@ class Guest
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="letskickin\BackBundle\Entity\Pot", inversedBy="guests", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="letskickin\BackBundle\Entity\Pot", inversedBy="participants", cascade={"persist", "remove"})
      */
     protected $pot;
 

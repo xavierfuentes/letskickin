@@ -111,9 +111,9 @@ class Pot
     private $collection_method;
 
     /**
-     * @ORM\OneToMany(targetEntity="letskickin\BackBundle\Entity\Guest", mappedBy="pot", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="letskickin\BackBundle\Entity\Participant", mappedBy="pot", cascade={"persist", "remove"})
      */
-    private $guests;
+    private $participants;
 
     /**
      * @var string $message
@@ -137,11 +137,11 @@ class Pot
     private $notifications_active;
 
     /**
-     * @var boolean $guests_invite
+     * @var boolean $participants_invite
      *
      * @ORM\Column(type="boolean")
      */
-    private $guests_invite;
+    private $participants_invite;
 
     /**
      * @var boolean $reminders_active
@@ -154,7 +154,7 @@ class Pot
      */
     public function __construct()
     {
-        $this->guests = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->participants = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -536,26 +536,26 @@ class Pot
     }
 
     /**
-     * Set guests_invite
+     * Set participants_invite
      *
-     * @param boolean $guestsInvite
+     * @param boolean $participantsInvite
      * @return Pot
      */
-    public function setGuestsInvite($guestsInvite)
+    public function setParticipantsInvite($participantsInvite)
     {
-        $this->guests_invite = $guestsInvite;
+        $this->participants_invite = $participantsInvite;
     
         return $this;
     }
 
     /**
-     * Get guests_invite
+     * Get participants_invite
      *
      * @return boolean 
      */
-    public function getGuestsInvite()
+    public function getParticipantsInvite()
     {
-        return $this->guests_invite;
+        return $this->participants_invite;
     }
 
     /**
@@ -582,35 +582,35 @@ class Pot
     }
 
     /**
-     * Add guests
+     * Add participants
      *
-     * @param \letskickin\BackBundle\Entity\Guest $guests
+     * @param \letskickin\BackBundle\Entity\Participant $participants
      * @return Pot
      */
-    public function addGuest(\letskickin\BackBundle\Entity\Guest $guests)
+    public function addParticipant(\letskickin\BackBundle\Entity\Participant $participants)
     {
-        $this->guests[] = $guests;
+        $this->participants[] = $participants;
     
         return $this;
     }
 
     /**
-     * Remove guests
+     * Remove participants
      *
-     * @param \letskickin\BackBundle\Entity\Guest $guests
+     * @param \letskickin\BackBundle\Entity\Participant $participants
      */
-    public function removeGuest(\letskickin\BackBundle\Entity\Guest $guests)
+    public function removeParticipant(\letskickin\BackBundle\Entity\Participant $participants)
     {
-        $this->guests->removeElement($guests);
+        $this->participants->removeElement($participants);
     }
 
     /**
-     * Get guests
+     * Get participants
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getGuests()
+    public function getParticipants()
     {
-        return $this->guests;
+        return $this->participants;
     }
 }

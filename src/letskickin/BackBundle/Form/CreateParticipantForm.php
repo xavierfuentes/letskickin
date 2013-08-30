@@ -6,7 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CreateGuestForm extends AbstractType
+class CreateParticipantForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -16,12 +16,12 @@ class CreateGuestForm extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'letskickin\BackBundle\Entity\Guest',
+            'data_class' => 'letskickin\BackBundle\Entity\Participant',
         ));
     }
 
     public function getName()
     {
-        return 'createGuest';
+        return 'createParticipant';
     }
 }
