@@ -1,0 +1,5 @@
+{% extends '@Layouts/default.html.twig' %}
+
+{% block content %}
+    {{ 'pot.thanks_admin'|trans({'%admin_name%': pot.adminName}, "pot") }}
+{% endblock %}

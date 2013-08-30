@@ -4,11 +4,11 @@ letskickin\BackBundle\Entity\Pot:
             - NotBlank: { message: "pot.occasion.not_blank" }
             - Length:
                 min: 5
-        user_name:
+        admin_name:
             - NotBlank: ~
             - Length:
                 min: 2
-        user_email:
+        admin_email:
             - NotBlank: ~
             - Email:
                 checkMX: true

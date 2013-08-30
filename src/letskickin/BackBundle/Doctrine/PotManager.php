@@ -56,9 +56,9 @@ class PotManager
     /**
      * @return Pot
      */
-    public function find($pot_id)
+    public function find($pot_key, $admin_key)
     {
-        return $this->repo->find($pot_id);
+        return $this->repo->findOneBy(array('pot_key' => $pot_key));
     }
 
     /**
@@ -75,11 +75,11 @@ class PotManager
         $pot->setStatus(self::INACTIVE);
         $pot->setCreationDate(new \DateTime);
 
-        $pot_id = $generator->nextBytes(10);
-        $pot->setPotId($pot_id);
+        $pot_key = bin2hex($generator->nextBytes(8));
+        $pot->setPotKey($pot_key);
 
-        $user_id = $generator->nextBytes(5);
-        $pot->setUserId($user_id);
+        $admin_key = bin2hex($generator->nextBytes(4));
+        $pot->setAdminKey($admin_key);
 
         // Money default values
         $pot->setCurrency("EUR");

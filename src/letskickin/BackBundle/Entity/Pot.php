@@ -2,7 +2,6 @@
 
 namespace letskickin\BackBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,14 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Pot
 {
-    // Created but not finished
-    const INACTIVE = 0;
-    // Created and valid
-    const ACTIVE = 1;
-
-    // Bank transfer
-    const TRANSFER = 0;
-
     /**
      * @var integer $id
      *
@@ -43,11 +34,11 @@ class Pot
     private $creation_date;
 
     /**
-     * @var string $pot_id
+     * @var string $pot_key
      *
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true, length=16)
      */
-    private $pot_id;
+    private $pot_key;
 
     /**
      * @var string $occasion
@@ -57,25 +48,25 @@ class Pot
     private $occasion;
 
     /**
-     * @var string $user_id
+     * @var string $admin_key
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=8)
      */
-    private $user_id;
+    private $admin_key;
 
     /**
-     * @var string $user_name
+     * @var string $admin_name
      *
      * @ORM\Column(type="string")
      */
-    private $user_name;
+    private $admin_name;
 
     /**
-     * @var string $user_email
+     * @var string $admin_email
      *
      * @ORM\Column(type="string")
      */
-    private $user_email;
+    private $admin_email;
 
     /**
      * @var \DateTime $deadline
@@ -120,7 +111,7 @@ class Pot
     private $collection_method;
 
     /**
-     * @ORM\OneToMany(targetEntity="letskickin\BackBundle\Entity\Guest", mappedBy="pot", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="letskickin\BackBundle\Entity\Guest", mappedBy="pot", cascade={"persist", "remove"})
      */
     private $guests;
 
@@ -158,19 +149,18 @@ class Pot
      * @ORM\Column(type="boolean")
      */
     private $reminders_active;
-
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->guests = new ArrayCollection();
+        $this->guests = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -186,14 +176,14 @@ class Pot
     public function setStatus($status)
     {
         $this->status = $status;
-
+    
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return integer
+     * @return integer 
      */
     public function getStatus()
     {
@@ -209,14 +199,14 @@ class Pot
     public function setCreationDate($creationDate)
     {
         $this->creation_date = $creationDate;
-
+    
         return $this;
     }
 
     /**
      * Get creation_date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreationDate()
     {
@@ -224,26 +214,26 @@ class Pot
     }
 
     /**
-     * Set pot_id
+     * Set pot_key
      *
-     * @param string $potId
+     * @param string $potKey
      * @return Pot
      */
-    public function setPotId($potId)
+    public function setPotKey($potKey)
     {
-        $this->pot_id = $potId;
-
+        $this->pot_key = $potKey;
+    
         return $this;
     }
 
     /**
-     * Get pot_id
+     * Get pot_key
      *
-     * @return string
+     * @return string 
      */
-    public function getPotId()
+    public function getPotKey()
     {
-        return $this->pot_id;
+        return $this->pot_key;
     }
 
     /**
@@ -255,14 +245,14 @@ class Pot
     public function setOccasion($occasion)
     {
         $this->occasion = $occasion;
-
+    
         return $this;
     }
 
     /**
      * Get occasion
      *
-     * @return string
+     * @return string 
      */
     public function getOccasion()
     {
@@ -270,72 +260,72 @@ class Pot
     }
 
     /**
-     * Set user_id
+     * Set admin_key
      *
-     * @param string $userId
+     * @param string $adminKey
      * @return Pot
      */
-    public function setUserId($userId)
+    public function setAdminKey($adminKey)
     {
-        $this->user_id = $userId;
-
+        $this->admin_key = $adminKey;
+    
         return $this;
     }
 
     /**
-     * Get user_id
+     * Get admin_key
      *
-     * @return string
+     * @return string 
      */
-    public function getUserId()
+    public function getAdminKey()
     {
-        return $this->user_id;
+        return $this->admin_key;
     }
 
     /**
-     * Set user_name
+     * Set admin_name
      *
-     * @param string $userName
+     * @param string $adminName
      * @return Pot
      */
-    public function setUserName($userName)
+    public function setAdminName($adminName)
     {
-        $this->user_name = $userName;
-
+        $this->admin_name = $adminName;
+    
         return $this;
     }
 
     /**
-     * Get user_name
+     * Get admin_name
      *
-     * @return string
+     * @return string 
      */
-    public function getUserName()
+    public function getAdminName()
     {
-        return $this->user_name;
+        return $this->admin_name;
     }
 
     /**
-     * Set user_email
+     * Set admin_email
      *
-     * @param string $userEmail
+     * @param string $adminEmail
      * @return Pot
      */
-    public function setUserEmail($userEmail)
+    public function setAdminEmail($adminEmail)
     {
-        $this->user_email = $userEmail;
-
+        $this->admin_email = $adminEmail;
+    
         return $this;
     }
 
     /**
-     * Get user_email
+     * Get admin_email
      *
-     * @return string
+     * @return string 
      */
-    public function getUserEmail()
+    public function getAdminEmail()
     {
-        return $this->user_email;
+        return $this->admin_email;
     }
 
     /**
@@ -347,14 +337,14 @@ class Pot
     public function setDeadline($deadline)
     {
         $this->deadline = $deadline;
-
+    
         return $this;
     }
 
     /**
      * Get deadline
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDeadline()
     {
@@ -370,14 +360,14 @@ class Pot
     public function setCurrency($currency)
     {
         $this->currency = $currency;
-
+    
         return $this;
     }
 
     /**
      * Get currency
      *
-     * @return string
+     * @return string 
      */
     public function getCurrency()
     {
@@ -393,14 +383,14 @@ class Pot
     public function setAmountTotal($amountTotal)
     {
         $this->amount_total = $amountTotal;
-
+    
         return $this;
     }
 
     /**
      * Get amount_total
      *
-     * @return integer
+     * @return integer 
      */
     public function getAmountTotal()
     {
@@ -416,14 +406,14 @@ class Pot
     public function setAmountPartial($amountPartial)
     {
         $this->amount_partial = $amountPartial;
-
+    
         return $this;
     }
 
     /**
      * Get amount_partial
      *
-     * @return integer
+     * @return integer 
      */
     public function getAmountPartial()
     {
@@ -439,14 +429,14 @@ class Pot
     public function setBankAccount($bankAccount)
     {
         $this->bank_account = $bankAccount;
-
+    
         return $this;
     }
 
     /**
      * Get bank_account
      *
-     * @return integer
+     * @return integer 
      */
     public function getBankAccount()
     {
@@ -462,14 +452,14 @@ class Pot
     public function setCollectionMethod($collectionMethod)
     {
         $this->collection_method = $collectionMethod;
-
+    
         return $this;
     }
 
     /**
      * Get collection_method
      *
-     * @return integer
+     * @return integer 
      */
     public function getCollectionMethod()
     {
@@ -485,14 +475,14 @@ class Pot
     public function setMessage($message)
     {
         $this->message = $message;
-
+    
         return $this;
     }
 
     /**
      * Get message
      *
-     * @return string
+     * @return string 
      */
     public function getMessage()
     {
@@ -508,14 +498,14 @@ class Pot
     public function setTrackingActive($trackingActive)
     {
         $this->tracking_active = $trackingActive;
-
+    
         return $this;
     }
 
     /**
      * Get tracking_active
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getTrackingActive()
     {
@@ -531,14 +521,14 @@ class Pot
     public function setNotificationsActive($notificationsActive)
     {
         $this->notifications_active = $notificationsActive;
-
+    
         return $this;
     }
 
     /**
      * Get notifications_active
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getNotificationsActive()
     {
@@ -554,14 +544,14 @@ class Pot
     public function setGuestsInvite($guestsInvite)
     {
         $this->guests_invite = $guestsInvite;
-
+    
         return $this;
     }
 
     /**
      * Get guests_invite
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getGuestsInvite()
     {
@@ -577,14 +567,14 @@ class Pot
     public function setRemindersActive($remindersActive)
     {
         $this->reminders_active = $remindersActive;
-
+    
         return $this;
     }
 
     /**
      * Get reminders_active
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getRemindersActive()
     {
@@ -597,10 +587,10 @@ class Pot
      * @param \letskickin\BackBundle\Entity\Guest $guests
      * @return Pot
      */
-    public function addGuest(Guest $guests)
+    public function addGuest(\letskickin\BackBundle\Entity\Guest $guests)
     {
         $this->guests[] = $guests;
-
+    
         return $this;
     }
 
@@ -609,7 +599,7 @@ class Pot
      *
      * @param \letskickin\BackBundle\Entity\Guest $guests
      */
-    public function removeGuest(Guest $guests)
+    public function removeGuest(\letskickin\BackBundle\Entity\Guest $guests)
     {
         $this->guests->removeElement($guests);
     }
@@ -617,7 +607,7 @@ class Pot
     /**
      * Get guests
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getGuests()
     {

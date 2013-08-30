@@ -13,16 +13,17 @@ class CreatePotForm extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         switch ($options['flowStep']) {
             case 1:
-                $builder->add('pot_id', 'hidden')
-                        ->add('user_id', 'hidden')
+                $builder->add('pot_key', 'hidden')
+                        ->add('admin_key', 'hidden')
+                        ->add('admin_name', 'text')
+                        ->add('admin_email', 'text')
                         ->add('occasion', 'text')
-                        ->add('user_name', 'text')
-                        ->add('user_email', 'text')
                         ->add('deadline', 'date', array(
                             'input'   => 'datetime',
                             'widget'  => 'single_text',
                             'format'  => 'dd-MM-yyyy',
-                        ));
+                        ))
+                ;
                 break;
             case 2:
                 $currencies = array("EUR", "USD");
@@ -39,7 +40,8 @@ class CreatePotForm extends AbstractType {
                             //'precision' => 2,
                             //'rounding_mode' => IntegerToLocalizedStringTransformer::ROUND_HALFDOWN
                         ))
-                        ->add('bank_account', 'text');
+                        ->add('bank_account', 'text')
+                ;
                 break;
             case 3:
                 $builder->add('notifications_active', 'checkbox', array(
@@ -50,18 +52,20 @@ class CreatePotForm extends AbstractType {
                         ))
                         ->add('reminders_active', 'checkbox', array(
                             'required' => false
-                        ));
+                        ))
+                ;
                 break;
-//            case 4:
-//                $builder->add('tracking_active', 'checkbox', array(
-//                            'required' => false
-//                        ))
+            case 4:
+                $builder->add('tracking_active', 'checkbox', array(
+                            'required' => false
+                        ))
 //                        ->add('guests', 'collection', array(
 //                            'type' => new CreateGuestForm(),
 //                            'required' => false,
 //                            'allow_add' => true,
-//                        ));
-//                break;
+//                        ))
+                ;
+                break;
         }
     }
 

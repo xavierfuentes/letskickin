@@ -3,5 +3,5 @@
 {% block content %}
     Hola {{ app.user|default("desconocido!") }}!
 
-    <a href="{{ path("createpot") }}">{{ "button.create"|trans({}, "landing") }}</a>
+    <a href="{{ path("pot_create") }}">{{ "button.create"|trans({}, "landing") }}</a>
 {% endblock %}

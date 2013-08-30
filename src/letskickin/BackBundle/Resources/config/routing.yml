@@ -39,6 +39,14 @@ facebook_login:
 
 
 # POTS
-createpot:
+pot_create:
     pattern:  /pots/wizard
     defaults: { _controller: letskickinBackBundle:Pot:createPot }
+
+pot_confirmed:
+    pattern:  /pots/confirm/{pot_key}/{admin_key}
+    defaults: { _controller: letskickinBackBundle:Pot:potConfirmed, admin_key: null }
+
+pot_show:
+    pattern:  /pots/{pot_key}/{admin_key}
+    defaults: { _controller: letskickinBackBundle:Pot:showPot, admin_key: null }

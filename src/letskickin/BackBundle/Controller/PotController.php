@@ -2,9 +2,8 @@
 
 namespace letskickin\BackBundle\Controller;
 
-use letskickin\BackBundle\Event\GuestEvent;
-use letskickin\BackBundle\Event\PotEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 use letskickin\BackBundle\Entity\Pot;
@@ -13,6 +12,17 @@ use letskickin\BackBundle\Doctrine\PotManager;
 
 class PotController extends Controller
 {
+    /**
+     * @return PotManager
+     */
+    protected function getPotManager()
+    {
+        return $this->container->get('letskickin.manager.pot');
+    }
+
+	/**
+	 * @Template("letskickinFrontBundle:Pot:createPot.html.twig")
+	 */
     public function createPotAction()
     {
         $pot = $this->getPotManager()->createPot();
@@ -37,53 +47,36 @@ class PotController extends Controller
 
                 $this->getPotManager()->savePot($pot);
 
-                return $this->redirect($this->generateUrl('pot_created'));
+                return $this->redirect($this->generateUrl('pot_confirmed', array(
+                    'pot_key' => $pot->getPotKey(),
+                )));
             }
         }
 
-        return $this->render('letskickinFrontBundle:Pot:createPot.html.twig', array(
+        return array(
             'form' => $form->createView(),
             'flow' => $flow,
-        ));
-    }
-
-    public function addGuestAction(Request $request, Pot $pot_id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $pot = $this->getPotManager()->find($pot_id);
-        $guest = $this->getGuestManager()->createGuest();
-        $guest->setPot($pot);
-
-        $form = $this->createForm(new GuestType(), $guest);
-
-        if ('POST' === $request->getMethod()) {
-            $form->bindRequest($request);
-            if ($form->isValid()) {
-                $this->getGuestManager()->saveGuest($pot, $guest);
-
-                return $this->redirect($this->generateUrl('home'));
-            }
-        }
-
-        return $this->render('FooVendorBundle:Post:addComment.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        );
     }
 
     /**
-     * @return PotManager
+     * @Template("letskickinFrontBundle:Pot:potCreated.html.twig")
      */
-    protected function getPotManager()
+    public function potConfirmedAction($pot_key, $admin_key = null)
     {
-        return $this->container->get('letskickin.manager.pot');
+        $pot = $this->getPotManager()->find($pot_key, $admin_key);
+
+        return array('pot' => $pot);
     }
 
-    /**
-     * @return GuestManager
-     */
-    protected function getGuestManager()
-    {
-        return $this->container->get('letskickin.manager.guest');
-    }
+	/**
+	 * @Template("letskickinFrontBundle:Pot:showPot.html.twig")
+	 */
+	public function showPotAction($pot_key, $admin_key = null)
+	{
+		$pot = $this->getPotManager()->find($pot_key, $admin_key);
+
+		return array('pot' => $pot);
+	}
+
 }
