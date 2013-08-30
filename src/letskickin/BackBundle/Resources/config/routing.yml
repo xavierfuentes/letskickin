@@ -48,5 +48,5 @@ pot_confirmed:
     defaults: { _controller: letskickinBackBundle:Pot:potConfirmed, admin_key: null }
 
 pot_show:
-    pattern:  /pots/{pot_key}/{admin_key}
+    pattern:  /{pot_key}/{admin_key}
     defaults: { _controller: letskickinBackBundle:Pot:showPot, admin_key: null }
