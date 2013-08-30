@@ -1,3 +1,0 @@
-landingpage:
-    pattern:  /
-    defaults: { _controller: letskickinFrontBundle:Static:landing }

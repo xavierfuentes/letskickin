@@ -4,9 +4,9 @@ twig:
     strict_variables: %kernel.debug%
 
     paths:
-        "%kernel.root_dir%/Resources/views": Views
-        "%kernel.root_dir%/Resources/layouts": Layouts
-        "%kernel.root_dir%/Resources/blocks": Blocks
+        "%kernel.root_dir%/../src/letskickin/FrontBundle/Resources/layouts": Layouts
+        "%kernel.root_dir%/../src/letskickin/FrontBundle/Resources/views": Views
+        "%kernel.root_dir%/../src/letskickin/FrontBundle/Resources/blocks": Blocks
 
     globals:
         site:

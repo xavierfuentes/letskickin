@@ -1,7 +1,0 @@
-{% extends '@Layouts/default.html.twig' %}
-
-{% block content %}
-    Hola {{ app.user|default("desconocido!") }}!
-
-    <a href="{{ url("pot_create") }}">{{ "button.create"|trans({}, "landing") }}</a>
-{% endblock %}

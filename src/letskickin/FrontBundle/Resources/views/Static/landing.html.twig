@@ -1,0 +1,8 @@
+{% extends '@Layouts/default.html.twig' %}
+
+{% block content %}
+    {% set default_username = "default.username"|trans({}, "landing") %}
+    {{ 'hi.user'|trans({ '%user_name%' : app.user|default(default_username) }, "landing") }}
+
+    <a href="{{ url("pot_create") }}">{{ "button.create"|trans({}, "landing") }}</a>
+{% endblock %}
