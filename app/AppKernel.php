@@ -22,6 +22,8 @@ class AppKernel extends Kernel
             new letskickin\FrontBundle\letskickinFrontBundle(),
             new letskickin\BackBundle\letskickinBackBundle(),
 
+            new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
+
             new FOS\UserBundle\FOSUserBundle(),
 
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
