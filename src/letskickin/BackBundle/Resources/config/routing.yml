@@ -47,9 +47,9 @@ pot_create:
     pattern:  /pots/wizard
     defaults: { _controller: letskickinBackBundle:Pot:createPot }
 
-pot_confirmed:
+pot_confirm:
     pattern:  /pots/confirm/{pot_key}/{admin_key}
-    defaults: { _controller: letskickinBackBundle:Pot:potConfirmed, admin_key: null }
+    defaults: { _controller: letskickinBackBundle:Pot:confirmPot, admin_key: null }
 
 pot_show:
     pattern:  /{pot_key}/{admin_key}

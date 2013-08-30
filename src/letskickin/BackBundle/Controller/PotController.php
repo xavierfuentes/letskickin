@@ -47,7 +47,7 @@ class PotController extends Controller
 
                 $this->getPotManager()->savePot($pot);
 
-                return $this->redirect($this->generateUrl('pot_confirmed', array(
+                return $this->redirect($this->generateUrl('pot_confirm', array(
                     'pot_key' => $pot->getPotKey(),
                 )));
             }
@@ -60,9 +60,9 @@ class PotController extends Controller
     }
 
     /**
-     * @Template("letskickinFrontBundle:Pot:potCreated.html.twig")
+     * @Template("letskickinFrontBundle:Pot:confirmPot.html.twig")
      */
-    public function potConfirmedAction($pot_key, $admin_key = null)
+    public function confirmPotAction($pot_key, $admin_key = null)
     {
         $pot = $this->getPotManager()->find($pot_key, $admin_key);
 

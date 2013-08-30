@@ -1,5 +1,7 @@
 {% extends '@Layouts/default.html.twig' %}
 
+{% block body_id %}pot-confirm{% endblock %}
+
 {% block content %}
     {{ 'pot.thanks_admin'|trans({'%admin_name%': pot.adminName}, "pot") }}
 
