@@ -582,14 +582,15 @@ class Pot
     }
 
     /**
-     * Add participants
+     * Add participant
      *
-     * @param \letskickin\BackBundle\Entity\Participant $participants
+     * @param \letskickin\BackBundle\Entity\Participant $participant
      * @return Pot
      */
-    public function addParticipant(\letskickin\BackBundle\Entity\Participant $participants)
+    public function addParticipant(\letskickin\BackBundle\Entity\Participant $participant)
     {
-        $this->participants[] = $participants;
+		$participant->addTask($this);
+        $this->participants[] = $participant;
     
         return $this;
     }

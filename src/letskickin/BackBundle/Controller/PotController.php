@@ -7,8 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 use letskickin\BackBundle\Entity\Pot;
-use letskickin\BackBundle\Doctrine\GuestManager;
 use letskickin\BackBundle\Doctrine\PotManager;
+use letskickin\BackBundle\Form\ParticipantType;
 
 class PotController extends Controller
 {
@@ -41,10 +41,6 @@ class PotController extends Controller
                 $form = $flow->createForm();
             } else {
                 // flow finished
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($pot);
-                $em->flush();
-
                 $this->getPotManager()->savePot($pot);
 
                 return $this->redirect($this->generateUrl('pot_confirm', array(
@@ -72,11 +68,33 @@ class PotController extends Controller
 	/**
 	 * @Template("letskickinFrontBundle:Pot:showPot.html.twig")
 	 */
-	public function showPotAction($pot_key, $admin_key = null)
+	public function showPotAction(Request $request, $pot_key, $admin_key = null)
 	{
 		$pot = $this->getPotManager()->find($pot_key, $admin_key);
 
-		return array('pot' => $pot);
+		$form = $this->createFormBuilder($pot)
+			->add('participants', 'collection', array(
+				'type' 		=> new ParticipantType(),
+				'allow_add' => true,
+				'allow_delete' => true,
+			))
+			->add('save', 'submit')
+			->getForm()
+		;
+
+		$form->handleRequest($request);
+
+		$this->getPotManager()->addParticipants($form->getData()->getParticipants());
+
+		if ($form->isValid()) {
+
+			//return $this->redirect($this->generateUrl('task_success'));
+		}
+
+		return array(
+			'pot' 	=> $pot,
+			'participants_form'	=> $form->createView(),
+		);
 	}
 
 }

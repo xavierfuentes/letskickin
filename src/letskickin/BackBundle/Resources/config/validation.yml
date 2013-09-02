@@ -15,12 +15,6 @@ letskickin\BackBundle\Entity\Pot:
         deadline:
             - NotBlank: ~
             - Date: ~
-        currency:
-            - NotBlank: ~
-            - NotNull: ~
-            - Length:
-                min: 3
-                max: 3
         amount_total:
             - NotBlank: ~
         amount_partial:

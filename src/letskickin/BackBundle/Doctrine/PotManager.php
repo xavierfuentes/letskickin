@@ -38,12 +38,12 @@ class PotManager
     protected $class;
 
     // Created but not finished
-    const INACTIVE = 0;
+    const STATUS_INACTIVE = 0;
     // Created and valid
-    const ACTIVE = 1;
+    const STATUS_ACTIVE = 1;
 
     // Bank transfer
-    const TRANSFER = 0;
+    const METHOD_TRANSFER = 0;
 
     public function __construct(EventDispatcherInterface $dispatcher, ObjectManager $om, $class)
     {
@@ -72,7 +72,7 @@ class PotManager
         $generator = new SecureRandom();
 
         // Basic data default values
-        $pot->setStatus(self::INACTIVE);
+        $pot->setStatus(self::STATUS_INACTIVE);
         $pot->setCreationDate(new \DateTime);
 
         $pot_key = bin2hex($generator->nextBytes(8));
@@ -82,8 +82,7 @@ class PotManager
         $pot->setAdminKey($admin_key);
 
         // Money default values
-        $pot->setCurrency("EUR");
-        $pot->setCollectionMethod(self::TRANSFER);
+        $pot->setCollectionMethod(self::METHOD_TRANSFER);
 
         // Extra default values
         $pot->setNotificationsActive(false);
@@ -93,16 +92,35 @@ class PotManager
         // Guests default values
         $pot->setTrackingActive(false);
 
+		$event = new PotEvent($pot);
+		$this->dispatcher->dispatch(PotEvents::POT_CREATED, $event);
+
         return $pot;
     }
 
-    public function savePot(Pot $pot)
+    public function savePot(Pot $pot, $status = self::STATUS_ACTIVE)
     {
+		$pot->setStatus($status);
+
         $this->om->persist($pot);
         $this->om->flush();
 
         $event = new PotEvent($pot);
-        $this->dispatcher->dispatch(PotEvents::POT_CREATED, $event);
+        $this->dispatcher->dispatch(PotEvents::POT_SAVED, $event);
     }
+
+	public function addParticipants($participants)
+	{
+		if (sizeof($participants) > 0) {
+			$pot = $participants->getOwner();
+
+			foreach($participants as $person) {
+				$person->setPot($pot);
+				$this->om->persist($person);
+			}
+
+			$this->om->flush();
+		}
+	}
 
 }

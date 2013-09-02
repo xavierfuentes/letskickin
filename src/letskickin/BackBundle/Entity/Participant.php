@@ -5,6 +5,8 @@ namespace letskickin\BackBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Security\Core\Util\SecureRandom;
+
 use letskickin\BackBundle\Entity\Pot;
 
 /**
@@ -13,6 +15,11 @@ use letskickin\BackBundle\Entity\Pot;
  */
 class Participant
 {
+	const STATUS_NO_PARTICIPATES = 0;
+	const STATUS_WAITING = 1;
+	const STATUS_CONTRIBUTED = 2;
+	const STATUS_CONFIRMED = 3;
+
     /**
      * @var integer $id
      *
@@ -23,9 +30,16 @@ class Participant
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="letskickin\BackBundle\Entity\Pot", inversedBy="participants", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="letskickin\BackBundle\Entity\Pot", inversedBy="participants")
      */
     protected $pot;
+
+	/**
+	 * @var string $key
+	 *
+	 * @ORM\Column(type="string")
+	 */
+	private $key;
 
     /**
      * @var \DateTime $date
@@ -35,24 +49,39 @@ class Participant
     protected $date;
 
     /**
-     * @var string $email
+     * @var string $name
      *
      * @ORM\Column(type="string")
      */
-    private $email;
+    private $name;
 
-    /**
-     * Constructor
-     */
-    public function __construct(Pot $pot)
-    {
-        $this->setPot($pot);
-    }
+	/**
+	 * @var string $concept
+	 *
+	 * @ORM\Column(type="string", nullable=true)
+	 */
+	private $concept;
+
+	/**
+	 * @var string $status
+	 *
+	 * @ORM\Column(type="integer")
+	 */
+	private $status;
+
+	public function __construct()
+	{
+		$generator = new SecureRandom();
+
+		$this->setDate(new \DateTime);
+		$this->setKey(bin2hex($generator->nextBytes(4)));
+		$this->setStatus(self::STATUS_WAITING);
+	}
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -60,22 +89,45 @@ class Participant
     }
 
     /**
+     * Set key
+     *
+     * @param string $key
+     * @return Participant
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+    
+        return $this;
+    }
+
+    /**
+     * Get key
+     *
+     * @return string 
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
      * Set date
      *
      * @param \DateTime $date
-     * @return Guest
+     * @return Participant
      */
     public function setDate($date)
     {
         $this->date = $date;
-
+    
         return $this;
     }
 
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDate()
     {
@@ -83,45 +135,91 @@ class Participant
     }
 
     /**
-     * Set email
+     * Set name
      *
-     * @param string $email
-     * @return Guest
+     * @param string $name
+     * @return Participant
      */
-    public function setEmail($email)
+    public function setName($name)
     {
-        $this->email = $email;
-
+        $this->name = $name;
+    
         return $this;
     }
 
     /**
-     * Get email
+     * Get name
      *
-     * @return string
+     * @return string 
      */
-    public function getEmail()
+    public function getName()
     {
-        return $this->email;
+        return $this->name;
+    }
+
+    /**
+     * Set concept
+     *
+     * @param string $concept
+     * @return Participant
+     */
+    public function setConcept($concept)
+    {
+        $this->concept = $concept;
+    
+        return $this;
+    }
+
+    /**
+     * Get concept
+     *
+     * @return string 
+     */
+    public function getConcept()
+    {
+        return $this->concept;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Participant
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**
      * Set pot
      *
      * @param \letskickin\BackBundle\Entity\Pot $pot
-     * @return Guest
+     * @return Participant
      */
     public function setPot(\letskickin\BackBundle\Entity\Pot $pot = null)
     {
         $this->pot = $pot;
-
+    
         return $this;
     }
 
     /**
      * Get pot
      *
-     * @return \letskickin\BackBundle\Entity\Pot
+     * @return \letskickin\BackBundle\Entity\Pot 
      */
     public function getPot()
     {
