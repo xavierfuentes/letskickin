@@ -69,6 +69,13 @@ class Participant
 	 */
 	private $status;
 
+	/**
+	 * @var string $email
+	 *
+	 * @ORM\Column(type="string")
+	 */
+	private $email;
+
 	public function __construct()
 	{
 		$generator = new SecureRandom();
@@ -201,6 +208,29 @@ class Participant
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Participant
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**

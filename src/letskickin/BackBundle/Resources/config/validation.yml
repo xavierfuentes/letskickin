@@ -3,24 +3,31 @@ letskickin\BackBundle\Entity\Pot:
         occasion:
             - NotBlank: { message: "pot.occasion.not_blank" }
             - Length:
+                minMessage: "pot.admin_email.too_short"
                 min: 5
         admin_name:
-            - NotBlank: ~
+            - NotBlank: { message: "pot.admin_name.not_blank" }
             - Length:
+                minMessage: "pot.admin_email.too_short"
                 min: 2
         admin_email:
-            - NotBlank: ~
+            - NotBlank: { message: "pot.admin_email.not_blank" }
             - Email:
+                message: "pot.admin_email.not_valid"
                 checkMX: true
         deadline:
-            - NotBlank: ~
-            - Date: ~
-        amount_total:
-            - NotBlank: ~
-        amount_partial:
-            - NotBlank: ~
-        # notifications_active:
-        # guests_invite:
-        # reminders_active:
-        # tracking_active:
-        # message:
+            - NotBlank: { message: "pot.deadline.not_blank" }
+            - Date: { message: "pot.deadline.not_valid" }
+
+letskickin\BackBundle\Entity\Participant:
+    properties:
+        name:
+            - NotBlank: { message: "participant.name.not_blank" }
+            - Length:
+                minMessage: "participant.name.too_short"
+                min: 2
+        email:
+            - NotBlank: { message: "participant.email.not_blank" }
+            - Email:
+                message: "participant.email.not_valid"
+                checkMX: true
