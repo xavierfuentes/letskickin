@@ -20,10 +20,10 @@ class ParticipantType extends AbstractType
     {
         $builder
             ->add('name', 'text')
-			->add('concept', 'text')
-			->add('status', 'checkbox', array(
-				'required' => false,
-			))
+	        ->add('email', 'email')
+			->add('concept', 'text', array(
+		        'required' => false,
+	        ))
         ;
     }
     
@@ -34,11 +34,6 @@ class ParticipantType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'letskickin\BackBundle\Entity\Participant',
-			/*'empty_data' => function (FormInterface $form) {
-				return new Participant(
-					$form->getData()['pot']
-				);
-			},*/
         ));
     }
 

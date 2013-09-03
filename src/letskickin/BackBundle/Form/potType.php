@@ -4,9 +4,10 @@ namespace letskickin\BackBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\DataTransformer\IntegerToLocalizedStringTransformer;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+use letskickin\BackBundle\Form\ParticipantType;
 
 class potType extends AbstractType {
 
@@ -15,7 +16,7 @@ class potType extends AbstractType {
             case 1:
                 $builder
                     ->add('admin_name', 'text')
-                    ->add('admin_email', 'text')
+                    ->add('admin_email', 'email')
                     ->add('occasion', 'text')
                     ->add('deadline', 'date', array(
                         'input'   => 'datetime',
@@ -30,12 +31,12 @@ class potType extends AbstractType {
 					->add('amount_total', 'money', array(
 						'required' => false,
 						'precision' => 2,
-						//'currency' => false,
+//						'currency' => false,
 					))
 					->add('amount_partial', 'money', array(
 						'required' => false,
 						'precision' => 2,
-						//'currency' => false,
+//						'currency' => false,
 					))
 					->add('bank_account', 'text')
                 ;
@@ -58,12 +59,11 @@ class potType extends AbstractType {
 					->add('tracking_active', 'checkbox', array(
 						'required' => false
 					))
-//					->add('participants', 'collection', array(
-//						'type' => new ParticipantForm(),
-//						'required' => false,
-//						'allow_add' => true,
-//						'allow_delete' => true,
-//					))
+					->add('participants', 'collection', array(
+						'type' => new ParticipantType(),
+						'allow_add' => true,
+						'allow_delete' => true,
+					))
                 ;
                 break;
         }

@@ -50,7 +50,7 @@ class PotController extends Controller
         }
 
         return array(
-            'form' => $form->createView(),
+            'pot_form' => $form->createView(),
             'flow' => $flow,
         );
     }
@@ -72,7 +72,7 @@ class PotController extends Controller
 	{
 		$pot = $this->getPotManager()->find($pot_key, $admin_key);
 
-		$form = $this->createFormBuilder($pot)
+		$participants_form = $this->createFormBuilder($pot)
 			->add('participants', 'collection', array(
 				'type' 		=> new ParticipantType(),
 				'allow_add' => true,
@@ -82,18 +82,18 @@ class PotController extends Controller
 			->getForm()
 		;
 
-		$form->handleRequest($request);
+		$participants_form->handleRequest($request);
 
-		$this->getPotManager()->addParticipants($form->getData()->getParticipants());
+		$this->getPotManager()->addParticipants($participants_form->getData()->getParticipants());
 
-		if ($form->isValid()) {
+		if ($participants_form->isValid()) {
 
 			//return $this->redirect($this->generateUrl('task_success'));
 		}
 
 		return array(
 			'pot' 	=> $pot,
-			'participants_form'	=> $form->createView(),
+			'participants_form'	=> $participants_form->createView(),
 		);
 	}
 

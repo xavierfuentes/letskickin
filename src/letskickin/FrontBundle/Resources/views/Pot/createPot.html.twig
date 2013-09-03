@@ -3,23 +3,89 @@
 {% block body_id %}pot-create{% endblock %}
 
 {% block content %}
-<div>
-    Steps:
-    {% include 'CraueFormFlowBundle:FormFlow:stepList.html.twig' %}
-</div>
-<form method="post" {{ form_enctype(form) }}>
-    {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
+    <div>
+        Steps: {% include 'CraueFormFlowBundle:FormFlow:stepList.html.twig' %}
+    </div>
 
-    {{ form_errors(form) }}
+    {{ form_start(pot_form) }}
+        {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
 
-    {% if flow.getCurrentStepNumber() == 1 %}
-        <div>
-            {{ form_widget(form) }}
-        </div>
-    {% endif %}
+        {{ form_errors(pot_form) }}
 
-    {{ form_rest(form) }}
+        {% if flow.getCurrentStepNumber() == 4 %}
+            <ul class="participants" data-prototype="{{ form_widget(pot_form.participants.vars.prototype)|e }}"></ul>
+        {% endif %}
 
-    {% include 'CraueFormFlowBundle:FormFlow:buttons.html.twig' %}
-</form>
+        {% include 'CraueFormFlowBundle:FormFlow:buttons.html.twig' %}
+    {{ form_end(pot_form) }}
+{% endblock %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+
+    <script>
+        // Get the ul that holds the collection of participants
+        var collectionHolder = $('ul.participants');
+
+        // setup an "add a participant" link
+        var $addParticipantLink = $('<a href="#" class="add_participant_link">Add a participant</a>');
+        var $newLinkLi = $('<li></li>').append($addParticipantLink);
+
+        jQuery(document).ready(function() {
+            // add a delete link to all of the existing participant form li elements
+            collectionHolder.find('li').each(function() {
+                addParticipantFormDeleteLink($(this));
+            });
+
+            // add the "add a participant" anchor and li to the participants ul
+            collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            collectionHolder.data('index', collectionHolder.find(':input').length);
+
+            $addParticipantLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new participant form (see next code block)
+                addParticipantForm(collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addParticipantForm(collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = collectionHolder.data('prototype');
+
+            // get the new index
+            var index = collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a participant" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+
+            // add a delete link to the new form
+            addParticipantFormDeleteLink($newFormLi);
+        }
+
+        function addParticipantFormDeleteLink($participantFormLi) {
+            var $removeFormA = $('<a href="#">delete this participant</a>');
+            $participantFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the participant form
+                $participantFormLi.remove();
+            });
+        }
+    </script>
 {% endblock %}
