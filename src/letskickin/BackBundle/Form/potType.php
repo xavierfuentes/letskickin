@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use letskickin\BackBundle\Entity\Participant;
 use letskickin\BackBundle\Form\ParticipantType;
 
 class potType extends AbstractType {
@@ -61,6 +62,7 @@ class potType extends AbstractType {
 					))
 					->add('participants', 'collection', array(
 						'type' => new ParticipantType(),
+		                'by_reference' => false,
 						'allow_add' => true,
 						'allow_delete' => true,
 					))

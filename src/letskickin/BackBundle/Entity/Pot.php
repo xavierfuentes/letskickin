@@ -149,6 +149,7 @@ class Pot
      * @ORM\Column(type="boolean")
      */
     private $reminders_active;
+
     /**
      * Constructor
      */
@@ -582,16 +583,17 @@ class Pot
     }
 
     /**
-     * Add participant
+     * Add a participant
      *
      * @param \letskickin\BackBundle\Entity\Participant $participant
      * @return Pot
      */
     public function addParticipant(\letskickin\BackBundle\Entity\Participant $participant)
     {
-		$participant->addTask($this);
-        $this->participants[] = $participant;
-    
+	    $participant->setPot($this);
+
+        $this->participants->add($participant);
+
         return $this;
     }
 

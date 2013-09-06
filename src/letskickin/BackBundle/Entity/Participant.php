@@ -30,14 +30,14 @@ class Participant
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="letskickin\BackBundle\Entity\Pot", inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity="letskickin\BackBundle\Entity\Pot", inversedBy="participants", cascade={"persist"})
      */
     protected $pot;
 
 	/**
 	 * @var string $key
 	 *
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", name="participant_key")
 	 */
 	private $key;
 
@@ -65,7 +65,7 @@ class Participant
 	/**
 	 * @var string $status
 	 *
-	 * @ORM\Column(type="integer")
+	 * @ORM\Column(type="integer", name="participant_status")
 	 */
 	private $status;
 
@@ -76,6 +76,9 @@ class Participant
 	 */
 	private $email;
 
+	/**
+	 * Constructor
+	 */
 	public function __construct()
 	{
 		$generator = new SecureRandom();

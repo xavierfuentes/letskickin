@@ -338,12 +338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "e536e8b87db29854cacc214dff5d41fbcf188674"
+                "reference": "c8350438c19ac360d65c38d13788e58344fda5a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/e536e8b87db29854cacc214dff5d41fbcf188674",
-                "reference": "e536e8b87db29854cacc214dff5d41fbcf188674",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/c8350438c19ac360d65c38d13788e58344fda5a0",
+                "reference": "c8350438c19ac360d65c38d13788e58344fda5a0",
                 "shasum": ""
             },
             "require": {
@@ -398,7 +398,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2013-08-28 08:24:11"
+            "time": "2013-09-03 20:52:13"
         },
         {
             "name": "hwi/oauth-bundle",

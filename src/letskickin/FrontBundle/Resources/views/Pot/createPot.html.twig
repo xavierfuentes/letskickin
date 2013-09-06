@@ -16,6 +16,8 @@
             <ul class="participants" data-prototype="{{ form_widget(pot_form.participants.vars.prototype)|e }}"></ul>
         {% endif %}
 
+        {{ form_rest(pot_form) }}
+
         {% include 'CraueFormFlowBundle:FormFlow:buttons.html.twig' %}
     {{ form_end(pot_form) }}
 {% endblock %}
@@ -25,7 +27,7 @@
 
     <script>
         // Get the ul that holds the collection of participants
-        var collectionHolder = $('ul.participants');
+        var collectionHolder = $('.participants');
 
         // setup an "add a participant" link
         var $addParticipantLink = $('<a href="#" class="add_participant_link">Add a participant</a>');

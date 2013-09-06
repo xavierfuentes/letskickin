@@ -21,9 +21,9 @@ class ParticipantType extends AbstractType
         $builder
             ->add('name', 'text')
 	        ->add('email', 'email')
-			->add('concept', 'text', array(
-		        'required' => false,
-	        ))
+//			->add('concept', 'text', array(
+//		        'required' => false,
+//	        ))
         ;
     }
     

@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityRepository;
 use letskickin\BackBundle\Entity\Pot;
 use letskickin\BackBundle\PotEvents;
 use letskickin\BackBundle\Event\PotEvent;
+use Symfony\Component\Validator\Constraints\True;
 
 class PotManager
 {
@@ -82,6 +83,7 @@ class PotManager
         $pot->setAdminKey($admin_key);
 
         // Money default values
+	    $pot->setCurrency("EUR");
         $pot->setCollectionMethod(self::METHOD_TRANSFER);
 
         // Extra default values
@@ -102,25 +104,39 @@ class PotManager
     {
 		$pot->setStatus($status);
 
-        $this->om->persist($pot);
-        $this->om->flush();
+//	    if(false === $pot->getParticipants()->isEmpty()) {
+//		    $this->addParticipants($pot->getParticipants(), $pot);
+//	    }
+
+	    $this->om->persist($pot);
+	    $this->om->flush();
 
         $event = new PotEvent($pot);
         $this->dispatcher->dispatch(PotEvents::POT_SAVED, $event);
     }
 
-	public function addParticipants($participants)
-	{
-		if (sizeof($participants) > 0) {
-			$pot = $participants->getOwner();
-
-			foreach($participants as $person) {
-				$person->setPot($pot);
-				$this->om->persist($person);
-			}
-
-			$this->om->flush();
-		}
-	}
+//	/**
+//	 * Add participants and sets its pot right
+//	 *
+//	 * @param $participants
+//	 * @param Pot $pot
+//	 *
+//	 * AdsSets the pot for every participant
+//	 */
+//	public function addParticipant($participants, Pot $pot)
+//	{
+//		$this->participants[] = $participants;
+//
+//		foreach($participants as $person) {
+//			$person->setPot($pot);
+//			$this->om->persist($person);
+//		}
+//
+//		$this->om->flush();
+//
+//		ldd($participants);
+////		$event = new PotEvent($pot);
+////		$this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
+//	}
 
 }
