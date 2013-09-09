@@ -135,7 +135,7 @@ class PotManager
 		}
 
 		$event = new PotEvent($pot);
-		$this->dispatcher->dispatch(PotEvents::ALL_PARTICIPANTS_ADDED, $event);
+		$this->dispatcher->dispatch(PotEvents::PARTICIPANTS_ADDED, $event);
 	}
 
 }

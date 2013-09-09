@@ -17,4 +17,11 @@ final class PotEvents
      * @var string
      */
     const SAVED = 'pot.saved';
+
+	/**
+	 * The SAVED event occurs when a pot is created AND is flushed into the DB
+	 * The event listener method receives a \letskickin\BackBundle\Event\PotEvent instance
+	 * @var string
+	 */
+	const SAVED = 'pot.saved';
 }
