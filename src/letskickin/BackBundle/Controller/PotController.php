@@ -66,17 +66,17 @@ class PotController extends Controller
     }
 
 	/**
-	 * @Template("letskickinFrontBundle:Pot:showPot.html.twig")
+	 * @Template("letskickinFrontBundle:Pot:editPot.html.twig")
 	 */
-	public function showPotAction(Request $request, $pot_key, $admin_key = null)
+	public function editPotAction(Request $request, $pot_key, $admin_key = null)
 	{
-		$pot = $this->getPotManager()->find($pot_key, $admin_key);
+		$pot = $this->getPotManager()->find($pot_key);
 
 		$participants_form = $this->createFormBuilder($pot)
 			->add('participants', 'collection', array(
 				'type' 		=> new ParticipantType(),
 				'allow_add' => true,
-				'allow_delete' => true,
+//				'allow_delete' => true,
 			))
 			->add('save', 'submit')
 			->getForm()
@@ -84,10 +84,8 @@ class PotController extends Controller
 
 		$participants_form->handleRequest($request);
 
-		$this->getPotManager()->addParticipants($participants_form->getData()->getParticipants());
-
 		if ($participants_form->isValid()) {
-
+			$this->getPotManager()->addParticipants($participants_form->getData()->getParticipants());
 			//return $this->redirect($this->generateUrl('task_success'));
 		}
 

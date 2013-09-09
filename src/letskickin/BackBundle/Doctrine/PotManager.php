@@ -11,7 +11,8 @@ use Doctrine\ORM\EntityRepository;
 use letskickin\BackBundle\Entity\Pot;
 use letskickin\BackBundle\PotEvents;
 use letskickin\BackBundle\Event\PotEvent;
-use Symfony\Component\Validator\Constraints\True;
+use letskickin\BackBundle\ParticipantEvents;
+use letskickin\BackBundle\Event\ParticipantEvent;
 
 class PotManager
 {
@@ -57,7 +58,7 @@ class PotManager
     /**
      * @return Pot
      */
-    public function find($pot_key, $admin_key)
+    public function find($pot_key)
     {
         return $this->repo->findOneBy(array('pot_key' => $pot_key));
     }
@@ -95,7 +96,7 @@ class PotManager
         $pot->setTrackingActive(false);
 
 		$event = new PotEvent($pot);
-		$this->dispatcher->dispatch(PotEvents::POT_CREATED, $event);
+		$this->dispatcher->dispatch(PotEvents::CREATED, $event);
 
         return $pot;
     }
@@ -104,39 +105,37 @@ class PotManager
     {
 		$pot->setStatus($status);
 
-//	    if(false === $pot->getParticipants()->isEmpty()) {
-//		    $this->addParticipants($pot->getParticipants(), $pot);
-//	    }
-
 	    $this->om->persist($pot);
 	    $this->om->flush();
 
-        $event = new PotEvent($pot);
-        $this->dispatcher->dispatch(PotEvents::POT_SAVED, $event);
+	    if(false === $pot->getParticipants()->isEmpty()) {
+		    $this->addParticipants($pot);
+	    }
+
+	    $event = new PotEvent($pot);
+	    $this->dispatcher->dispatch(PotEvents::SAVED, $event);
     }
 
-//	/**
-//	 * Add participants and sets its pot right
-//	 *
-//	 * @param $participants
-//	 * @param Pot $pot
-//	 *
-//	 * AdsSets the pot for every participant
-//	 */
-//	public function addParticipant($participants, Pot $pot)
-//	{
-//		$this->participants[] = $participants;
-//
-//		foreach($participants as $person) {
-//			$person->setPot($pot);
-//			$this->om->persist($person);
-//		}
-//
-//		$this->om->flush();
-//
-//		ldd($participants);
-////		$event = new PotEvent($pot);
-////		$this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
-//	}
+	public function addParticipants(Pot $pot)
+	{
+		$participants = $pot->getParticipants();
+
+		foreach($participants as $person) {
+			$generator = new SecureRandom();
+
+			// default data for every participant
+			$person->setDate(new \DateTime);
+			$person->setKey(bin2hex($generator->nextBytes(4)));
+			$person->setStatus($person::STATUS_WAITING);
+
+			$pot->addParticipant($person);
+
+		    $event = new PotEvent($pot);
+		    $this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
+		}
+
+		$event = new PotEvent($pot);
+		$this->dispatcher->dispatch(PotEvents::ALL_PARTICIPANTS_ADDED, $event);
+	}
 
 }

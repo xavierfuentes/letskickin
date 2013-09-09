@@ -76,18 +76,6 @@ class Participant
 	 */
 	private $email;
 
-	/**
-	 * Constructor
-	 */
-	public function __construct()
-	{
-		$generator = new SecureRandom();
-
-		$this->setDate(new \DateTime);
-		$this->setKey(bin2hex($generator->nextBytes(4)));
-		$this->setStatus(self::STATUS_WAITING);
-	}
-
     /**
      * Get id
      *

@@ -5,11 +5,7 @@ parameters:
 
     letskickin.manager.pot_manager: letskickin\BackBundle\Doctrine\PotManager
     letskickin.manager.pot_class: letskickin\BackBundle\Entity\Pot
-    letskickin.listener.pot: letskickin\BackBundle\EventListener\PotListener
-
-#    letskickin.manager.guest_manager: letskickin\BackBundle\Doctrine\GuestManager
-#    letskickin.manager.guest_class: letskickin\BackBundle\Entity\Guest
-#    letskickin.listener.guest: letskickin\BackBundle\EventListener\GuestListener
+    letskickin.subscriber.pot: letskickin\BackBundle\EventListener\PotSubscriber
 
 services:
     letskickin.user_provider:
@@ -37,8 +33,8 @@ services:
             em: "@doctrine.orm.entity_manager"
             class: "%letskickin.manager.pot_class%"
 
-    letskickin.listener.pot:
-        class: "%letskickin.listener.pot%"
+    letskickin.subscriber.pot:
+        class: "%letskickin.subscriber.pot%"
         arguments:
             mailer: "@mailer"
         tags:

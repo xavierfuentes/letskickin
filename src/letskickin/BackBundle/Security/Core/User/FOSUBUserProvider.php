@@ -43,6 +43,7 @@ class FOSUBUserProvider extends BaseClass
     {
         $username = $response->getUsername();
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
+
         //when the user is registrating
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();

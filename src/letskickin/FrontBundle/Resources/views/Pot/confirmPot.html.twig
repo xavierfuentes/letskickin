@@ -6,12 +6,12 @@
     {{ 'pot.thanks_admin'|trans({'%admin_name%': pot.adminName}, "pot") }}
 
     <div>
-        {% set participation_link = url("pot_show", { 'pot_key' : pot.potKey }) %}
+        {% set participation_link = url("pot_edit", { 'pot_key' : pot.potKey }) %}
         <a href="{{ participation_link }}">{{ participation_link }}</a>
     </div>
 
     <div>
-        {% set admin_link = url("pot_show", { 'pot_key' : pot.potKey, 'admin_key' : pot.adminKey }) %}
+        {% set admin_link = url("pot_edit", { 'pot_key' : pot.potKey, 'admin_key' : pot.adminKey }) %}
         <a href="{{ admin_link }}">{{ admin_link }}</a>
     </div>
 {% endblock %}

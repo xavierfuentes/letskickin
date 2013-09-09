@@ -583,7 +583,7 @@ class Pot
     }
 
     /**
-     * Add a participant
+     * Add participants
      *
      * @param \letskickin\BackBundle\Entity\Participant $participant
      * @return Pot

@@ -9,14 +9,10 @@
         {{ form_errors(participants_form) }}
 
         <ul class="participants" data-prototype="{{ form_widget(participants_form.participants.vars.prototype)|e }}">
-            {% for person in pot.participants %}
-                <div>{{ person|ld }}</div>
-                <li>name: {{ person.name }} concept: {{ person.concept }}  status: {{ person.status }}</li>
-            {% endfor %}
+            {{ form_widget(participants_form.participants) }}
         </ul>
 
     {{ form_end(participants_form) }}
-
 {% endblock %}
 
 {% block foot_scripts %}
