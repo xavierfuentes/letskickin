@@ -3,19 +3,8 @@
 namespace letskickin\BackBundle\Form;
 
 use Craue\FormFlowBundle\Form\FormFlow;
-use Craue\FormFlowBundle\Form\FormFlowInterface;
-use Symfony\Component\Form\FormTypeInterface;
 
-class potFlow extends FormFlow {
-
-    /**
-     * @var FormTypeInterface
-     */
-    protected $formType;
-
-    public function setFormType(FormTypeInterface $formType) {
-        $this->formType = $formType;
-    }
+class PotFlow extends FormFlow {
 
     public function getName() {
         return 'createPot';
@@ -25,31 +14,20 @@ class potFlow extends FormFlow {
         return array(
             array(
                 'label' => 'data',
-                'type' => $this->formType,
+                'type' => new createPotStep1Type(),
             ),
             array(
                 'label' => 'money',
-                'type' => $this->formType,
-                // 'skip' => function($estimatedCurrentStepNumber, FormFlowInterface $flow) {
-                //     return $estimatedCurrentStepNumber > 1 && !$flow->getFormData()->canHaveEngine();
-                // },
+                'type' => new createPotStep2Type(),
             ),
             array(
                 'label' => 'extra',
-                'type' => $this->formType,
+                'type' => new createPotStep3Type(),
             ),
             array(
                 'label' => 'participants',
-                'type' => $this->formType, // needed to avoid InvalidOptionsException regarding option 'flowStep'
+                'type' => new createPotStep4Type(),
             ),
         );
-    }
-
-    public function getFormOptions($step, array $options = array()) {
-        $options = parent::getFormOptions($step, $options);
-
-        $options['flowStep'] = $step;
-
-        return $options;
     }
 }
