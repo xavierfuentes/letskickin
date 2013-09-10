@@ -2,13 +2,14 @@
 
 namespace letskickin\BackBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 use letskickin\BackBundle\Entity\Pot;
 use letskickin\BackBundle\Doctrine\PotManager;
-use letskickin\BackBundle\Form\ParticipantType;
+use letskickin\BackBundle\Form\CreatePotStep3Type;
 
 class PotController extends Controller
 {
@@ -50,7 +51,7 @@ class PotController extends Controller
         }
 
         return array(
-            'pot_form' => $form->createView(),
+            'form' => $form->createView(),
             'flow' => $flow,
         );
     }
@@ -65,34 +66,35 @@ class PotController extends Controller
         return array('pot' => $pot);
     }
 
-	/**
-	 * @Template("letskickinFrontBundle:Pot:editPot.html.twig")
-	 */
 	public function editPotAction(Request $request, $pot_key, $admin_key = null)
 	{
 		$pot = $this->getPotManager()->find($pot_key);
 
-		$participants_form = $this->createFormBuilder($pot)
-			->add('participants', 'collection', array(
-				'type' 		=> new ParticipantType(),
-				'allow_add' => true,
-//				'allow_delete' => true,
-			))
-			->add('save', 'submit')
-			->getForm()
-		;
+		$pot_form = $this->createForm(new CreatePotStep3Type(), $pot);
 
-		$participants_form->handleRequest($request);
+		// AJAX form submission
+		if ( $request->isMethod( 'POST' ) ) {
+			$pot_form->handleRequest($request);
 
-		if ($participants_form->isValid()) {
-			$this->getPotManager()->addParticipants($participants_form->getData()->getParticipants());
-			//return $this->redirect($this->generateUrl('task_success'));
+			if ( $pot_form->isValid( ) ) {
+				$this->getPotManager()->updatePot($pot);
+
+				$response['success'] = true;
+			} else {
+				$response['success'] = false;
+				$response['error'] = $pot_form->getErrors();
+			}
+
+			return new JsonResponse( $response );
 		}
 
-		return array(
-			'pot' 	=> $pot,
-			'participants_form'	=> $participants_form->createView(),
-		);
+		$admin_mode = $pot->getAdminKey() ==  $admin_key ? true : false;
+
+		return $this->render('letskickinFrontBundle:Pot:editPot.html.twig', array(
+			'pot' 	    => $pot,
+			'form'      => $pot_form->createView(),
+			'isAdmin'   => $admin_mode,
+		));
 	}
 
 }

@@ -41,11 +41,33 @@ class PotSubscriber implements EventSubscriberInterface
 		$this->mailer->send($message);
     }
 
+	public function onPotUpdated(PotEvent $event)
+	{
+		$pot = $event->getPot();
+
+		$message = \Swift_Message::newInstance()
+			->setSubject($pot->getOccasion())
+			->setFrom('send@example.com')
+			->setTo($pot->getAdminEmail())
+//			->setBody(
+//				$this->renderView(
+//					'HelloBundle:Hello:email.txt.twig',
+//					array('name' => $name)
+//				)
+//			)
+			->setBody("Hi " . $pot->getAdminName() . ", you have edited your pot: " . $pot->getOccasion())
+		;
+		$this->mailer->send($message);
+
+		// Warn all the participants
+	}
+
     public static function getSubscribedEvents()
     {
         return array(
-	        PotEvents::CREATED => array('onPotCreated', 5),
-	        PotEvents::SAVED => array('onPotSaved', 4),
+	        PotEvents::CREATED  => array('onPotCreated', 5),
+	        PotEvents::SAVED    => array('onPotSaved', 4),
+	        PotEvents::UPDATED  => array('onPotUpdated', 3),
 		);
     }
 }

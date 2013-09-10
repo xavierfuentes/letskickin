@@ -108,34 +108,30 @@ class PotManager
 	    $this->om->persist($pot);
 	    $this->om->flush();
 
-	    if(false === $pot->getParticipants()->isEmpty()) {
-		    $this->addParticipants($pot);
-	    }
-
 	    $event = new PotEvent($pot);
 	    $this->dispatcher->dispatch(PotEvents::SAVED, $event);
     }
 
-	public function addParticipants(Pot $pot)
+	public function updatePot(Pot $pot)
 	{
-		$participants = $pot->getParticipants();
-
-		foreach($participants as $person) {
-			$generator = new SecureRandom();
-
-			// default data for every participant
-			$person->setDate(new \DateTime);
-			$person->setKey(bin2hex($generator->nextBytes(4)));
-			$person->setStatus($person::STATUS_WAITING);
-
-			$pot->addParticipant($person);
-
-		    $event = new PotEvent($pot);
-		    $this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
-		}
+		$this->savePot($pot);
 
 		$event = new PotEvent($pot);
-		$this->dispatcher->dispatch(PotEvents::PARTICIPANTS_ADDED, $event);
+		$this->dispatcher->dispatch(PotEvents::UPDATED, $event);
+	}
+
+	public function setPremiumPot(Pot $pot)
+	{
+		$pot->setTrackingActive(true);
+		$pot->setNotificationsActive(true);
+		$pot->setParticipantsInvite(true);
+		$pot->setRemindersActive(true);
+
+		$this->om->persist($pot);
+		$this->om->flush();
+
+		$event = new PotEvent($pot);
+		$this->dispatcher->dispatch(PotEvents::PREMIUM, $event);
 	}
 
 }

@@ -19,9 +19,16 @@ final class PotEvents
     const SAVED = 'pot.saved';
 
 	/**
-	 * The SAVED event occurs when a pot is created AND is flushed into the DB
+	 * The UPDATED event occurs when a pot is updated AND is flushed into the DB
 	 * The event listener method receives a \letskickin\BackBundle\Event\PotEvent instance
 	 * @var string
 	 */
-	const SAVED = 'pot.saved';
+	const UPDATED = 'pot.updated';
+
+	/**
+	 * The PREMIUM event occurs when a pot is created AND is flushed into the DB
+	 * The event listener method receives a \letskickin\BackBundle\Event\PotEvent instance
+	 * @var string
+	 */
+	const PREMIUM = 'pot.premium';
 }
