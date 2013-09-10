@@ -43,7 +43,7 @@ class Pot
     /**
      * @var string $occasion
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=140)
      */
     private $occasion;
 
@@ -64,7 +64,7 @@ class Pot
     /**
      * @var string $admin_email
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=60)
      */
     private $admin_email;
 
@@ -99,7 +99,7 @@ class Pot
     /**
      * @var integer $bank_account
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=30)
      */
     private $bank_account;
 
