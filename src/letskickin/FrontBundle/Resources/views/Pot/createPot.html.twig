@@ -4,24 +4,57 @@
 
 {% block content %}
     <div>
-        Steps: {% include 'CraueFormFlowBundle:FormFlow:stepList.html.twig' %}
+        {#<ol class="craue_formflow_steplist">
+            {% for stepLabel in flow.getStepLabels() %}
+                <li{{ block('craue_flow_stepList_class') }}>
+                    {%- if flow.isAllowDynamicStepNavigation() and (loop.index != flow.getCurrentStepNumber()) and flow.isStepDone(loop.index) and (not flow.isStepSkipped(loop.index)) -%}
+                        <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all
+                        | merge(app.request.attributes.get('_route_params'))
+                        | craue_addDynamicStepNavigationParameter(flow, loop.index)) }}">
+                            {{- block('craue_flow_stepLabel') -}}
+                        </a>
+                    {%- else -%}
+                        {{- block('craue_flow_stepLabel') -}}
+                    {%- endif -%}
+                </li>
+            {% endfor %}
+        </ol>#}
+
+        Pasos
     </div>
 
-    {{ form_start(pot_form) }}
-        {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
+    {{ form_start(form) }}
+        <input type="hidden" name="{{ flow.getFormStepKey() }}" value="{{ flow.getCurrentStepNumber() }}" />
 
-        {{ form_errors(pot_form) }}
+        {{ form_errors(form) }}
 
-        {% if flow.getCurrentStepNumber() == 4 %}
-            <ul class="participants" data-prototype="{{ form_widget(pot_form.participants.vars.prototype)|e }}"></ul>
-        {% endif %}
+        {#{% if flow.getCurrentStepNumber() == 4 %}
+            <ul class="participants" data-prototype="{{ form_widget(form.participants.vars.prototype)|e }}"></ul>
+        {% endif %}#}
 
-        {{ form_rest(pot_form) }}
+        {{ form_rest(form) }}
 
-        {% include 'CraueFormFlowBundle:FormFlow:buttons.html.twig' %}
-    {{ form_end(pot_form) }}
+        {% set renderBackButton = flow.getCurrentStepNumber() in (flow.getFirstStepNumber() + 1) .. flow.getLastStepNumber() %}
+        <div class="pot_form_buttons pot_form_button_count_{% if renderBackButton %}3{% else %}2{% endif %}">
+            <button type="submit" class="pot_form_button_last">
+                {%- if flow.getCurrentStepNumber() < flow.getLastStepNumber() -%}
+                    {{- 'button.next' | trans({}, 'CraueFormFlowBundle') -}}
+                {%- else -%}
+                    {{- 'button.finish' | trans({}, 'CraueFormFlowBundle') -}}
+                {%- endif -%}
+            </button>
+
+            {% if renderBackButton %}
+                <button type="submit" name="{{ flow.getFormTransitionKey() }}" value="back" formnovalidate="formnovalidate">
+                    {{- 'button.back' | trans({}, 'CraueFormFlowBundle') -}}
+                </button>
+            {% endif %}
+        </div>
+
+    {{ form_end(form) }}
 {% endblock %}
 
+{#
 {% block foot_scripts %}
     {{ parent() }}
 
@@ -90,4 +123,6 @@
             });
         }
     </script>
+    {{ form_end(form) }}
 {% endblock %}
+#}
