@@ -47,6 +47,11 @@ class Pot
      */
     private $occasion;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="letskickin\BackBundle\Entity\User", inversedBy="pots", cascade={"persist", "remove"})
+	 */
+	private $owner;
+
     /**
      * @var string $admin_key
      *
@@ -615,5 +620,28 @@ class Pot
     public function getParticipants()
     {
         return $this->participants;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \letskickin\BackBundle\Entity\User $owner
+     * @return Pot
+     */
+    public function setOwner(\letskickin\BackBundle\Entity\User $owner = null)
+    {
+        $this->owner = $owner;
+    
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \letskickin\BackBundle\Entity\User 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }

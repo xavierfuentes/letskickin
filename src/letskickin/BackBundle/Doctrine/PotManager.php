@@ -39,6 +39,9 @@ class PotManager
      */
     protected $class;
 
+	// Anonymous pot
+	const OWNER_ANONYMOUS = null;
+
     // Created but not finished
     const STATUS_INACTIVE = 0;
     // Created and valid
@@ -74,6 +77,7 @@ class PotManager
         $generator = new SecureRandom();
 
         // Basic data default values
+	    $pot->setOwner(self::OWNER_ANONYMOUS);
         $pot->setStatus(self::STATUS_INACTIVE);
         $pot->setCreationDate(new \DateTime);
 

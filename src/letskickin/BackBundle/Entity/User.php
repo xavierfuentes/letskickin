@@ -18,6 +18,11 @@ class User extends BaseUser
      */
     protected $id;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="letskickin\BackBundle\Entity\Pot", mappedBy="owner", cascade={"persist", "remove"})
+	 */
+	private $pots;
+
     /**
      * @var string
      *
@@ -196,4 +201,37 @@ class User extends BaseUser
         return $this->facebook_access_token;
     }
 
+
+    /**
+     * Add pots
+     *
+     * @param \letskickin\BackBundle\Entity\Pot $pots
+     * @return User
+     */
+    public function addPot(\letskickin\BackBundle\Entity\Pot $pots)
+    {
+        $this->pots[] = $pots;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pots
+     *
+     * @param \letskickin\BackBundle\Entity\Pot $pots
+     */
+    public function removePot(\letskickin\BackBundle\Entity\Pot $pots)
+    {
+        $this->pots->removeElement($pots);
+    }
+
+    /**
+     * Get pots
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPots()
+    {
+        return $this->pots;
+    }
 }
