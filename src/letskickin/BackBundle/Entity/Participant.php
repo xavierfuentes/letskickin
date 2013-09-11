@@ -15,12 +15,7 @@ use letskickin\BackBundle\Entity\Pot;
  */
 class Participant
 {
-	const STATUS_NO_PARTICIPATES = 0;
-	const STATUS_WAITING = 1;
-	const STATUS_CONTRIBUTED = 2;
-	const STATUS_CONFIRMED = 3;
-
-    /**
+	/**
      * @var integer $id
      *
      * @ORM\Column(type="integer")
@@ -28,39 +23,6 @@ class Participant
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="letskickin\BackBundle\Entity\Pot", inversedBy="participants", cascade={"persist"})
-     */
-    protected $pot;
-
-	/**
-	 * @var string $key
-	 *
-	 * @ORM\Column(type="string", name="participant_key")
-	 */
-	private $key;
-
-    /**
-     * @var \DateTime $date
-     *
-     * @ORM\Column(type="datetime")
-     */
-    protected $date;
-
-    /**
-     * @var string $name
-     *
-     * @ORM\Column(type="string")
-     */
-    private $name;
-
-	/**
-	 * @var string $concept
-	 *
-	 * @ORM\Column(type="string", nullable=true)
-	 */
-	private $concept;
 
 	/**
 	 * @var string $status
@@ -70,11 +32,37 @@ class Participant
 	private $status;
 
 	/**
-	 * @var string $email
+     * @ORM\ManyToOne(targetEntity="letskickin\BackBundle\Entity\Pot", inversedBy="participants", cascade={"persist"})
+     */
+    protected $pot;
+
+	/**
+	 * @var string $participant_key
 	 *
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", unique=true, length=32)
 	 */
-	private $email;
+	private $participant_key;
+
+	/**
+     * @var \DateTime $date
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $date;
+
+	/**
+     * @var string $name
+     *
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+	/**
+	 * @var integer $amount
+	 *
+	 * @ORM\Column(type="integer")
+	 */
+	private $amount;
 
     /**
      * Get id
@@ -87,26 +75,26 @@ class Participant
     }
 
     /**
-     * Set key
+     * Set participant_key
      *
-     * @param string $key
+     * @param string $participantKey
      * @return Participant
      */
-    public function setKey($key)
+    public function setParticipantKey($participantKey)
     {
-        $this->key = $key;
+        $this->participant_key = $participantKey;
     
         return $this;
     }
 
     /**
-     * Get key
+     * Get participant_key
      *
      * @return string 
      */
-    public function getKey()
+    public function getParticipantKey()
     {
-        return $this->key;
+        return $this->participant_key;
     }
 
     /**
@@ -156,29 +144,6 @@ class Participant
     }
 
     /**
-     * Set concept
-     *
-     * @param string $concept
-     * @return Participant
-     */
-    public function setConcept($concept)
-    {
-        $this->concept = $concept;
-    
-        return $this;
-    }
-
-    /**
-     * Get concept
-     *
-     * @return string 
-     */
-    public function getConcept()
-    {
-        return $this->concept;
-    }
-
-    /**
      * Set status
      *
      * @param integer $status
@@ -202,29 +167,6 @@ class Participant
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     * @return Participant
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
      * Set pot
      *
      * @param \letskickin\BackBundle\Entity\Pot $pot
@@ -245,5 +187,28 @@ class Participant
     public function getPot()
     {
         return $this->pot;
+    }
+
+    /**
+     * Set amount
+     *
+     * @param integer $amount
+     * @return Participant
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    
+        return $this;
+    }
+
+    /**
+     * Get amount
+     *
+     * @return integer 
+     */
+    public function getAmount()
+    {
+        return $this->amount;
     }
 }

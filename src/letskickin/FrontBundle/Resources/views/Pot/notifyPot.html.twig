@@ -1,0 +1,23 @@
+{% extends '@Layouts/default.html.twig' %}
+
+{% block body_id %}pot-confirm{% endblock %}
+
+{% block content %}
+    {{ 'pot.thanks_participant'|trans({'%name%': participant.name}, "pot") }}
+
+    <div>
+        <a href="{{ url('pot_show', {'pot_key': pot.potKey} ) }}">{{ 'button.back'|trans({}, "global") }}</a>
+    </div>
+
+    <div>
+        Notificaciones? -> registrate
+    </div>
+
+    <div>
+        no quieres hacer ningún regalo a nadie? -> botón crear bote
+    </div>
+
+    <div>
+        banners?
+    </div>
+{% endblock %}

@@ -3,29 +3,28 @@
 {% block body_id %}pot-show{% endblock %}
 
 {% block content %}
-    {% if isAdmin %}
-        {{ form_start(form, {'attr': {'class': 'pot_form'}}) }}
-        {{ form_errors(form) }}
+    {{ pot.occasion }}
+    {{ pot.adminName }}
+    {{ pot.adminEmail }}
+    {{ pot.deadline|date("d/m/Y") }}
+    {{ pot.amountPartial }}
+    {{ pot.amountTotal }}
+    {{ pot.bankAccount }}
 
-        {{ form_widget(form.occasion) }}
-        {{ form_widget(form.admin_name) }}
-        {{ form_widget(form.admin_email) }}
-        {{ form_widget(form.deadline) }}
-        {{ form_widget(form.amount_partial) }}
-        {{ form_widget(form.amount_total) }}
-        {{ form_widget(form.bank_account) }}
-
-        <button type="submit">Save</button>
-
-        {{ form_end(form) }}
-    {% else %}
-        {{ pot.occasion }}
-        {{ pot.adminName }}
-        {{ pot.deadline|date() }}
-        {{ pot.amountPartial }}
-        {{ pot.amountTotal }}
-        {{ pot.bankAccount }}
-    {% endif %}
+    <ul>
+        {% for person in pot.participants %}
+        <li>{{ person.name }} - {{ person.amount }}</li>
+        {% endfor %}
+        {{ form(participant_form) }}
+    </ul>
+    {#<form method="" action="" class="">
+        <ul class="participants" data-prototype="{{ form_widget(pot_form.participants.vars.prototype)|e }}">
+            {% for person in form.vars.value.participants %}
+            <li>{{ person }}</li>
+            {% endfor %}
+        </ul>
+        <input type="hidden"
+    </form>#}
 {% endblock %}
 
 {% block foot_scripts %}
@@ -55,7 +54,7 @@
                 e.preventDefault();
 
                 postForm( $(this), function( response ){
-                    console.log( response.success );
+                    // console.log( response );
                 });
 
                 return false;

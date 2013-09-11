@@ -119,42 +119,6 @@ class Pot
      * @ORM\OneToMany(targetEntity="letskickin\BackBundle\Entity\Participant", mappedBy="pot", cascade={"persist", "remove"})
      */
     private $participants;
-
-    /**
-     * @var string $message
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $message;
-
-    /**
-     * @var boolean $tracking_active
-     *
-     * @ORM\Column(type="boolean")
-     */
-    private $tracking_active;
-
-    /**
-     * @var boolean $notifications_active
-     *
-     * @ORM\Column(type="boolean")
-     */
-    private $notifications_active;
-
-    /**
-     * @var boolean $participants_invite
-     *
-     * @ORM\Column(type="boolean")
-     */
-    private $participants_invite;
-
-    /**
-     * @var boolean $reminders_active
-     *
-     * @ORM\Column(type="boolean")
-     */
-    private $reminders_active;
-
     /**
      * Constructor
      */
@@ -429,7 +393,7 @@ class Pot
     /**
      * Set bank_account
      *
-     * @param integer $bankAccount
+     * @param string $bankAccount
      * @return Pot
      */
     public function setBankAccount($bankAccount)
@@ -442,7 +406,7 @@ class Pot
     /**
      * Get bank_account
      *
-     * @return integer 
+     * @return string 
      */
     public function getBankAccount()
     {
@@ -473,132 +437,38 @@ class Pot
     }
 
     /**
-     * Set message
+     * Set owner
      *
-     * @param string $message
+     * @param \letskickin\BackBundle\Entity\User $owner
      * @return Pot
      */
-    public function setMessage($message)
+    public function setOwner(\letskickin\BackBundle\Entity\User $owner = null)
     {
-        $this->message = $message;
+        $this->owner = $owner;
     
         return $this;
     }
 
     /**
-     * Get message
+     * Get owner
      *
-     * @return string 
+     * @return \letskickin\BackBundle\Entity\User 
      */
-    public function getMessage()
+    public function getOwner()
     {
-        return $this->message;
-    }
-
-    /**
-     * Set tracking_active
-     *
-     * @param boolean $trackingActive
-     * @return Pot
-     */
-    public function setTrackingActive($trackingActive)
-    {
-        $this->tracking_active = $trackingActive;
-    
-        return $this;
-    }
-
-    /**
-     * Get tracking_active
-     *
-     * @return boolean 
-     */
-    public function getTrackingActive()
-    {
-        return $this->tracking_active;
-    }
-
-    /**
-     * Set notifications_active
-     *
-     * @param boolean $notificationsActive
-     * @return Pot
-     */
-    public function setNotificationsActive($notificationsActive)
-    {
-        $this->notifications_active = $notificationsActive;
-    
-        return $this;
-    }
-
-    /**
-     * Get notifications_active
-     *
-     * @return boolean 
-     */
-    public function getNotificationsActive()
-    {
-        return $this->notifications_active;
-    }
-
-    /**
-     * Set participants_invite
-     *
-     * @param boolean $participantsInvite
-     * @return Pot
-     */
-    public function setParticipantsInvite($participantsInvite)
-    {
-        $this->participants_invite = $participantsInvite;
-    
-        return $this;
-    }
-
-    /**
-     * Get participants_invite
-     *
-     * @return boolean 
-     */
-    public function getParticipantsInvite()
-    {
-        return $this->participants_invite;
-    }
-
-    /**
-     * Set reminders_active
-     *
-     * @param boolean $remindersActive
-     * @return Pot
-     */
-    public function setRemindersActive($remindersActive)
-    {
-        $this->reminders_active = $remindersActive;
-    
-        return $this;
-    }
-
-    /**
-     * Get reminders_active
-     *
-     * @return boolean 
-     */
-    public function getRemindersActive()
-    {
-        return $this->reminders_active;
+        return $this->owner;
     }
 
     /**
      * Add participants
      *
-     * @param \letskickin\BackBundle\Entity\Participant $participant
+     * @param \letskickin\BackBundle\Entity\Participant $participants
      * @return Pot
      */
-    public function addParticipant(\letskickin\BackBundle\Entity\Participant $participant)
+    public function addParticipant(\letskickin\BackBundle\Entity\Participant $participants)
     {
-	    $participant->setPot($this);
-
-        $this->participants->add($participant);
-
+        $this->participants[] = $participants;
+    
         return $this;
     }
 
@@ -620,28 +490,5 @@ class Pot
     public function getParticipants()
     {
         return $this->participants;
-    }
-
-    /**
-     * Set owner
-     *
-     * @param \letskickin\BackBundle\Entity\User $owner
-     * @return Pot
-     */
-    public function setOwner(\letskickin\BackBundle\Entity\User $owner = null)
-    {
-        $this->owner = $owner;
-    
-        return $this;
-    }
-
-    /**
-     * Get owner
-     *
-     * @return \letskickin\BackBundle\Entity\User 
-     */
-    public function getOwner()
-    {
-        return $this->owner;
     }
 }

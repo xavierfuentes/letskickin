@@ -4,7 +4,7 @@
 
 {% block content %}
     <div>
-        {#<ol class="craue_formflow_steplist">
+        <ol class="craue_formflow_steplist">
             {% for stepLabel in flow.getStepLabels() %}
                 <li{{ block('craue_flow_stepList_class') }}>
                     {%- if flow.isAllowDynamicStepNavigation() and (loop.index != flow.getCurrentStepNumber()) and flow.isStepDone(loop.index) and (not flow.isStepSkipped(loop.index)) -%}
@@ -18,9 +18,7 @@
                     {%- endif -%}
                 </li>
             {% endfor %}
-        </ol>#}
-
-        Pasos
+        </ol>
     </div>
 
     {{ form_start(form) }}
@@ -28,9 +26,10 @@
 
         {{ form_errors(form) }}
 
-        {#{% if flow.getCurrentStepNumber() == 4 %}
-            <ul class="participants" data-prototype="{{ form_widget(form.participants.vars.prototype)|e }}"></ul>
-        {% endif %}#}
+        {% if flow.getCurrentStepNumber() == 4 %}
+            Tú envías la invitación!
+            {#<ul class="participants" data-prototype="{{ form_widget(form.participants.vars.prototype)|e }}"></ul>#}
+        {% endif %}
 
         {{ form_rest(form) }}
 

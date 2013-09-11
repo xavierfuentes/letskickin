@@ -3,3 +3,6 @@ site:
     description: Organizar un regalo en grupo nunca había sido tan facil.
     keywords: "bote común, regalo en grupo"
     author: The Team
+
+button:
+    back: Volver

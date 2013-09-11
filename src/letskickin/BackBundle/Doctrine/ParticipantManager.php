@@ -2,17 +2,18 @@
 
 namespace letskickin\BackBundle\Doctrine;
 
+use letskickin\BackBundle\Entity\Pot;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 
-use letskickin\BackBundle\Entity\Pot;
-use letskickin\BackBundle\PotEvents;
-use letskickin\BackBundle\Event\PotEvent;
+use letskickin\BackBundle\Entity\Participant;
+use letskickin\BackBundle\ParticipantEvents;
+use letskickin\BackBundle\Event\ParticipantEvent;
 
-class PotManager
+class ParticipantManager
 {
 	/**
 	 * Holds the Symfony2 event dispatcher service
@@ -37,13 +38,10 @@ class PotManager
 	 */
 	protected $class;
 
-	// Created but not finished
-	const STATUS_INACTIVE = 0;
-	// Created and valid
-	const STATUS_ACTIVE = 1;
-
-	// Bank transfer
-	const METHOD_TRANSFER = 0;
+	const STATUS_NO_PARTICIPATES = 0;
+	const STATUS_WAITING = 1;
+	const STATUS_CONTRIBUTED = 2;
+	const STATUS_CONFIRMED = 3;
 
 	public function __construct(EventDispatcherInterface $dispatcher, ObjectManager $om, $class)
 	{
@@ -54,55 +52,57 @@ class PotManager
 	}
 
 	/**
-	 * @return Pot
+	 * @return Participant
 	 */
-	public function find($pot_key, $admin_key)
+	public function find($participant_key)
 	{
-		return $this->repo->findOneBy(array('pot_key' => $pot_key));
+		$participant = $this->repo->findOneBy(array('participant_key' => $participant_key));
+
+		return $participant;
 	}
 
 	/**
-	 * @return Pot
+	 * @return Participant
 	 */
-	public function createPot()
+	public function addParticipant(Pot $pot)
 	{
 		$class = $this->class;
-		$pot = new $class();
+		$participant = new $class();
+
+		$participant->setStatus(self::STATUS_WAITING);
+		$participant->setPot($pot);
 
 		$generator = new SecureRandom();
+		$participant->setParticipantKey(bin2hex($generator->nextBytes(16)));
 
-		// Basic data default values
-		$pot->setStatus(self::STATUS_INACTIVE);
-		$pot->setCreationDate(new \DateTime);
+		$participant->setDate(new \DateTime);
 
-		$pot_key = bin2hex($generator->nextBytes(8));
-		$pot->setPotKey($pot_key);
+//		$event = new ParticipantEvent($participant);
+//		$this->dispatcher->dispatch(ParticipantEvents::CREATED, $event);
 
-		$admin_key = bin2hex($generator->nextBytes(4));
-		$pot->setAdminKey($admin_key);
-
-		// Money default values
-		$pot->setCurrency("EUR");
-		$pot->setCollectionMethod(self::METHOD_TRANSFER);
-
-		// Extra default values
-		$pot->setNotificationsActive(false);
-		$pot->setParticipantsInvite(false);
-		$pot->setRemindersActive(false);
-
-		// Guests default values
-		$pot->setTrackingActive(false);
-
-		return $pot;
+		return $participant;
 	}
 
-	public function savePot(Pot $pot)
+	/**
+	 * @return Participant
+	 */
+	public function notParticipant(Participant $participant)
 	{
-		$this->om->persist($pot);
+		$participant->setStatus(self::STATUS_NO_PARTICIPATES);
+		$participant->setAmount(0);
+
+		return $participant;
+	}
+
+	public function saveParticipant(Participant $participant)
+	{
+		// ...
+
+		$this->om->persist($participant);
 		$this->om->flush();
 
-		$event = new PotEvent($pot);
-		$this->dispatcher->dispatch(PotEvents::POT_CREATED, $event);
+//		$event = new PotEvent($participant);
+//		$this->dispatcher->dispatch(ParticipantEvents::SAVED, $event);
 	}
 
 }

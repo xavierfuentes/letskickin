@@ -23,6 +23,13 @@ class User extends BaseUser
 	 */
 	private $pots;
 
+	/**
+	 * @var string $pot_key
+	 *
+	 * @ORM\Column(type="string", unique=true, length=32)
+	 */
+	private $user_key;
+
     /**
      * @var string
      *
@@ -51,14 +58,21 @@ class User extends BaseUser
      */
     protected $birthday;
 
-    /**
+	/**
      * @var boolean
      *
      * @ORM\Column(type="boolean")
      */
-    protected $tosAccepted;
+    protected $terms;
 
-    /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(type="boolean")
+	 */
+	protected $subscription;
+
+	/** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
     protected $facebook_id;
 
     /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
@@ -66,8 +80,10 @@ class User extends BaseUser
 
     // Here can go some other OAuth providers
 
-
-    public function __construct()
+	/**
+	 * Constructor
+	 */
+	public function __construct()
     {
         parent::__construct();
     }
@@ -75,7 +91,7 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -83,7 +99,45 @@ class User extends BaseUser
     }
 
     /**
-     * @return string
+     * Set user_key
+     *
+     * @param string $userKey
+     * @return User
+     */
+    public function setUserKey($userKey)
+    {
+        $this->user_key = $userKey;
+    
+        return $this;
+    }
+
+    /**
+     * Get user_key
+     *
+     * @return string 
+     */
+    public function getUserKey()
+    {
+        return $this->user_key;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     * @return User
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string 
      */
     public function getFirstname()
     {
@@ -91,15 +145,22 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $firstname
+     * Set lastname
+     *
+     * @param string $lastname
+     * @return User
      */
-    public function setFirstname($firstname)
+    public function setLastname($lastname)
     {
-        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+    
+        return $this;
     }
 
     /**
-     * @return string
+     * Get lastname
+     *
+     * @return string 
      */
     public function getLastname()
     {
@@ -107,15 +168,22 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $lastname
+     * Set gender
+     *
+     * @param string $gender
+     * @return User
      */
-    public function setLastname($lastname)
+    public function setGender($gender)
     {
-        $this->lastname = $lastname;
+        $this->gender = $gender;
+    
+        return $this;
     }
 
     /**
-     * @return string
+     * Get gender
+     *
+     * @return string 
      */
     public function getGender()
     {
@@ -123,27 +191,22 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $gender
-     */
-    public function setGender($gender)
-    {
-        $this->gender = $gender;
-    }
-
-    /**
      * Set birthday
      *
-     * @param date $birthday
+     * @param \DateTime $birthday
+     * @return User
      */
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
+    
+        return $this;
     }
 
     /**
      * Get birthday
      *
-     * @return date
+     * @return \DateTime 
      */
     public function getBirthday()
     {
@@ -151,33 +214,68 @@ class User extends BaseUser
     }
 
     /**
-     * @param boolean $tosAccepted
-     * @return void
+     * Set terms
+     *
+     * @param boolean $terms
+     * @return User
      */
-    public function setTosAccepted($tosAccepted)
+    public function setTerms($terms)
     {
-        $this->tosAccepted = $tosAccepted;
+        $this->terms = $terms;
+    
+        return $this;
     }
 
     /**
-     * @return boolean
+     * Get terms
+     *
+     * @return boolean 
      */
-    public function getTosAccepted()
+    public function getTerms()
     {
-        return $this->tosAccepted;
+        return $this->terms;
     }
 
     /**
-     * @param string $facebook_id
-     * @return void
+     * Set subscription
+     *
+     * @param boolean $subscription
+     * @return User
      */
-    public function setFacebookId($facebook_id)
+    public function setSubscription($subscription)
     {
-        $this->facebook_id = $facebook_id;
+        $this->subscription = $subscription;
+    
+        return $this;
     }
 
     /**
-     * @return string
+     * Get subscription
+     *
+     * @return boolean 
+     */
+    public function getSubscription()
+    {
+        return $this->subscription;
+    }
+
+    /**
+     * Set facebook_id
+     *
+     * @param string $facebookId
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebook_id = $facebookId;
+    
+        return $this;
+    }
+
+    /**
+     * Get facebook_id
+     *
+     * @return string 
      */
     public function getFacebookId()
     {
@@ -185,22 +283,27 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $facebook_access_token
-     * @return void
+     * Set facebook_access_token
+     *
+     * @param string $facebookAccessToken
+     * @return User
      */
-    public function setFacebookAccessToken($facebook_access_token)
+    public function setFacebookAccessToken($facebookAccessToken)
     {
-        $this->facebook_access_token = $facebook_access_token;
+        $this->facebook_access_token = $facebookAccessToken;
+    
+        return $this;
     }
 
     /**
-     * @return string
+     * Get facebook_access_token
+     *
+     * @return string 
      */
     public function getFacebookAccessToken()
     {
         return $this->facebook_access_token;
     }
-
 
     /**
      * Add pots

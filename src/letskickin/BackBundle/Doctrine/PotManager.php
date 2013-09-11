@@ -2,6 +2,7 @@
 
 namespace letskickin\BackBundle\Doctrine;
 
+use letskickin\BackBundle\Entity\Participant;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
@@ -11,8 +12,6 @@ use Doctrine\ORM\EntityRepository;
 use letskickin\BackBundle\Entity\Pot;
 use letskickin\BackBundle\PotEvents;
 use letskickin\BackBundle\Event\PotEvent;
-use letskickin\BackBundle\ParticipantEvents;
-use letskickin\BackBundle\Event\ParticipantEvent;
 
 class PotManager
 {
@@ -63,7 +62,9 @@ class PotManager
      */
     public function find($pot_key)
     {
-        return $this->repo->findOneBy(array('pot_key' => $pot_key));
+	    $pot = $this->repo->findOneBy(array('pot_key' => $pot_key));
+
+        return $pot;
     }
 
     /**
@@ -90,14 +91,6 @@ class PotManager
         // Money default values
 	    $pot->setCurrency("EUR");
         $pot->setCollectionMethod(self::METHOD_TRANSFER);
-
-        // Extra default values
-        $pot->setNotificationsActive(false);
-        $pot->setParticipantsInvite(false);
-        $pot->setRemindersActive(false);
-
-        // Guests default values
-        $pot->setTrackingActive(false);
 
 		$event = new PotEvent($pot);
 		$this->dispatcher->dispatch(PotEvents::CREATED, $event);
@@ -126,10 +119,7 @@ class PotManager
 
 	public function setPremiumPot(Pot $pot)
 	{
-		$pot->setTrackingActive(true);
-		$pot->setNotificationsActive(true);
-		$pot->setParticipantsInvite(true);
-		$pot->setRemindersActive(true);
+		// ...
 
 		$this->om->persist($pot);
 		$this->om->flush();

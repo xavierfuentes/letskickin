@@ -8,38 +8,38 @@ fos_user_security:
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix: /profile
+    prefix:   /profile
 
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-    prefix: /register
+    prefix:   /register
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix: /resetting
+    prefix:   /resetting
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /profile
+    prefix:   /profile
 
 #HWIOAuthBundle routes
 hwi_oauth_security:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix: /login
+    prefix:   /login
 
 hwi_oauth_connect:
     resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
-    prefix: /login
+    prefix:   /login
 
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /login
 
 facebook_login:
-    pattern: /login/check-facebook
+    pattern:  /login/check-facebook
 
 # google_login:
-#     pattern: /login/check-google
+#     pattern:  /login/check-google
 
 
 # POTS
@@ -48,9 +48,14 @@ pot_create:
     defaults: { _controller: letskickinBackBundle:Pot:createPot }
 
 pot_confirm:
-    pattern:  /pots/confirm/{pot_key}/{admin_key}
+    pattern:  /pots/confirm/{pot_key}
     defaults: { _controller: letskickinBackBundle:Pot:confirmPot, admin_key: null }
 
-pot_edit:
-    pattern:  /{pot_key}/{admin_key}
-    defaults: { _controller: letskickinBackBundle:Pot:editPot, admin_key: null }
+pot_notify:
+    pattern:  /pots/notify/{pot_key}/{participant_key}
+    defaults: { _controller: letskickinBackBundle:Pot:notifyPot }
+
+pot_show:
+    pattern:  /{pot_key}
+    defaults: { _controller: letskickinBackBundle:Pot:showPot, pot_key: null }
+

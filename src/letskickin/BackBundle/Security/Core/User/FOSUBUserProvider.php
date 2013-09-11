@@ -3,6 +3,7 @@ namespace letskickin\BackBundle\Security\Core\User;
 
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
+use Symfony\Component\Security\Core\Util\SecureRandom;
 
 class FOSUBUserProvider extends BaseClass
 {
@@ -46,26 +47,29 @@ class FOSUBUserProvider extends BaseClass
 
         //when the user is registrating
         if (null === $user) {
-            $service = $response->getResourceOwner()->getName();
-            $setter = 'set'.ucfirst($service);
-            $setter_id = $setter.'Id';
-            $setter_token = $setter.'AccessToken';
-            // create new user here
-            $user = $this->userManager->createUser();
-            $user->$setter_id($username);
-            $user->$setter_token($response->getAccessToken());
-            //I have set all requested data with the user's username
-            //modify here with relevant data
-            $data = $response->getResponse();
-            $user->setUsername($data["username"]);
-            $user->setEmail($data["email"]);
-            $user->setPassword("password");
-            $user->setFirstname($data["first_name"]);
-            $user->setLastname($data["last_name"]);
-            $user->setGender($data["gender"]);
-            // $user->setBirthday($data["birthday"]);
-            $user->setTosAccepted(true);
-            $user->setEnabled(true);
+	        $service = $response->getResourceOwner()->getName();
+	        $setter = 'set'.ucfirst($service);
+	        $setter_id = $setter.'Id';
+	        $setter_token = $setter.'AccessToken';
+	        // create new user here
+	        $user = $this->userManager->createUser();
+	        $user->$setter_id($username);
+	        $user->$setter_token($response->getAccessToken());
+	        //I have set all requested data with the user's username
+	        //modify here with relevant data
+	        $data = $response->getResponse();
+	        $user->setUsername($data["username"]);
+	        $user->setEmail($data["email"]);
+	        $user->setPassword("password");
+	        $user->setFirstname($data["first_name"]);
+	        $user->setLastname($data["last_name"]);
+	        $user->setGender($data["gender"]);
+
+	        $generator = new SecureRandom();
+	        $user_key = bin2hex($generator->nextBytes(16));
+	        $user->setUserKey($user_key);
+
+	        $user->setEnabled(true);
             $this->userManager->updateUser($user);
             return $user;
         }

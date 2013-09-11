@@ -1,3 +1,4 @@
 pot:
     thanks_admin: Gracias, %admin_name%,
+    thanks_participant: Gracias, %name%,
     pot_created: Tu 'bote común' ha sido creado

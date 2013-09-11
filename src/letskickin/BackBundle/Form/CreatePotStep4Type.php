@@ -12,8 +12,8 @@ class CreatePotStep4Type extends AbstractType {
 //			->add('tracking_active', 'checkbox', array(
 //				'required' => false
 //			))
-//			->add('participants', 'collection', array(
-//				'type' => new ParticipantType(),
+//			->add('guests', 'collection', array(
+//				'type' => new GuestType(),
 //				'by_reference' => false,
 //				'allow_add' => true,
 //				'allow_delete' => true,

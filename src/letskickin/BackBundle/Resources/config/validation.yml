@@ -29,8 +29,3 @@ letskickin\BackBundle\Entity\Participant:
             - Length:
                 minMessage: "participant.name.too_short"
                 min: 2
-        email:
-            - NotBlank: { message: "participant.email.not_blank" }
-            - Email:
-                message: "participant.email.not_valid"
-                checkMX: true
