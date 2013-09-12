@@ -3,6 +3,7 @@
 namespace letskickin\BackBundle\Doctrine;
 
 use letskickin\BackBundle\Entity\Pot;
+use letskickin\BackBundle\PotEvents;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
@@ -12,6 +13,7 @@ use Doctrine\ORM\EntityRepository;
 use letskickin\BackBundle\Entity\Participant;
 use letskickin\BackBundle\ParticipantEvents;
 use letskickin\BackBundle\Event\ParticipantEvent;
+use letskickin\BackBundle\Event\PotEvent;
 
 class ParticipantManager
 {
@@ -77,9 +79,6 @@ class ParticipantManager
 
 		$participant->setDate(new \DateTime);
 
-//		$event = new ParticipantEvent($participant);
-//		$this->dispatcher->dispatch(ParticipantEvents::CREATED, $event);
-
 		return $participant;
 	}
 
@@ -101,8 +100,8 @@ class ParticipantManager
 		$this->om->persist($participant);
 		$this->om->flush();
 
-//		$event = new PotEvent($participant);
-//		$this->dispatcher->dispatch(ParticipantEvents::SAVED, $event);
+		$event = new PotEvent($participant->getPot());
+		$this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
 	}
 
 }

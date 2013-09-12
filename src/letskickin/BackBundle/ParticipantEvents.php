@@ -9,5 +9,5 @@ final class ParticipantEvents
 	 * The event listener method receives a \letskickin\BackBundle\Event\PotEvent instance
 	 * @var string
 	 */
-	const PARTICIPANT_ADDED = 'letskickin.pot.participant_added';
+	const ADDED = 'letskickin.pot.participant_added';
 }

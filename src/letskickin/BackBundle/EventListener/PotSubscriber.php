@@ -4,7 +4,6 @@ namespace letskickin\BackBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-use letskickin\BackBundle\Entity\Participant;
 use letskickin\BackBundle\Event\PotEvent;
 use letskickin\BackBundle\PotEvents;
 
@@ -62,12 +61,34 @@ class PotSubscriber implements EventSubscriberInterface
 		// Warn all the participants
 	}
 
+	public function onParticipantAdded(PotEvent $event)
+	{
+		$pot = $event->getPot();
+
+		$message = \Swift_Message::newInstance()
+			->setSubject($pot->getOccasion())
+			->setFrom('send@example.com')
+			->setTo($pot->getAdminEmail())
+//			->setBody(
+//				$this->renderView(
+//					'HelloBundle:Hello:email.txt.twig',
+//					array('name' => $name)
+//				)
+//			)
+			->setBody("Hi " . $pot->getAdminName() . ", a new participant contributed to: " . $pot->getOccasion())
+		;
+		$this->mailer->send($message);
+
+		// Warn all the participants
+	}
+
     public static function getSubscribedEvents()
     {
         return array(
-	        PotEvents::CREATED  => array('onPotCreated', 5),
-	        PotEvents::SAVED    => array('onPotSaved', 4),
-	        PotEvents::UPDATED  => array('onPotUpdated', 3),
+	        PotEvents::CREATED              => array('onPotCreated', 5),
+	        PotEvents::SAVED                => array('onPotSaved', 4),
+	        PotEvents::UPDATED              => array('onPotUpdated', 3),
+	        PotEvents::PARTICIPANT_ADDED    => array('onParticipantAdded', 2),
 		);
     }
 }
