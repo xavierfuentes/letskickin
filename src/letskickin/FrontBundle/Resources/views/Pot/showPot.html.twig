@@ -3,54 +3,17 @@
 {% block body_id %}pot-show{% endblock %}
 
 {% block content %}
-    {{ pot.occasion }}
-    {{ pot.adminName }}
-    {{ pot.adminEmail }}
-    {{ pot.deadline|date("d/m/Y") }}
-    {{ pot.amountPartial }}
-    {{ pot.amountTotal }}
-    {{ pot.bankAccount }}
+    {{ include(
+        '@Blocks/potHeader.html.twig',
+        { 'pot': pot }
+    ) }}
 
-    <ul>
-        {% for person in pot.participants %}
-        <li>{{ person.name }} - {{ person.amount }}€ - {{ person.status }}</li>
-        {% endfor %}
-        {{ form(participant_form) }}
-    </ul>
-{% endblock %}
+    {% for participant in pot.participants %}
+        {{ include(
+            '@Blocks/potParticipant.html.twig',
+            { 'participant': participant }
+        ) }}
+    {% endfor %}
 
-{% block foot_scripts %}
-    {{ parent() }}
-
-    <script>
-        function postForm( $form, callback ){
-            var values = {};
-            $.each( $form.serializeArray(), function(i, field) {
-                values[field.name] = field.value;
-            });
-
-            $.ajax({
-                type        : $form.prop( 'method' ),
-                url         : $form.prop( 'action' ),
-                data        : values,
-                success     : function(data) {
-                    callback( data );
-                }
-            });
-        }
-
-        $(document).ready(function(){
-            var $form = $('.pot_form');
-
-            $( $form ).submit( function( e ){
-                e.preventDefault();
-
-                postForm( $(this), function( response ){
-                    // console.log( response );
-                });
-
-                return false;
-            });
-        });
-    </script>
+    {{ form(participant_form) }}
 {% endblock %}
