@@ -71,6 +71,9 @@ class PotController extends Controller
     public function confirmPotAction($pot_key)
     {
         $pot = $this->getPotManager()->find($pot_key);
+	    if (!$pot) {
+		    throw $this->createNotFoundException();
+	    }
 
         return array(
 	        'pot' => $pot
@@ -83,6 +86,10 @@ class PotController extends Controller
 	public function showPotAction(Request $request, $pot_key)
 	{
 		$pot = $this->getPotManager()->find($pot_key);
+		if (!$pot) {
+			throw $this->createNotFoundException();
+		}
+
 		$participant = $this->getParticipantManager()->addParticipant($pot);
 
 		$participant_form = $this->createForm(new ParticipantType(), $participant);
@@ -113,6 +120,10 @@ class PotController extends Controller
 	public function notifyPotAction(Request $request, $pot_key, $participant_key)
 	{
 		$pot = $this->getPotManager()->find($pot_key);
+		if (!$pot) {
+			throw $this->createNotFoundException();
+		}
+
 		$participant = $this->getParticipantManager()->find($participant_key);
 
 		return array(
@@ -127,6 +138,9 @@ class PotController extends Controller
 	public function adminPotAction(Request $request, $pot_key, $admin_key)
 	{
 		$pot = $this->getPotManager()->find($pot_key);
+		if (!$pot) {
+			throw $this->createNotFoundException();
+		}
 
 		$pot_form = $this->createForm(new EditPotType(), $pot);
 
