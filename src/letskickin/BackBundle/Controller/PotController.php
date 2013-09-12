@@ -90,6 +90,8 @@ class PotController extends Controller
 			throw $this->createNotFoundException();
 		}
 
+		$isAdmin = $pot->getAdminKey() == $request->get('admin_key') ? true : false;
+
 		$participant = $this->getParticipantManager()->addParticipant($pot);
 
 		$participant_form = $this->createForm(new ParticipantType(), $participant);
@@ -111,6 +113,7 @@ class PotController extends Controller
 		return array(
 			'pot'               => $pot,
 			'participant_form'  => $participant_form->createView(),
+			'isAdmin'           => $isAdmin,
 		);
 	}
 

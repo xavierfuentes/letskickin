@@ -16,4 +16,11 @@
     {% endfor %}
 
     {{ form(participant_form) }}
+
+    {% if isAdmin %}
+        {{ include(
+        '@Blocks/potAdminSection.html.twig',
+        { 'pot': pot }
+        ) }}
+    {% endif %}
 {% endblock %}

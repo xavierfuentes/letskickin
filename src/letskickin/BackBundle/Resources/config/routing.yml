@@ -49,11 +49,11 @@ pot_create:
 
 pot_confirm:
     pattern:  /pots/confirm/{pot_key}
-    defaults: { _controller: letskickinBackBundle:Pot:confirmPot, admin_key: null }
+    defaults: { _controller: letskickinBackBundle:Pot:confirmPot, pot_key: null }
 
 pot_notify:
     pattern:  /pots/notify/{pot_key}/{participant_key}
-    defaults: { _controller: letskickinBackBundle:Pot:notifyPot }
+    defaults: { _controller: letskickinBackBundle:Pot:notifyPot, pot_key: null }
 
 pot_show:
     pattern:  /{pot_key}
