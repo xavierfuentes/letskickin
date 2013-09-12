@@ -13,18 +13,10 @@
 
     <ul>
         {% for person in pot.participants %}
-        <li>{{ person.name }} - {{ person.amount }}</li>
+        <li>{{ person.name }} - {{ person.amount }}€ - {{ person.status }}</li>
         {% endfor %}
         {{ form(participant_form) }}
     </ul>
-    {#<form method="" action="" class="">
-        <ul class="participants" data-prototype="{{ form_widget(pot_form.participants.vars.prototype)|e }}">
-            {% for person in form.vars.value.participants %}
-            <li>{{ person }}</li>
-            {% endfor %}
-        </ul>
-        <input type="hidden"
-    </form>#}
 {% endblock %}
 
 {% block foot_scripts %}

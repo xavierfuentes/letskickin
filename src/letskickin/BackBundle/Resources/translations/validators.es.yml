@@ -1,3 +1,11 @@
 pot:
-    occasion:
-        not_blank: No puede estar vacíor
+    field.not_blank: No puede estar vacíor
+    occasion.too_short: Pon algo que describa más o menos la ocasión (mínimo 5 caracteres)
+    admin_name.too_short: Eso es un nombre real? (mínimo 2 caracteres)
+    admin_email.not_valid: El email introducido no es válido
+    deadline.not_valid: La fecha introducida no es válida
+
+participant:
+    field.not_blank: No puede estar vacíor
+    name.too_short: Eso es un nombre real? (mínimo 2 caracteres)
+    amount.too_small: No seas ratilla y pon más pasta

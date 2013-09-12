@@ -31,4 +31,11 @@ final class PotEvents
 	 * @var string
 	 */
 	const PREMIUM = 'pot.premium';
+
+	/**
+	 * The PARTICIPANT_ADDED event occurs when a participant is added into the pot
+	 * The event listener method receives a \letskickin\BackBundle\Event\PotEvent instance
+	 * @var string
+	 */
+	const PARTICIPANT_ADDED = 'pot.participant_added';
 }
