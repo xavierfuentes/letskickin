@@ -9,6 +9,9 @@ class EditPotType extends AbstractType {
 
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
+			->add('key', 'hidden', array(
+				'mapped'  => false
+			))
 			->add('admin_name', 'text')
 			->add('admin_email', 'email')
 			->add('occasion', 'text')
@@ -28,12 +31,12 @@ class EditPotType extends AbstractType {
 //					'currency' => false,
 			))
 			->add('bank_account', 'text')
-			->add('save', 'button')
+			->add('save', 'submit')
 		;
 	}
 
 	public function getName() {
-		return 'createPotStep3Type';
+		return 'editPotType';
 	}
 
 }

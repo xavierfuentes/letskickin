@@ -19,8 +19,8 @@ letskickin\BackBundle\Entity\Pot:
             - NotBlank: { message: "pot.field.not_blank" }
             - Date: { message: "pot.deadline.not_valid" }
 
-        guests:
-            - Valid: ~
+#        guests:
+#            - Valid: ~
 
 letskickin\BackBundle\Entity\Participant:
     properties:

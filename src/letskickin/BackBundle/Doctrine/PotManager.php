@@ -109,14 +109,6 @@ class PotManager
 	    $this->dispatcher->dispatch(PotEvents::SAVED, $event);
     }
 
-	public function updatePot(Pot $pot)
-	{
-		$this->savePot($pot);
-
-		$event = new PotEvent($pot);
-		$this->dispatcher->dispatch(PotEvents::UPDATED, $event);
-	}
-
 	public function setPremiumPot(Pot $pot)
 	{
 		// ...

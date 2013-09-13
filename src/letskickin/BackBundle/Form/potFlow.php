@@ -25,7 +25,7 @@ class PotFlow extends FormFlow {
                 'type' => new createPotStep3Type(),
             ),
             array(
-                'label' => 'participants',
+                'label' => 'guests',
                 'type' => new createPotStep4Type(),
             ),
         );

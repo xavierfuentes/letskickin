@@ -3,24 +3,137 @@
 {% block body_id %}pot-show{% endblock %}
 
 {% block content %}
-    {{ include(
-        '@Blocks/potHeader.html.twig',
-        { 'pot': pot }
-    ) }}
+    {% if isAdmin %}
+        {{ render(controller('letskickinBackBundle:Pot:adminPot', {
+            'pot_key': pot.potKey
+        })) }}
+    {% else %}
+        {{ include(
+            '@Blocks/potHeader.html.twig', {
+            'pot': pot
+        }) }}
+    {% endif %}
 
     {% for participant in pot.participants %}
         {{ include(
-            '@Blocks/potParticipant.html.twig',
-            { 'participant': participant }
-        ) }}
+            '@Blocks/potParticipant.html.twig', {
+            'participant': participant
+        }) }}
     {% endfor %}
 
-    {{ form(participant_form) }}
+    {{ form(participant_form, {'attr': {
+        'id': 'participant_form'
+    }}) }}
 
-    {% if isAdmin %}
-        {{ include(
-        '@Blocks/potAdminSection.html.twig',
-        { 'pot': pot }
-        ) }}
-    {% endif %}
+{% endblock %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+
+    <script>
+        function postForm( $form, callback ){
+            var values = {};
+            $.each( $form.serializeArray(), function(i, field) {
+                values[field.name] = field.value;
+            });
+
+            $.ajax({
+                type        : $form.prop( 'method' ),
+                url         : $form.prop( 'action' ),
+                data        : values,
+                success     : function(data) {
+                    callback( data );
+                }
+            });
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        $(document).ready(function(){
+            var  $form = $('#pot_form')
+                 , admin_key = getParameterByName('admin_key');
+
+            $( $form ).find('#editPotType_key').val(admin_key);
+
+            $( '.ajax' ).submit( function( e ){
+                e.preventDefault();
+
+                postForm( $(this), function( response ){
+                    console.log( response );
+                });
+
+                return false;
+            });
+        });
+        /*
+        // Get the ul that holds the collection of guests
+        var collectionHolder = $('.guests');
+
+        // setup an "add a guest" link
+        var $addParticipantLink = $('<a href="#" class="add_guest_link">Add a guest</a>');
+        var $newLinkLi = $('<li></li>').append($addParticipantLink);
+
+        jQuery(document).ready(function() {
+            // add a delete link to all of the existing guest form li elements
+            collectionHolder.find('li').each(function() {
+                addParticipantFormDeleteLink($(this));
+            });
+
+            // add the "add a guest" anchor and li to the guests ul
+            collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            collectionHolder.data('index', collectionHolder.find(':input').length);
+
+            $addParticipantLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new guest form (see next code block)
+                addParticipantForm(collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addParticipantForm(collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = collectionHolder.data('prototype');
+
+            // get the new index
+            var index = collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a guest" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+
+            // add a delete link to the new form
+            addParticipantFormDeleteLink($newFormLi);
+        }
+
+        function addParticipantFormDeleteLink($guestFormLi) {
+            var $removeFormA = $('<a href="#">delete this guest</a>');
+            $guestFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the guest form
+                $guestFormLi.remove();
+            });
+        }
+        */
+    </script>
 {% endblock %}
