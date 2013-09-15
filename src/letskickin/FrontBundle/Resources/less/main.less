@@ -51,14 +51,8 @@
 @import "../../../../../vendor/twitter/bootstrap/less/utilities";
 @import "../../../../../vendor/twitter/bootstrap/less/responsive-utilities";
 
+// Import custom variables
+@import 'variables.less';
 
-@import 'variables';
-
-
-/**
- * Now that all app-wide styles have been applied, we can load the styles for
- * all the submodules and components we are using.
- *
- */
-
-// @import '../app/home/home.less';
+// Import specific pages
+@import 'pages/landing.less';
