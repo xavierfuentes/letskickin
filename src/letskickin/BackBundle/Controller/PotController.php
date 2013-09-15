@@ -138,7 +138,7 @@ class PotController extends Controller
 	}
 
 	/**
-	 * @Template("letskickinFrontBundle:Pot:adminPot.html.twig")
+	 * @Template("letskickinFrontBundle:Pot:blocks/adminPot.html.twig")
 	 */
 	public function adminPotAction(Request $request, $pot_key)
 	{
