@@ -34,6 +34,7 @@
         <meta property="og:description" content="{% block og_description %}{{ site.description }}{% endblock %}" />
         <meta property="og:url" content="{% block og_url %}{{ app.request.host }}{% endblock %}" />
         <meta property="og:image" content="{% block og_image %}{{ site.image }}{% endblock %}" />
+        <meta property="fb:admins" content="admin ID" />
         #}
         {% endblock %}
 
@@ -42,11 +43,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         {% if site.sitemap is defined %}
-            <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.sitemap }}" />
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.sitemap }}" />
         {% endif %}
 
         {% if google.verification_code is defined %}
-            <meta name="google-site-verification" content="{{ google.verification_code }}" />
+        <meta name="google-site-verification" content="{{ google.verification_code }}" />
         {% endif %}
 
         {# TODO: Pingbacks http://html5boilerplate.com/docs/html-head/#pingbacks #}

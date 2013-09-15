@@ -1,10 +1,4 @@
-{% extends '@Views/base.html.twig' %}
-
-{% block open_graph %}
-    {{ parent() }}
-
-    <meta property="fb:admins" content="admin ID" />
-{% endblock %}
+{% extends '@Layouts/base.html.twig' %}
 
 {% block meta %}
     {# Zanox verification #}
@@ -14,11 +8,11 @@
 {% block head_style %}
     {{ parent() }}
 
-    {#{% stylesheets output='/style/app.css' filter='less'
+    {% stylesheets output='style/app.css' filter='cssrewrite'
         '@letskickinFrontBundle/Resources/less/main.less'
     %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}#}
+    {% endstylesheets %}
 {% endblock %}
 
 {% block head_scripts %}
@@ -46,25 +40,18 @@
 {% endblock %}
 
 {% block body_top %}
-    {{ include('@Blocks/metrics.html.twig') }}
+    {{ include('letskickinFrontBundle::blocks/metrics.html.twig') }}
 {% endblock %}
 
 {% block foot_scripts %}
     {{ parent() }}
 
     <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
-    {#{% javascripts output='/script/app.js'
+    {% javascripts output='script/app.js'
         '@letskickinFrontBundle/Resources/script/main.js'
     %}
         <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}#}
-
-    <script>
-        /*$(function() {
-            moment.lang('{{ app.request.locale }}');
-            moment().format();
-            main.performBinding(new main.CommunicationLayer(), "#app-wrapper");
-        });*/
-    </script>
+    {% endjavascripts %}
 {% endblock %}

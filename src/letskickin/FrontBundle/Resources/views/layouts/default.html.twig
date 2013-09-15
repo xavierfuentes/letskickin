@@ -1,0 +1,29 @@
+{% extends '@Layouts/frontend.html.twig' %}
+
+{% block body_class %}{{ parent() ~ 'default-layout' }}{% endblock %}
+
+{% block head_style %}
+    {{ parent() }}
+
+    <style>
+        body { padding-top: 80px; }
+    </style>
+{% endblock %}
+
+{% block body_content %}
+    {% block wrap %}
+    <div id="wrap">
+        {% block page_container %}
+            {% block topbar %}{{ include('letskickinFrontBundle::blocks/topbar.html.twig') }}{% endblock %}
+
+            {#<section id="page_top">{% block page_top %}{% endblock %}</section>#}
+
+            <section id="page_content">{% block content %}{% endblock %}</section>
+
+            <section id="page_bottom">{% block page_bottom %}{% endblock %}</section>
+        {% endblock %}
+    </div>
+    {% endblock %}
+
+    {% block footer %}{#{{ include('@Blocks/global/footer.html.twig') }}#}{% endblock %}
+{% endblock %}
