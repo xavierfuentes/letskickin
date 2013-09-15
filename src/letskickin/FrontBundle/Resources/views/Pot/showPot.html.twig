@@ -4,19 +4,19 @@
 
 {% block content %}
     {% if isAdmin %}
-        {{ render(controller('letskickinBackBundle:Pot:adminPot', {
+        {{ render(controller('letskickinBackBundle:Pot:blocks/adminPot', {
             'pot_key': pot.potKey
         })) }}
     {% else %}
         {{ include(
-            '@Blocks/potHeader.html.twig', {
+            'letskickinFrontBundle:Pot:blocks/potHeader.html.twig', {
             'pot': pot
         }) }}
     {% endif %}
 
     {% for participant in pot.participants %}
         {{ include(
-            '@Blocks/potParticipant.html.twig', {
+            'letskickinFrontBundle:Pot:blocks/potParticipant.html.twig', {
             'participant': participant
         }) }}
     {% endfor %}
