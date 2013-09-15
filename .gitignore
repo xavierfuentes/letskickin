@@ -7,3 +7,7 @@
 /vendor/
 /bin/
 /composer.phar
+
+/web/style/
+/web/script/
+/web/images/
