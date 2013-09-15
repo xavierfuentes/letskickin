@@ -16,4 +16,4 @@ parameters:
     secret:             StayHungryStayFoolish
 
     node_path:          /usr/bin/node
-    node_modules_path:  /usr/lib/node_modules
+    node_modules_path:  /usr/local/lib/node_modules

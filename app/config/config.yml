@@ -2,8 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: oauth.yml }
-    - { resource: assetic.yml }
-    - { resource: twig.yml }
 
 framework:
     #esi:             ~
@@ -23,6 +21,38 @@ framework:
     session:         ~
     fragments:       ~
     http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+    paths:
+        "%kernel.root_dir%/../src/letskickin/FrontBundle/Resources/views/layouts": Layouts
+        "%kernel.root_dir%/../src/letskickin/FrontBundle/Resources/views/blocks": Blocks
+
+    globals:
+        site:
+            locale: %locale%
+            diagnostic_mode: false
+            #sitemap: "/sitemap.xml"
+
+        # google:
+        #     verification_code: %google_verification_code%
+        #     ga_code: %google_ga_code%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    #java: /usr/bin/java
+    #bundles:        [ ]
+    filters:
+        cssrewrite: ~
+        less:
+            node: %node_path%
+            node_paths: [%node_modules_path%]
+            apply_to: "\.less$"
 
 # Doctrine Configuration
 doctrine:
