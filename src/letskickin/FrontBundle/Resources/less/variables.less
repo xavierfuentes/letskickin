@@ -44,12 +44,13 @@
 // -------------------------
 
 @font-family-sans-serif:  "Oxygen", Helvetica, Arial, sans-serif;
+@font-family-handwriting: "Courgette", Helvetica, Arial, sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 @font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
 
 @font-size-base:          16px;
-@font-size-xlarge:        ceil(@font-size-base * 1.50); // ~24px
+@font-size-xlarge:        ceil(@font-size-base * 1.875); // ~30px
 @font-size-large:         ceil(@font-size-base * 1.125); // ~18px
 @font-size-small:         ceil(@font-size-base * 0.62); // ~12px
 @font-size-xsmall:        ceil(@font-size-base * 0.62); // ~12px
@@ -76,7 +77,7 @@
 @padding-base-horizontal:        12px;
 
 @padding-xlarge-vertical:        16px;
-@padding-xlarge-horizontal:      20px;
+@padding-xlarge-horizontal:      35px;
 
 @padding-large-vertical:         10px;
 @padding-large-horizontal:       16px;
@@ -93,8 +94,8 @@
 @line-height-xsmall:             1.5;
 
 @border-radius-base:             4px;
-@border-radius-xlarge:           6px;
-@border-radius-large:            6px;
+@border-radius-xlarge:           4px;
+@border-radius-large:            4px;
 @border-radius-small:            3px;
 @border-radius-xsmall:           3px;
 
@@ -160,7 +161,7 @@
 @input-border-radius:            @border-radius-base;
 @input-border-focus:             @brand-default;
 
-@input-color-placeholder:        @gray-light;
+@input-color-placeholder:        #ddd;
 
 @input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 2);
 @input-height-large:             (floor(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2);
@@ -259,7 +260,8 @@
 @navbar-default-border:            darken(@navbar-default-bg, 6.5%);
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor(@grid-gutter-width / 2);
-@navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
+//@navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
+@navbar-padding-vertical:          20px;
 
 // Navbar links
 @navbar-default-link-color:                #777;
@@ -307,7 +309,7 @@
 @navbar-inverse-search-bg:                  lighten(@navbar-inverse-bg, 25%);
 @navbar-inverse-search-bg-focus:            #fff;
 @navbar-inverse-search-border:              @navbar-inverse-bg;
-@navbar-inverse-search-placeholder-color:   #ccc;
+@navbar-inverse-search-placeholder-color:   #ddd;
 
 // Inverted navbar toggle
 @navbar-inverse-toggle-hover-bg:            #333;
