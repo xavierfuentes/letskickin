@@ -4,8 +4,8 @@ parameters:
     database_port:      3306
     database_socket:    ~
     database_name:      symfony
-    database_user:      %database.user%
-    database_password:  %database.password%
+    database_user:      symfony
+    database_password:  symfony
 
     mailer_transport:   smtp
     mailer_host:        127.0.0.1
