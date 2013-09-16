@@ -43,48 +43,60 @@
 // Typography
 // -------------------------
 
-@font-family-sans-serif:  "Open Sans", Helvetica, Arial, sans-serif;
+@font-family-sans-serif:  "Oxygen", Helvetica, Arial, sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 @font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
 
 @font-size-base:          16px;
-@font-size-large:         ceil(@font-size-base * 1.25); // ~20px
-@font-size-small:         ceil(@font-size-base * 0.85); // ~14px
+@font-size-xlarge:        ceil(@font-size-base * 1.50); // ~24px
+@font-size-large:         ceil(@font-size-base * 1.125); // ~18px
+@font-size-small:         ceil(@font-size-base * 0.62); // ~12px
+@font-size-xsmall:        ceil(@font-size-base * 0.62); // ~12px
 
-@line-height-base:        1.375; // 22/16
+@line-height-base:        1.428571429; // 22/16
 @line-height-computed:    floor(@font-size-base * @line-height-base); // ~22px
 
-@headings-font-family:    @font-family-base;
-@headings-font-weight:    500;
+@headings-font-family:    "Roboto", Helvetica, Arial, sans-serif;
+@headings-font-weight:    300;
 @headings-line-height:    1.1;
 
 // Iconography
 // -------------------------
 
-@icon-font-path:          "../fonts/";
+@icon-font-path:          "../../../../../vendor/twitter/bootstrap/fonts/";
 @icon-font-name:          "glyphicons-halflings-regular";
 
 
 // Components
 // -------------------------
-// Based on 16px font-size and 1.375 line-height (~22px to start)
+// Based on 16px font-size and 1.428 line-height (~23px to start)
 
-@padding-base-vertical:          7px;
-@padding-base-horizontal:        14px;
+@padding-base-vertical:          6px;
+@padding-base-horizontal:        12px;
 
-@padding-large-vertical:         12px;
-@padding-large-horizontal:       18px;
+@padding-xlarge-vertical:        16px;
+@padding-xlarge-horizontal:      20px;
 
-@padding-small-vertical:         6px;
-@padding-small-horizontal:       12px;
+@padding-large-vertical:         10px;
+@padding-large-horizontal:       16px;
 
+@padding-small-vertical:         5px;
+@padding-small-horizontal:       10px;
+
+@padding-xsmall-vertical:        1px;
+@padding-xsmall-horizontal:      5px;
+
+@line-height-xlarge:             1.33;
 @line-height-large:              1.52;
 @line-height-small:              1.71;
+@line-height-xsmall:             1.5;
 
 @border-radius-base:             4px;
-@border-radius-large:            7px;
-@border-radius-small:            4px;
+@border-radius-xlarge:           6px;
+@border-radius-large:            6px;
+@border-radius-small:            3px;
+@border-radius-xsmall:           3px;
 
 @component-active-bg:            @brand-default;
 
