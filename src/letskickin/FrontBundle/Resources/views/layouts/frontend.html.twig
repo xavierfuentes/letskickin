@@ -8,7 +8,7 @@
 {% block head_style %}
     {{ parent() }}
 
-    {% stylesheets output='style/app.css' filter='cssrewrite'
+    {% stylesheets output='style/app.css'
         '@letskickinFrontBundle/Resources/less/main.less'
     %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
@@ -20,13 +20,13 @@
 
     <script type="text/javascript">
         WebFontConfig = {
-            google: { families: [ 'Open Sans' ] },
+            google: { families: [ 'Oxygen:300,400,700', 'Courgette:400', 'Roboto:300' ] },
             timeout: 2000
         };
         (function() {
             var wf = document.createElement('script');
             wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                '://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js';
             wf.type = 'text/javascript';
             wf.async = 'true';
             var s = document.getElementsByTagName('script')[0];
@@ -53,5 +53,12 @@
         '@letskickinFrontBundle/Resources/script/main.js'
     %}
         <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>$(function() { main.performBinding(new main.CommunicationLayer(), "#app-wrapper"); });</script>
+
+    {% javascripts output='script/mail.js'
+        '@letskickinFrontBundle/Resources/script/mailchimp.js'
+    %}
+    <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
