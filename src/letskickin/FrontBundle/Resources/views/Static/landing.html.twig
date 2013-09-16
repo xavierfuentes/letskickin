@@ -1,8 +1,126 @@
 {% extends '@Layouts/default.html.twig' %}
 
-{% block content %}
-    {% set default_username = "default.username"|trans({}, "landing") %}
-    {{ 'hi.user'|trans({ '%user_name%' : app.user|default(default_username) }, "landing") }}
+{% block body_id %}landing{% endblock %}
 
-    <a href="{{ url("pot_create") }}">{{ "button.create"|trans({}, "landing") }}</a>
+{% block content %}
+    <header id="landing-hd">
+        <article class="jumbo col-lg-8 col-lg-offset-2">
+            <h1 class="h1">This is #crowdgifting!</h1>
+            <h2 class="h3 lead">Organiza tus regalos en grupo y recauda el dinero de manera fácil y segura.</h2>
+
+            <div class="jumbo-cta">
+                <a href="{{ url('pot_create') }}" type="button" class="btn btn-primary btn-xl">EMPEZAR</a>
+            </div>
+
+            <div class="block-help left">
+                {% image output="image/arrowr.png"
+                    '@letskickinFrontBundle/Resources/image/landing/point-to-the-right.png'
+                %}
+                <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
+                {% endimage %}
+                <p class="text-help">Fácil y gratuito</p>
+            </div>
+            <div class="block-help right">
+                {% image output="image/arrowl.png"
+                    '@letskickinFrontBundle/Resources/image/landing/point-to-the-left.png'
+                %}
+                <img src="{{ asset_url }}" alt="¡No lo dudes ni un momento!"/>
+                {% endimage %}
+                <p class="text-help">Sin registro</p>
+            </div>
+        </article>
+    </header>
+
+    <article class="love container">
+        <header class="title">
+            <h3 class="h1">Nos tendrás siempre a tu lado</h3>
+        </header>
+
+        <section class="things">
+            <article class="share">
+                <header>
+                    {% image output="image/dividir-gastos-no-es-problema.png"
+                        '@letskickinFrontBundle/Resources/image/landing/icon_heart.png'
+                    %}
+                    <img src="{{ asset_url }}" alt="Compartir gastos ya no es un problema"/>
+                    {% endimage %}
+                    <h2 class="h4 thing-title">Compartir gastos<br>ya no es un problema</h2>
+                </header>
+                <div class="advice">"Ahora no tengo suelto, mañana te lo doy..."<br>No te compliques y olvídate de excusas.<br>Ya no tendrás que perseguir a nadie.</div>
+            </article>
+
+            <article class="safe">
+                <header>
+                    {% image output="image/claro-facil-seguro.png"
+                        '@letskickinFrontBundle/Resources/image/landing/icon_safe.png'
+                    %}
+                    <img src="{{ asset_url }}" alt="Es claro, fácil y seguro"/>
+                    {% endimage %}
+                    <h2 class="h4 thing-title">Es claro,<br>fácil y seguro</h2>
+                </header>
+                <div class="advice">Crea un bote, invita a quién tú quieras<br>y empieza a recaudar el dinero<br>al instante.</div>
+            </article>
+
+            <article class="gift">
+                <header>
+                    {% image output="image/no-estaras-solo.png"
+                        '@letskickinFrontBundle/Resources/image/landing/icon_together.png'
+                    %}
+                    <img src="{{ asset_url }}" alt="Ahora no estarás solo"/>
+                    {% endimage %}
+                    <h2 class="h4 thing-title">Ahora<br>no estarás solo</h2>
+                </header>
+                <div class="advice">Queremos que disfrutes haciendo regalos.<br>Cuenta con nosotros, entre todos<br>conseguiremos el mejor.</div>
+            </article>
+        </section>
+
+        <footer class="cta-net">
+            <div class="jumbo-cta">
+                <a href="{{ url('pot_create') }}" type="button" class="btn btn-primary btn-xl">EMPEZAR</a>
+            </div>
+
+            <div class="block-help right">
+                {% image output="image/arrowl-big.png"
+                '@letskickinFrontBundle/Resources/image/landing/arrow_big.png'
+                %}
+                <img src="{{ asset_url }}" class="img-help" alt="¡No lo dudes ni un momento!"/>
+                {% endimage %}
+                <p class="text-help">Fácil, gratuito<br>y sin registro</p>
+            </div>
+        </footer>
+    </article>
+
+    <footer class="talking">
+        <div class="container">
+            {% image output="image/wwwhatsnew.png"
+                '@letskickinFrontBundle/Resources/image/landing/logo_whatsnew.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="wwwhatsnew habla de letskickin"/>
+            {% endimage %}
+
+            {% image output="image/founder-institute-barcelona.png"
+                '@letskickinFrontBundle/Resources/image/landing/logo_founder.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin se gradua en Founder Institute Barcelona"/>
+            {% endimage %}
+
+            {% image output="image/salle-tech-demo-day.png"
+                '@letskickinFrontBundle/Resources/image/landing/logo_techdemoday.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin entre las 100 mejores startups de Barcelona"/>
+            {% endimage %}
+
+            {% image output="image/barcelona-startup-weekend.png"
+                '@letskickinFrontBundle/Resources/image/landing/logo_startupweekend.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin finalista del Barcelona Startup Weekend 2012"/>
+            {% endimage %}
+
+            {% image output="image/yuzz.png"
+                '@letskickinFrontBundle/Resources/image/landing/logo_yuzz.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin finalista de YUZZ Barcelona 2013"/>
+            {% endimage %}
+        </div>
+    </footer>
 {% endblock %}
