@@ -12,7 +12,7 @@
 
 {% block body_content %}
     {% block wrap %}
-    <div id="wrap">
+    <div id="app-wrapper">
         {% block page_container %}
             {% block topbar %}{{ include('letskickinFrontBundle::blocks/topbar.html.twig') }}{% endblock %}
 
@@ -25,5 +25,5 @@
     </div>
     {% endblock %}
 
-    {% block footer %}{#{{ include('@Blocks/global/footer.html.twig') }}#}{% endblock %}
+    {% block footer %}{{ include('letskickinFrontBundle::blocks/footer.html.twig') }}{% endblock %}
 {% endblock %}
