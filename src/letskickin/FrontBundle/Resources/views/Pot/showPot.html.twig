@@ -31,23 +31,6 @@
     {{ parent() }}
 
     <script>
-        window.main.sayHi();
-
-        function postForm( $form, callback ){
-            var values = {};
-            $.each( $form.serializeArray(), function(i, field) {
-                values[field.name] = field.value;
-            });
-
-            $.ajax({
-                type        : $form.prop( 'method' ),
-                url         : $form.prop( 'action' ),
-                data        : values,
-                success     : function(data) {
-                    callback( data );
-                }
-            });
-        }
 
         function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -61,16 +44,6 @@
                  , admin_key = getParameterByName('admin_key');
 
             $( $form ).find('#editPotType_key').val(admin_key);
-
-            $( '.ajax' ).submit( function( e ){
-                e.preventDefault();
-
-                postForm( $(this), function( response ){
-                    console.log( response );
-                });
-
-                return false;
-            });
         });
         /*
         // Get the ul that holds the collection of guests

@@ -1,10 +1,12 @@
-"use strict";
-
-(function($, application, window) {
+;(function($, application, window) {
 
     application.CommunicationLayer = function (  ) {
         var self = this;
 
+        /**
+         * @param $form
+         * @param callback
+         */
         self.postForm = function( $form, callback ){
             var values = {};
             $.each( $form.serializeArray(), function(i, field) {
@@ -19,10 +21,6 @@
                     callback( data );
                 }
             });
-        },
-
-        self.sayHi = function (  ) {
-            console.log( 'Hi!' );
         };
 
         return self;
@@ -35,19 +33,20 @@
         var $wrapper = $(selector || window.document);
 
         //bind all events
-//        $wrapper
-//            //PRIMARY BINDINGS
-//            .on('click', '.-fb-login', function() {
-//                //user clicked delete
-//                //handle UI changes
-//                //get necessary data
-//                //call appropriate method on app
-//                // console.log('fetching friends...');
-//                app.fbLogin(function(status){
-//                    console.log(status);
-//                });
-//            })
-//        ;
+        $wrapper
+            //PRIMARY BINDINGS
+            .on('submit', '.-ajax', function( e ) {
+                e.preventDefault();
+
+                var cb = $(this).data('cb');
+
+                app.postForm( $(this), function( response ){
+                    cb();
+                });
+
+                return false;
+            })
+        ;
     };
 
 })(jQuery, window.lkApp || (window.lkApp = {}), window);
