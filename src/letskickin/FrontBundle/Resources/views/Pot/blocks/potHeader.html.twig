@@ -1,7 +1,19 @@
-{{ pot.occasion }}
-{{ pot.adminName }}
+<section class="pot-header">
+    <header class="pot-data container">
+        <div class="data-basic">
+            <section class="pot-title">
+                <h1 class="h2">{{ pot.occasion }}</h1>
+                <strong>{{ "created.by"|trans({}, "pot") }}</strong> {{ pot.adminName }}
+            </section>
+
+            <section class="pot-extra">
+                <strong>{{ "deadline.label"|trans({}, "pot")|upper }}</strong> {{ pot.deadline|date("d/m/Y") }}
+            </section>
+        </div>
+
+    </header>
+</section>
 {{ pot.adminEmail }}
-{{ pot.deadline|date("d/m/Y") }}
 {{ pot.amountPartial }}
 {{ pot.amountTotal }}
 {{ pot.bankAccount }}
