@@ -29,6 +29,3 @@ assetic:
 
 swiftmailer:
     delivery_address: xavifuefer@gmail.com
-    transport: gmail
-    username:  xavifuefer
-    password:  '9Semanas&1/2'
