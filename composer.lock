@@ -665,12 +665,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "a6c12cc2b60176d2afad924f23031accfad9a384"
+                "reference": "1ee84a86a5e82420c6459705110b1804dd9063b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/a6c12cc2b60176d2afad924f23031accfad9a384",
-                "reference": "a6c12cc2b60176d2afad924f23031accfad9a384",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/1ee84a86a5e82420c6459705110b1804dd9063b8",
+                "reference": "1ee84a86a5e82420c6459705110b1804dd9063b8",
                 "shasum": ""
             },
             "require": {
@@ -725,7 +725,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2013-09-13 03:06:49"
+            "time": "2013-09-16 22:05:58"
         },
         {
             "name": "hwi/oauth-bundle",
@@ -734,12 +734,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hwi/HWIOAuthBundle.git",
-                "reference": "c786a85ecab646c4c42c874c5a7f8428e8fb394b"
+                "reference": "4ac3ee70e86032305cc997dbe5d14bc8ed110748"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/c786a85ecab646c4c42c874c5a7f8428e8fb394b",
-                "reference": "c786a85ecab646c4c42c874c5a7f8428e8fb394b",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/4ac3ee70e86032305cc997dbe5d14bc8ed110748",
+                "reference": "4ac3ee70e86032305cc997dbe5d14bc8ed110748",
                 "shasum": ""
             },
             "require": {
@@ -825,6 +825,7 @@
                 "sina weibo",
                 "stack exchange",
                 "stereomood",
+                "twitch",
                 "twitter",
                 "vkontakte",
                 "windows live",
@@ -832,7 +833,7 @@
                 "yahoo",
                 "yandex"
             ],
-            "time": "2013-09-15 09:07:35"
+            "time": "2013-09-17 16:40:03"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1505,20 +1506,21 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.0.0",
+            "version": "v1.2.0",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "cac3fdfb111adbe590155f491594636d45129783"
+                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/cac3fdfb111adbe590155f491594636d45129783",
-                "reference": "cac3fdfb111adbe590155f491594636d45129783",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
+                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
                 "shasum": ""
             },
             "require": {
+                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
             },
@@ -1548,7 +1550,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-06-03 18:32:07"
+            "time": "2013-06-03 18:32:58"
         },
         {
             "name": "symfony/monolog-bundle",
