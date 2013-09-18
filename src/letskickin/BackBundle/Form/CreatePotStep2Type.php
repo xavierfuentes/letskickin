@@ -25,7 +25,7 @@ class CreatePotStep2Type extends AbstractType {
 	}
 
 	public function getName() {
-		return 'createPotStep2Type';
+		return 'CreatePotStep2Type';
 	}
 
 }

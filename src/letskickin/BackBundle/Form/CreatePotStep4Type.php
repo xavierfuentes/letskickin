@@ -22,7 +22,7 @@ class CreatePotStep4Type extends AbstractType {
 	}
 
 	public function getName() {
-		return 'createPotStep4Type';
+		return 'CreatePotStep4Type';
 	}
 
 }
