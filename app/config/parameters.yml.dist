@@ -3,17 +3,17 @@ parameters:
     database_host:      127.0.0.1
     database_port:      3306
     database_socket:    ~
-    database_name:      symfony
-    database_user:      symfony
-    database_password:  symfony
+    database_name:      letskickin
+    database_user:      letskickin
+    database_password:  letskickin
 
-    mailer_transport:   smtp
-    mailer_host:        127.0.0.1
-    mailer_user:        null
-    mailer_password:    null
+    mailer_transport:   gmail
+    mailer_host:        ~
+    mailer_user:        mailer@letskickin.com
+    mailer_password:    letskickin9284
 
     locale:             es
     secret:             StayHungryStayFoolish
 
-    node_path:          /usr/bin/node
+    node_path:          /usr/local/bin/node
     node_modules_path:  /usr/local/lib/node_modules
