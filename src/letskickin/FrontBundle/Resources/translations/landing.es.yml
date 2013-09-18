@@ -1,7 +1,3 @@
-hi.user: Hola %user_name%!
-
-default:
-    username: desconocido
-
-button:
-    create: Crear un pot
+hi.user: 'Hola %user_name%!'
+default.username: desconocido
+button.create: 'Crear un pot'

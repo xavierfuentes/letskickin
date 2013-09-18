@@ -1,4 +1,5 @@
-pot:
-    thanks_admin: Gracias, %admin_name%,
-    thanks_participant: Gracias, %name%,
-    pot_created: Tu 'bote común' ha sido creado
+deadline.label: 'hasta el:'
+thanks.admin: 'Gracias, admin_name,'
+thanks.participant: 'Gracias, name,'
+created.by: 'Creado por:'
+created.message: 'Tu bote común ha sido creado'
