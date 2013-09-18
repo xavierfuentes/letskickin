@@ -4,7 +4,7 @@
 
 {% block content %}
     {% if isAdmin %}
-        {{ render(controller('letskickinBackBundle:Pot:blocks/adminPot', {
+        {{ render(controller('letskickinBackBundle:Pot:adminPot', {
             'pot_key': pot.potKey
         })) }}
     {% else %}
@@ -31,6 +31,8 @@
     {{ parent() }}
 
     <script>
+        window.main.sayHi();
+
         function postForm( $form, callback ){
             var values = {};
             $.each( $form.serializeArray(), function(i, field) {
