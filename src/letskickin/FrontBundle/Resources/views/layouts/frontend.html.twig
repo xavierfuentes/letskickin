@@ -8,7 +8,7 @@
 {% block head_style %}
     {{ parent() }}
 
-    {% stylesheets output='style/app.css'
+    {% stylesheets output='style/app.css' filter="cssrewrite"
         '@letskickinFrontBundle/Resources/less/main.less'
     %}
         <link rel="stylesheet" href="{{ asset_url }}"/>

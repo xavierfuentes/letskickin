@@ -3,7 +3,7 @@
 {% block body_id %}pot-confirm{% endblock %}
 
 {% block content %}
-    {{ 'thanks.participant'|trans({'%name%': participant.name}, "pot") }}
+    {{ 'notify.thanks.participant'|trans({'%name%': participant.name}, "pot") }}
 
     <div>
         <a href="{{ url('pot_show', {'pot_key': pot.potKey} ) }}">{{ 'button.back'|trans({}, "global") }}</a>

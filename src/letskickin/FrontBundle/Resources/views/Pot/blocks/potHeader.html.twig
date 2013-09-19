@@ -3,17 +3,52 @@
         <div class="data-basic">
             <section class="pot-title">
                 <h1 class="h2">{{ pot.occasion }}</h1>
-                <strong>{{ "created.by"|trans({}, "pot") }}</strong> {{ pot.adminName }}
+                <strong>{{ "show.created.by"|trans({}, "pot")|upper }}</strong> {{ pot.adminName }}
             </section>
 
             <section class="pot-extra">
-                <strong>{{ "deadline.label"|trans({}, "pot")|upper }}</strong> {{ pot.deadline|date("d/m/Y") }}
+                <div class="pot-extra-el">
+                    <strong>{{ "show.deadline.label"|trans({}, "pot")|upper }}</strong> {{ pot.deadline|date("d/m/Y") }}
+                </div>
+                <div class="pot-extra-el">
+                    <ul class="pot-extra-actions">
+                        <li>
+                            <span class="glyphicon glyphicon-comment"></span> 99
+                        </li>
+                        <li class="separator">|</li>
+                        <li>
+                            <span class="glyphicon glyphicon-user"></span> 99
+                        </li>
+                    </ul>
+                </div>
             </section>
+        </div>
+
+        <div class="data-money">
+            <section class="pot-bank-account">
+                <strong>{{ "show.bank-account.label"|trans({}, "pot")|upper }}</strong>
+                <div>{{ pot.bankAccount }}</div>
+            </section>
+
+            {% if pot.amountPartial %}
+            <section class="pot-amount-partial">
+                <strong>{{ "show.amount-partial.label"|trans({}, "pot")|upper }}</strong>
+                <div>{{ pot.amountPartial }}</div>
+            </section>
+            {% endif %}
+
+            {% if pot.amountTotal %}
+            <section class="pot-amount-total">
+                <strong>{{ "show.amount-total.label"|trans({}, "pot")|upper }}</strong>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar"
+                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="{{ pot.amountTotal }}" style="width: 60%;">
+                        <span class="sr-only">60% Complete</span>
+                    </div>
+                </div>
+            </section>
+            {% endif %}
         </div>
 
     </header>
 </section>
-{{ pot.adminEmail }}
-{{ pot.amountPartial }}
-{{ pot.amountTotal }}
-{{ pot.bankAccount }}

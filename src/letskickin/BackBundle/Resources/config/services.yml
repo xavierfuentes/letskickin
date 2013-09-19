@@ -22,11 +22,11 @@ services:
         scope: request
 
     letskickin.manager.pot:
-            class: "%letskickin.manager.pot_manager%"
-            arguments:
-                dispatcher: "@event_dispatcher"
-                em: "@doctrine.orm.entity_manager"
-                class: "%letskickin.manager.pot_class%"
+        class: "%letskickin.manager.pot_manager%"
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: "%letskickin.manager.pot_class%"
 
     letskickin.manager.participant:
         class: "%letskickin.manager.participant_manager%"

@@ -3,7 +3,7 @@
 {% block body_id %}pot-confirm{% endblock %}
 
 {% block content %}
-    {{ 'thanks.admin'|trans({'%admin_name%': pot.adminName}, "pot") }}
+    {{ 'confirm.thanks.admin'|trans({'%admin_name%': pot.adminName}, "pot") }}
 
     <div>
         {% set participation_link = url("pot_show", { 'pot_key' : pot.potKey }) %}

@@ -1,5 +1,22 @@
-deadline.label: 'hasta el:'
-thanks.admin: 'Gracias, admin_name,'
-thanks.participant: 'Gracias, name,'
-created.by: 'Creado por:'
-created.message: 'Tu bote común ha sido creado'
+create:
+  button:
+    next: 'Siguiente'
+    back: 'Anterior'
+    finish: 'Guardar'
+
+confirm:
+  thanks.admin: 'Gracias, admin_name,'
+
+notify:
+  thanks.participant: 'Gracias, name,'
+
+show:
+  deadline.label: 'hasta el:'
+  created.by: 'Creado por:'
+  created.message: 'Tu bote común ha sido creado'
+  bank-account:
+    label: "Nº de cuenta"
+  amount-partial:
+      label: "Cantidad recomendada"
+  amount-total:
+      label: "Dinero recaudado"

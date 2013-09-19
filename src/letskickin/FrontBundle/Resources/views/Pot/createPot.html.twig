@@ -36,16 +36,16 @@
         {% set renderBackButton = flow.getCurrentStepNumber() in (flow.getFirstStepNumber() + 1) .. flow.getLastStepNumber() %}
         <div class="pot_form_buttons pot_form_button_count_{% if renderBackButton %}3{% else %}2{% endif %}">
             <button type="submit" class="pot_form_button_last">
-                {%- if flow.getCurrentStepNumber() < flow.getLastStepNumber() -%}
-                    {{- 'button.next' | trans({}, 'CraueFormFlowBundle') -}}
-                {%- else -%}
-                    {{- 'button.finish' | trans({}, 'CraueFormFlowBundle') -}}
-                {%- endif -%}
+                {% if flow.getCurrentStepNumber() < flow.getLastStepNumber() %}
+                    {{ 'create.button.next'|trans({}, 'pot') }}
+                {% else -%}
+                    {{ 'create.button.finish'|trans({}, 'pot') }}
+                {% endif %}
             </button>
 
             {% if renderBackButton %}
                 <button type="submit" name="{{ flow.getFormTransitionKey() }}" value="back" formnovalidate="formnovalidate">
-                    {{- 'button.back' | trans({}, 'CraueFormFlowBundle') -}}
+                    {{ 'create.button.back'|trans({}, 'pot') }}
                 </button>
             {% endif %}
         </div>

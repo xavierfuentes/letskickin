@@ -1,18 +1,59 @@
 #pot-show {
 
-  .data-basic {
-    .make-row();
+  .pot-header {
+    .data-basic {
+      .make-row();
 
-    .pot-title {
-      .make-lg-column(4);
-      .make-lg-column-offset(1);
+      .pot-title {
+        .make-lg-column(4);
+        .make-lg-column-offset(1);
+      }
+
+      .pot-extra {
+        .make-lg-column(4);
+        .make-lg-column-offset(2);
+
+        padding-top: 40px;
+        text-align: right;
+
+        .pot-extra-el {
+          display: inline-block;
+
+          &:last-child { margin-left: 50px; }
+
+          .pot-extra-actions {
+            .list-unstyled;
+            .list-inline;
+
+            .separator {
+              margin-left: 5px;
+              margin-right: 5px;
+            }
+          }
+
+        }
+      }
     }
 
-    .pot-extra {
-      .make-lg-column(4);
-      .make-lg-column-offset(2);
+    .data-money {
+      .make-row();
 
-      padding-top: 40px;
+      margin-top: 20px;
+
+      .pot-bank-account,
+      .pot-amount-partial,
+      .pot-amount-total {
+        .make-lg-column-offset(1);
+      }
+
+      .pot-bank-account,
+      .pot-amount-partial {
+        .make-lg-column(2);
+      }
+
+      .pot-amount-total {
+        .make-lg-column(3);
+      }
     }
   }
 
