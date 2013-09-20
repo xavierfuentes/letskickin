@@ -28,7 +28,8 @@ legend {
 label {
   display: inline-block;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-size: @font-size-large;
+  font-weight: normal;
 }
 
 
@@ -148,6 +149,16 @@ input[type="number"] {
   textarea& {
     height: auto;
   }
+
+  &>input {
+    border: none;
+
+    .placeholder(@input-color-placeholder);
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 
@@ -157,7 +168,7 @@ input[type="number"] {
 // horizontal forms, use the predefined grid classes.
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 

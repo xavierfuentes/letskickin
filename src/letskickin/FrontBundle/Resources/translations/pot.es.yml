@@ -1,18 +1,33 @@
-occasion: 'Ocasión'
-admin_email: 'Tu ombre'
-admin_email: 'Tu email'
-deadline: 'Fecha límite para recaudar'
+occasion:
+  label: 'Ocasión'
+  placeholder: 'Cumple de Jordi.'
+  help: 'El motivo del bote'
+
+admin_name:
+  label: 'Tu nombre'
+  placeholder: 'Montse Comas'
+  help: '¿De verdad te hace falta ayuda para esto?'
+
+admin_email:
+  label: 'Tu email'
+  placeholder: 'montse@comas.com'
+  help: 'No te estás registrando, solo es para informarte.'
+
+deadline:
+  label: 'Fecha límite para recaudar'
+  placeholder: ' '
+  help: '25/05/2014'
 
 create:
   title: 'crea el bote'
   data:
     step-name: 'datos'
   money:
-      step-name: 'recaudación'
+    step-name: 'recaudación'
   extra:
-      step-name: 'resumen'
+    step-name: 'resumen'
   guests:
-      step-name: 'invitar'
+    step-name: 'invitar'
   button:
     next: 'siguiente'
     back: 'anterior'

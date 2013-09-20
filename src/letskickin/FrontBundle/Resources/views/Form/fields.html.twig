@@ -17,41 +17,65 @@
 
 {% block form_row %}
     {% spaceless %}
-        <div class="form-group">
-            {{ form_label(form) }}
-            {#{{ form_errors(form) }}#}
+        {% set field_row_classes = ['form-group'] %}
+        {% if attr.class is defined %}
+            {% set field_row_classes = field_row_classes|merge(attr.class|split(" ")) %}
+        {% endif %}
+        {% if errors|length > 0 %}
+            {% set field_row_classes = field_row_classes|merge(['error']) %}
+        {% endif %}
+
+        <div class="{{ field_row_classes|join(' ') }}">
+            {{ form_label(form, label|default(null)) }}
+            {{ form_errors(form) }}
             {{ form_widget(form, { 'attr': {
                 'class': 'form-control input-lg'
             } }) }}
+            {% if help is defined %}
+                <p class="help-block">{{ help }}</p>
+            {% endif %}
         </div>
     {% endspaceless %}
 {% endblock form_row %}
 
-{% block form_widget %}
+{% block form_label %}
+{% spaceless %}
+    {% if label is not sameas(false) %}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = name %}
+        {% endif %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block date_widget %}
     {% spaceless %}
-        {% if compound %}
-            {{ block('form_widget_compound') }}
-        {% else %}
+        {% if attr.placeholder is defined %}
+            {% set ph_array = attr.placeholder|split('/') %}
+        {% endif %}
+        {% if widget == 'single_text' %}
             {{ block('form_widget_simple') }}
+        {% else %}
+            <div {{ block('widget_container_attributes') }}>
+                {{ date_pattern|replace({
+                    '{{ year }}':  form_widget(form.year, { 'attr': {
+                        'placeholder': ph_array[2]
+                    } }),
+                    '{{ month }}': form_widget(form.month, { 'attr': {
+                        'placeholder': ph_array[1]
+                    } }),
+                    '{{ day }}':   form_widget(form.day, { 'attr': {
+                        'placeholder': ph_array[0]
+                    } })
+                })|raw }}
+            </div>
         {% endif %}
     {% endspaceless %}
-{% endblock form_widget %}
-
-{% block form_widget_simple %}
-    {% spaceless %}
-        {% set type = type|default('text') %}
-        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% endspaceless %}
-{% endblock form_widget_simple %}
-
-{% block form_widget_compound %}
-    {% spaceless %}
-        <div {{ block('widget_container_attributes') }}>
-            {% if form.parent is empty %}
-                {{ form_errors(form) }}
-            {% endif %}
-            {{ block('form_rows') }}
-            {{ form_rest(form) }}
-        </div>
-    {% endspaceless %}
-{% endblock form_widget_compound %}
+{% endblock date_widget %}

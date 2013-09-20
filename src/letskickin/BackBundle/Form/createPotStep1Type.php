@@ -14,9 +14,8 @@ class CreatePotStep1Type extends AbstractType {
 			->add('admin_email', 'email')
 			->add('occasion', 'text')
 			->add('deadline', 'date', array(
-				'input'   => 'datetime',
-				'widget'  => 'single_text',
-				'format'  => 'dd-MM-yyyy',
+				'widget'  => 'text',
+				'format'  => 'dd/MM/yyyy',
 			))
 		;
 	}
@@ -30,6 +29,5 @@ class CreatePotStep1Type extends AbstractType {
 		$resolver->setDefaults(array(
 			'translation_domain' => 'pot'
 		));
-
 	}
 }
