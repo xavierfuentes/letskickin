@@ -4,6 +4,7 @@ namespace letskickin\BackBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CreatePotStep1Type extends AbstractType {
 
@@ -22,5 +23,13 @@ class CreatePotStep1Type extends AbstractType {
 
 	public function getName() {
 		return 'CreatePotStep1Type';
+	}
+
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
+	{
+		$resolver->setDefaults(array(
+			'translation_domain' => 'pot'
+		));
+
 	}
 }

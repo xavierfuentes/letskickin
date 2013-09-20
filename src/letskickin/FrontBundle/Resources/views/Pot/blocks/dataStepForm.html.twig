@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-lg-4 col-lg-offset-4">
+        {{ form_row(form.occasion) }}
+
+        {{ form_row(form.admin_name) }}
+
+        {{ form_row(form.admin_email) }}
+
+        {{ form_row(form.deadline) }}
+
+        {{ include(
+            'letskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {
+            'flow': flow
+        }) }}
+    </div>
+</div>

@@ -1,22 +1,36 @@
+occasion: 'Ocasión'
+admin_email: 'Tu ombre'
+admin_email: 'Tu email'
+deadline: 'Fecha límite para recaudar'
+
 create:
+  title: 'crea el bote'
+  data:
+    step-name: 'datos'
+  money:
+      step-name: 'recaudación'
+  extra:
+      step-name: 'resumen'
+  guests:
+      step-name: 'invitar'
   button:
-    next: 'Siguiente'
-    back: 'Anterior'
-    finish: 'Guardar'
+    next: 'siguiente'
+    back: 'anterior'
+    finish: 'guardar'
 
 confirm:
-  thanks.admin: 'Gracias, admin_name,'
+  thanks.admin: 'gracias, admin_name,'
 
 notify:
-  thanks.participant: 'Gracias, name,'
+  thanks.participant: 'gracias, name,'
 
 show:
   deadline.label: 'hasta el:'
-  created.by: 'Creado por:'
-  created.message: 'Tu bote común ha sido creado'
+  created.by: 'creado por:'
+  created.message: 'tu bote común ha sido creado'
   bank-account:
-    label: "Nº de cuenta"
+    label: "nº de cuenta"
   amount-partial:
-      label: "Cantidad recomendada"
+      label: "cantidad recomendada"
   amount-total:
-      label: "Dinero recaudado"
+      label: "dinero recaudado"

@@ -1,0 +1,39 @@
+#pot-wizard {
+  .page-title {
+    text-align: center;
+  }
+
+  .page-subtitle {
+    .make-row();
+
+    text-align: center;
+
+    .step-list {
+      .list-inline;
+      .list-unstyled;
+
+      margin: 20px 0 40px;
+      padding: 0;
+
+      .step {
+        .h4;
+
+        color: @text-muted;
+        margin: 0 50px;
+      }
+
+      .current-step {
+        color: @text-color;
+      }
+    }
+  }
+
+  .pot-form{
+    .make-row();
+
+    .form-step-data {
+      .make-lg-column(8);
+      .make-lg-column-offset(1);
+    }
+  }
+}

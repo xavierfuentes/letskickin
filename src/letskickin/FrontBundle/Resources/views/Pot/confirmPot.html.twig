@@ -1,5 +1,11 @@
 {% extends '@Layouts/default.html.twig' %}
 
+{% block head_top %}
+    {{ parent() }}
+
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
 {% block body_id %}pot-confirm{% endblock %}
 
 {% block content %}

@@ -1,5 +1,11 @@
 {% extends '@Layouts/default.html.twig' %}
 
+{% block head_top %}
+    {{ parent() }}
+
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
 {% block body_id %}pot-show{% endblock %}
 
 {% block content %}
@@ -16,7 +22,7 @@
 
     {% for participant in pot.participants %}
         {{ include(
-            'letskickinFrontBundle:Pot:blocks/potParticipant.html.twig', {
+            'letskickinFrontBundle:Pot:elements/potParticipant.html.twig', {
             'participant': participant
         }) }}
     {% endfor %}

@@ -1,56 +1,56 @@
 {% extends '@Layouts/default.html.twig' %}
+{% form_theme form 'letskickinFrontBundle:Form:fields.html.twig' %}
 
-{% block body_id %}pot-create{% endblock %}
+{% block head_top %}
+    {{ parent() }}
+
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block body_id %}pot-wizard{% endblock %}
 
 {% block content %}
-    <div>
-        <ol class="craue_formflow_steplist">
-            {% for stepLabel in flow.getStepLabels() %}
-                <li{{ block('craue_flow_stepList_class') }}>
-                    {%- if flow.isAllowDynamicStepNavigation() and (loop.index != flow.getCurrentStepNumber()) and flow.isStepDone(loop.index) and (not flow.isStepSkipped(loop.index)) -%}
-                        <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all
-                        | merge(app.request.attributes.get('_route_params'))
-                        | craue_addDynamicStepNavigationParameter(flow, loop.index)) }}">
-                            {{- block('craue_flow_stepLabel') -}}
-                        </a>
-                    {%- else -%}
-                        {{- block('craue_flow_stepLabel') -}}
-                    {%- endif -%}
-                </li>
-            {% endfor %}
-        </ol>
-    </div>
+    <header class="container">
+        <h2 class="page-title">{{ 'create.title'|trans({}, "pot")|capitalize }}</h2>
 
-    {{ form_start(form) }}
-        <input type="hidden" name="{{ flow.getFormStepKey() }}" value="{{ flow.getCurrentStepNumber() }}" />
-
-        {{ form_errors(form) }}
-
-        {% if flow.getCurrentStepNumber() == 4 %}
-            Tú envías la invitación!
-            {#<ul class="participants" data-prototype="{{ form_widget(form.participants.vars.prototype)|e }}"></ul>#}
-        {% endif %}
-
-        {{ form_rest(form) }}
-
-        {% set renderBackButton = flow.getCurrentStepNumber() in (flow.getFirstStepNumber() + 1) .. flow.getLastStepNumber() %}
-        <div class="pot_form_buttons pot_form_button_count_{% if renderBackButton %}3{% else %}2{% endif %}">
-            <button type="submit" class="pot_form_button_last">
-                {% if flow.getCurrentStepNumber() < flow.getLastStepNumber() %}
-                    {{ 'create.button.next'|trans({}, 'pot') }}
-                {% else -%}
-                    {{ 'create.button.finish'|trans({}, 'pot') }}
-                {% endif %}
-            </button>
-
-            {% if renderBackButton %}
-                <button type="submit" name="{{ flow.getFormTransitionKey() }}" value="back" formnovalidate="formnovalidate">
-                    {{ 'create.button.back'|trans({}, 'pot') }}
-                </button>
-            {% endif %}
+        <div class="page-subtitle">
+            <ul class="step-list">
+                {% for stepLabel in flow.stepLabels %}
+                    {% if loop.index == flow.currentStepNumber %}
+                        {% set stepListClass = "current-step"  %}
+                    {% elseif flow.isStepDone(loop.index) %}
+                        {% set stepListClass = "done-step"  %}
+                    {% else %}
+                        {% set stepListClass = ""  %}
+                    {% endif %}
+                    <li class="step {{ stepListClass|default("") }}">
+                        {{ loop.index }}. {{ ('create.' ~ stepLabel ~ '.step-name')|trans({}, "pot")|capitalize }}
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
+    </header>
 
-    {{ form_end(form) }}
+    <section class="container">
+        <div class="pot-form">
+            <article class="form-step-data">
+                {{ form_start(form) }}
+                <input type="hidden" name="{{ flow.formStepKey }}" value="{{ flow.currentStepNumber }}" />
+
+                <section class="form-errors">
+                    {{ form_errors(form) }}
+                </section>
+
+                {{ include(
+                    'letskickinFrontBundle:Pot:blocks/' ~ flow.currentStepLabel ~ 'StepForm.html.twig', {
+                    'flow': flow,
+                    'form': form
+                }) }}
+
+                {{ form_end(form) }}
+            </article>
+        </div>
+    </section>
 {% endblock %}
 
 {#
@@ -58,20 +58,20 @@
     {{ parent() }}
 
     <script>
-        // Get the ul that holds the collection of participants
-        var collectionHolder = $('.participants');
+        // Get the ul that holds the collection of guests
+        var collectionHolder = $('.guests');
 
-        // setup an "add a participant" link
-        var $addParticipantLink = $('<a href="#" class="add_participant_link">Add a participant</a>');
+        // setup an "add a guest" link
+        var $addParticipantLink = $('<a href="#" class="add_guest_link">Add a guest</a>');
         var $newLinkLi = $('<li></li>').append($addParticipantLink);
 
         jQuery(document).ready(function() {
-            // add a delete link to all of the existing participant form li elements
+            // add a delete link to all of the existing guest form li elements
             collectionHolder.find('li').each(function() {
                 addParticipantFormDeleteLink($(this));
             });
 
-            // add the "add a participant" anchor and li to the participants ul
+            // add the "add a guest" anchor and li to the guests ul
             collectionHolder.append($newLinkLi);
 
             // count the current form inputs we have (e.g. 2), use that as the new
@@ -82,7 +82,7 @@
                 // prevent the link from creating a "#" on the URL
                 e.preventDefault();
 
-                // add a new participant form (see next code block)
+                // add a new guest form (see next code block)
                 addParticipantForm(collectionHolder, $newLinkLi);
             });
         });
@@ -101,7 +101,7 @@
             // increase the index with one for the next item
             collectionHolder.data('index', index + 1);
 
-            // Display the form in the page in an li, before the "Add a participant" link li
+            // Display the form in the page in an li, before the "Add a guest" link li
             var $newFormLi = $('<li></li>').append(newForm);
             $newLinkLi.before($newFormLi);
 
@@ -109,16 +109,16 @@
             addParticipantFormDeleteLink($newFormLi);
         }
 
-        function addParticipantFormDeleteLink($participantFormLi) {
-            var $removeFormA = $('<a href="#">delete this participant</a>');
-            $participantFormLi.append($removeFormA);
+        function addParticipantFormDeleteLink($guestFormLi) {
+            var $removeFormA = $('<a href="#">delete this guest</a>');
+            $guestFormLi.append($removeFormA);
 
             $removeFormA.on('click', function(e) {
                 // prevent the link from creating a "#" on the URL
                 e.preventDefault();
 
-                // remove the li for the participant form
-                $participantFormLi.remove();
+                // remove the li for the guest form
+                $guestFormLi.remove();
             });
         }
     </script>
