@@ -6,24 +6,22 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CreatePotStep4Type extends AbstractType {
+class CreatePotStepDataType extends AbstractType {
 
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
-//			->add('tracking_active', 'checkbox', array(
-//				'required' => false
-//			))
-//			->add('guests', 'collection', array(
-//				'type' => new GuestType(),
-//				'by_reference' => false,
-//				'allow_add' => true,
-//				'allow_delete' => true,
-//			))
+			->add('admin_name', 'text')
+			->add('admin_email', 'email')
+			->add('occasion', 'text')
+			->add('deadline', 'date', array(
+				'widget'  => 'text',
+				'format'  => 'dd/MM/yyyy',
+			))
 		;
 	}
 
 	public function getName() {
-		return 'CreatePotStep4Type';
+		return 'CreatePotStepDataType';
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -32,5 +30,4 @@ class CreatePotStep4Type extends AbstractType {
 			'translation_domain' => 'pot'
 		));
 	}
-
 }

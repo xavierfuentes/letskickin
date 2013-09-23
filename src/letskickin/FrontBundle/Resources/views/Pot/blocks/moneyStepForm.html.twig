@@ -1,0 +1,13 @@
+{{ form_row(form.amount_total, {
+}) }}
+
+{{ form_row(form.amount_partial, {
+}) }}
+
+{{ form_row(form.bank_account, {
+}) }}
+
+{{ include(
+'letskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {
+    'flow': flow
+}) }}

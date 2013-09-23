@@ -54,11 +54,7 @@
     %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    <script>$(function() { lkApp.performBinding(new lkApp.CommunicationLayer(), "#app-wrapper"); });</script>
-
-    {% javascripts output='script/mail.js'
-        '@letskickinFrontBundle/Resources/script/mailchimp.js'
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    <script>
+        $(function() { lkApp.performBinding(new lkApp.CommunicationLayer(), "#app-wrapper") });
+    </script>
 {% endblock %}

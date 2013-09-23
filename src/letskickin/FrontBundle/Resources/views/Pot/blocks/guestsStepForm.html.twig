@@ -1,2 +1,37 @@
-Tú envías la invitación!
-{#<ul class="guests" data-prototype="{{ form_widget(form.guests.vars.prototype)|e }}"></ul>#}
+<div class="row">
+    <div class="pot-you-invite">
+        <header>
+            <h4>{{ 'create.guests.you.invite'|trans({}, "pot") }}</h4>
+            {% image output="image/arrowr.png"
+            '@letskickinFrontBundle/Resources/image/wizard/unknown-user.jpg'
+            %}
+            <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
+            {% endimage %}
+            <span class="icon glyphicon glyphicon-envelope"></span>
+        </header>
+        <div>{{ 'create.guests.you.invite.description'|trans({}, "pot")|raw }}</div>
+        {{ include(
+        'letskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {
+            'flow': flow
+        }) }}
+    </div>
+
+    <div class="pot-we-invite">
+        <header>
+            <h4>{{ 'create.guests.we.invite'|trans({}, "pot") }}</h4>
+            {% image output="image/arrowr.png"
+            '@letskickinFrontBundle/Resources/image/wizard/logo-70x70.png'
+            %}
+            <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
+            {% endimage %}
+            <span class="icon glyphicon glyphicon-envelope"></span>
+        </header>
+        <div id="weInviteRegister">
+            {{ 'create.guests.we.invite.description'|trans({}, "pot")|raw }}
+            <textarea id="pot-guests-email-list" placeholder="{{ 'create.guests.emails.placeholder'|trans({}, "pot") }}"></textarea>
+            <p class="help-block">{{ 'create.guests.emails.help'|trans({}, "pot") }}</p>
+            <a href="#" class="btn-default">Enviar y guardar</a>
+        </div>
+        {#<ul class="guests" data-prototype="{{ form_widget(form.guests.vars.prototype)|e }}"></ul>#}
+    </div>
+</div>

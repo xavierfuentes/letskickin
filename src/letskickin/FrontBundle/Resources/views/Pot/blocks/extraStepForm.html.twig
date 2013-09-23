@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="pot-summary">
+        <div class="">
+            <h5>{{ 'occasion.label'|trans({}, "pot") }}</h5>
+            <span>{{ pot.occasion }}</span>
+        </div>
+
+        <div class="">
+            <h5>{{ 'admin_name.label'|trans({}, "pot") }}</h5>
+            <span>{{ pot.adminName }}</span>
+        </div>
+
+        <div class="">
+            <h5>{{ 'admin_email.label'|trans({}, "pot") }}</h5>
+            <span>{{ pot.adminEmail }}</span>
+        </div>
+
+        <div class="">
+            <h5>{{ 'deadline.label'|trans({}, "pot") }}</h5>
+            <span>{{ pot.deadline|date('d/m/Y') }}</span>
+        </div>
+
+        <div class="">
+            <h5>{{ 'amount_total.label'|trans({}, "pot") }}</h5>
+            <span>{{ pot.amountTotal|default('amount_total.blank'|trans({}, "pot")) }}</span>
+        </div>
+
+        <div class="">
+            <h5>{{ 'amount_partial.label'|trans({}, "pot") }}</h5>
+            <span>{{ pot.amountPartial|default('amount_partial.blank'|trans({}, "pot")) }}</span>
+        </div>
+
+        <div class="">
+            <h5>{{ 'bank_account.label'|trans({}, "pot") }}</h5>
+            <span>{{ pot.bankAccount }}</span>
+        </div>
+
+        {{ include(
+        'letskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {
+            'flow': flow
+        }) }}
+    </div>
+
+    <div class="pot-extra">
+        <p class="lead">{{ 'create.extra.features.title'|trans({}, "pot") }}</p>
+
+        <ul class="list-unstyled">
+            {% for i in 1..4 %}
+            <li>
+                <span class="icon glyphicon glyphicon-ok"></span>
+                <span class="extra-feature">{{ ('create.extra.features.feat' ~ i)|trans({}, "pot") }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <button data-toggle="modal" href="#comingSoon" class="btn-default pull-right">{{ 'create.button.register'|trans({}, "pot") }}</button>
+    </div>
+</div>

@@ -9,15 +9,35 @@
 {% block body_id %}pot-confirm{% endblock %}
 
 {% block content %}
-    {{ 'confirm.thanks.admin'|trans({'%admin_name%': pot.adminName}, "pot") }}
+<article class="container">
+    <header class="section">
+        <article class="hgroup">
+            <h2 class="page-title">{{ 'confirm.thanks.admin'|trans({'%admin_name%': pot.adminName}, "pot") }}</h2>
+            <p class="page-subtitle">{{ 'confirm.subtitle'|trans({}, "pot") }}</p>
+        </article>
+    </header>
 
-    <div>
-        {% set participation_link = url("pot_show", { 'pot_key' : pot.potKey }) %}
-        <a href="{{ participation_link }}">{{ participation_link }}</a>
-    </div>
+    <section class="section">
+        <article class="participation-link">
+            <h4>{{ 'confirm.invite.link.title'|trans({}, "pot")|raw }}</h4>
+            <p>{{ 'confirm.invite.link.description'|trans({}, "pot")|raw }}</p>
+            {% set participation_link = url("pot_show", { 'pot_key' : pot.potKey }) %}
+            <a class="link" href="{{ participation_link }}">{{ participation_link }}</a>
+            <button>{{ 'confirm.invite.link.title'|trans({}, "pot") }}</button>
+        </article>
 
-    <div>
-        {% set admin_link = url("pot_show", { 'pot_key' : pot.potKey, 'admin_key' : pot.adminKey }) %}
-        <a href="{{ admin_link }}">{{ admin_link }}</a>
-    </div>
+        <article class="administration-link">
+            <h4>{{ 'confirm.admin.link.title'|trans({}, "pot")|raw }}</h4>
+            <p>{{ 'confirm.admin.link.description'|trans({}, "pot")|raw }}</p>
+            {% set admin_link = url("pot_show", { 'pot_key' : pot.potKey, 'admin_key' : pot.adminKey }) %}
+            <a class="link" href="{{ admin_link }}">{{ admin_link }}</a>
+        </article>
+    </section>
+
+    <footer class="section">
+        <section class="fgroup">
+            <p>{{ 'confirm.footer.explanation'|trans({'%admin_email%': pot.adminEmail}, "pot")|raw }}</p>
+        </section>
+    </footer>
+</article>
 {% endblock %}

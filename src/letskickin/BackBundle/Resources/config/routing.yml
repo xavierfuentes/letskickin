@@ -1,6 +1,30 @@
+# STATIC PAGES
 landingpage:
     pattern:  /
-    defaults: { _controller: letskickinBackBundle:Static:landing }
+    defaults:
+      _controller: FrameworkBundle:Template:template
+      template: 'letskickinFrontBundle:Static:landing.html.twig'
+
+# POTS
+pot_create:
+    pattern:  /pots/wizard
+    defaults: { _controller: letskickinBackBundle:Pot:createPot }
+
+pot_confirm:
+    pattern:  /pots/confirm/{pot_key}
+    defaults: { _controller: letskickinBackBundle:Pot:confirmPot, pot_key: null }
+
+pot_notify:
+    pattern:  /pots/notify/{pot_key}/{participant_key}
+    defaults: { _controller: letskickinBackBundle:Pot:notifyPot, pot_key: null }
+
+pot_show:
+    pattern:  /{pot_key}
+    defaults: { _controller: letskickinBackBundle:Pot:showPot, pot_key: null }
+
+pot_admin:
+    pattern: /pot/edit/{pot_key}
+    defaults: { _controller: letskickinBackBundle:Pot:adminPot, pot_key: null }
 
 #FosUserBundle Routes
 fos_user_security:
@@ -40,25 +64,3 @@ facebook_login:
 
 # google_login:
 #     pattern:  /login/check-google
-
-
-# POTS
-pot_create:
-    pattern:  /pots/wizard
-    defaults: { _controller: letskickinBackBundle:Pot:createPot }
-
-pot_confirm:
-    pattern:  /pots/confirm/{pot_key}
-    defaults: { _controller: letskickinBackBundle:Pot:confirmPot, pot_key: null }
-
-pot_notify:
-    pattern:  /pots/notify/{pot_key}/{participant_key}
-    defaults: { _controller: letskickinBackBundle:Pot:notifyPot, pot_key: null }
-
-pot_show:
-    pattern:  /{pot_key}
-    defaults: { _controller: letskickinBackBundle:Pot:showPot, pot_key: null }
-
-pot_admin:
-    pattern: /pot/edit/{pot_key}
-    defaults: { _controller: letskickinBackBundle:Pot:adminPot, pot_key: null }

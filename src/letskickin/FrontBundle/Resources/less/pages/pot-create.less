@@ -12,14 +12,14 @@
       .list-inline;
       .list-unstyled;
 
-      margin: 30px 0 50px;
+      margin: 1.5em 0 3em;
       padding: 0;
 
       .step {
         .h4;
 
         color: @text-muted;
-        margin: 0 50px;
+        margin: 0 1.5em;
       }
 
       .current-step {
@@ -29,20 +29,83 @@
   }
 
   .pot-form{
-    .make-row();
+    .make-lg-column(10);
+    .make-lg-column-offset(1);
 
-    .form-step-data {
-      .make-lg-column(8);
-      .make-lg-column-offset(1);
+    .form-step {
+      .make-row();
 
-      .pot-deadline{
+      .pot_form_buttons {
+        .button-forward {
+          .btn-primary;
+        }
 
-        .form-control {
-          text-align: center;
+        .button-backward {
+//          .btn-info;
+        }
+      }
 
-          input {
-            width: 30%;
+      .pot_form_buttons {
+        margin-top: 25px;
+
+        .pot_form_button_last {
+          .pull-right;
+        }
+      }
+
+      .step-data,
+      .step-money {
+        .make-lg-column(7);
+        .make-lg-column-offset(3);
+      }
+
+      .step-data {
+        .pot-deadline{
+          .form-control {
             text-align: center;
+
+            input {
+              text-align: center;
+            }
+          }
+        }
+      }
+
+      .step-extra {
+
+        .pot-summary,
+        .pot-extra {
+          .make-lg-column(5);
+          .make-lg-column-offset(1);
+        }
+      }
+
+      .step-guests {
+        .pot-you-invite,
+        .pot-we-invite {
+          .make-lg-column(5);
+          .make-lg-column-offset(1);
+
+          header {
+            text-align: center;
+            margin-bottom: 2em;
+          }
+        }
+
+        .pot-we-invite {
+          #pot-guests-email-list {
+            .resizable(none);
+
+            min-height: 5em;
+            width: 100%;
+            margin-top: 1em;
+          }
+
+          .button-send {
+            .btn;
+            .btn-default;
+
+            margin-top: 1em;
           }
         }
       }

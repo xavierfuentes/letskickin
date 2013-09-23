@@ -63,6 +63,7 @@ class PotController extends Controller
         return array(
             'form'  => $form->createView(),
             'flow'  => $flow,
+	        'pot'   => $pot,
         );
     }
 

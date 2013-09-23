@@ -1,6 +1,6 @@
 {% set renderBackButton = flow.currentStepNumber in (flow.firstStepNumber + 1) .. flow.lastStepNumber %}
 <div class="pot_form_buttons pot_form_buttons_step_{{ flow.currentStepLabel }} pot_form_button_count_{% if renderBackButton %}3{% else %}2{% endif %}">
-    <button type="submit" class="btn btn-primary btn-lg pot_form_button_last">
+    <button type="submit" class="btn-primary pot_form_button_last">
         {% if flow.currentStepNumber < flow.lastStepNumber %}
             {{ 'create.button.next'|trans({}, 'pot')|capitalize }}
         {% else %}
@@ -9,7 +9,7 @@
     </button>
 
     {% if renderBackButton %}
-        <button type="submit" name="{{ flow.formTransitionKey }}" value="back" formnovalidate="formnovalidate">
+        <button type="submit" class="btn" name="{{ flow.formTransitionKey }}" value="back" formnovalidate="formnovalidate">
             {{ 'create.button.back'|trans({}, 'pot')|capitalize }}
         </button>
     {% endif %}

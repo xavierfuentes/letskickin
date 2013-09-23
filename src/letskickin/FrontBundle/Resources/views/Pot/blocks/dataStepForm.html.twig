@@ -1,47 +1,24 @@
-<div class="row">
-    <div class="col-lg-7 col-lg-offset-4">
-        {#{{ form_row(form.occasion, {
-            'help': 'occasion.help'|trans({}, "pot"),
-            'attr': {
-                'class': 'pot-occasion'
-            }
-        }) }}#}
+{#{{ form_row(form.occasion, {
+    'help': 'occasion.help'|trans({}, "pot"),
+    'attr': {
+        'class': 'pot-occasion'
+    }
+}) }}#}
 
-        {{ form_row(form.occasion, {
-            'label': 'occasion.label'|trans(),
-            'attr': {
-                'class': 'pot-occasion',
-                'placeholder': 'occasion.placeholder'|trans()
-            }
-        }) }}
+{{ form_row(form.occasion, {
+}) }}
 
-        {{ form_row(form.admin_name, {
-            'label': 'admin_name.label'|trans(),
-            'attr': {
-                'class': 'pot-admin_name',
-                'placeholder': 'admin_name.placeholder'|trans()
-            }
-        }) }}
+{{ form_row(form.admin_name, {
+}) }}
 
-        {{ form_row(form.admin_email, {
-            'label': 'admin_email.label'|trans(),
-            'attr': {
-                'class': 'pot-admin_email',
-                'placeholder': 'admin_email.placeholder'|trans()
-            }
-        }) }}
+{{ form_row(form.admin_email, {
+}) }}
 
-        {{ form_row(form.deadline, {
-            'label': 'deadline.label'|trans(),
-            'attr': {
-                'class': 'pot-deadline',
-                'placeholder': 'DD/MM/AAAA'
-            }
-        }) }}
+{{ form_row(form.deadline, { 'attr': {
+    'class': 'pot-deadline'
+}}) }}
 
-        {{ include(
-            'letskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {
-            'flow': flow
-        }) }}
-    </div>
-</div>
+{{ include(
+'letskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {
+    'flow': flow
+}) }}

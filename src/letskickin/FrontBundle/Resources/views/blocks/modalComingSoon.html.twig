@@ -1,0 +1,20 @@
+{% extends '@Layouts/modal.html.twig' %}
+
+{% block modalId %}comingSoon{% endblock %}
+{% block modalTitleText %}Coming soon{% endblock %}
+
+{% block modalBody %}
+<p>{{ 'coming.soon.description'|trans({}, "modal")|raw }}</p>
+<p>{{ 'coming.soon.form.text'|trans({}, "modal")|raw }}</p>
+<form id="modal-subscribe" class="validate ajax" role="subscribe" novalidate action="{{ mailchimp_form.action }}" method="{{ mailchimp_form.method }}">
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon">@</span>
+        <input id="modal-subscribe-email" name="modal-subscribe-email" class="form-control input-lg required email" type="text" placeholder="tu@email.com"/>
+        <span class="input-group-btn">
+            <button id="modal-subscribe-submit" name="modal-subscribe-submit" class="btn btn-primary" type="submit">{{ 'coming.soon.form.button'|trans({}, "modal") }}</button>
+        </span>
+    </div>
+</form>
+{% endblock %}
+
+{% block modalFooter %}{% endblock %}

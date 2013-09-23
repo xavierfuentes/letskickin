@@ -14,19 +14,19 @@ class PotFlow extends FormFlow {
         return array(
             array(
                 'label' => 'data',
-                'type' => new CreatePotStep1Type(),
+                'type' => new CreatePotStepDataType(),
             ),
             array(
                 'label' => 'money',
-                'type' => new CreatePotStep2Type(),
+                'type' => new CreatePotStepMoneyType(),
             ),
             array(
                 'label' => 'extra',
-                'type' => new CreatePotStep3Type(),
+//                'type' => new CreatePotStepExtraType(),
             ),
             array(
                 'label' => 'guests',
-                'type' => new CreatePotStep4Type(),
+                'type' => new CreatePotStepGuestsType(),
             ),
         );
     }

@@ -47,3 +47,9 @@
     {% block footer %}{{ include('letskickinFrontBundle::blocks/footer.html.twig') }}{% endblock %}
     </footer>
 {% endblock %}
+
+{% block body_bottom %}
+    {{ parent() }}
+
+    {{ include('letskickinFrontBundle::blocks/modalComingSoon.html.twig') }}
+{% endblock %}

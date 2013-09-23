@@ -18,18 +18,11 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <form
-        action="http://letskickin.us6.list-manage.com/subscribe/post?u=18a9a22847&amp;id=34cba8f1c1"
-        method="post"
-        id="mc-embedded-subscribe-form"
-        name="mc-embedded-subscribe-form"
-        class="validate navbar-form navbar-right"
-        role="subscribe"
-        novalidate>
-            <div class="form-group mc-field-group">
-                <input type="text" class="form-control required email" placeholder="EMAIL" name="EMAIL" id="mce-EMAIL">
+        <form id="topbar-subscribe" class="validate navbar-form navbar-right" role="subscribe" novalidate action="{{ mailchimp_form.action }}" method="{{ mailchimp_form.method }}">
+            <div class="form-group">
+                <input type="text" class="form-control required email" placeholder="tu@email.com" name="topbar-subscribe-email" id="topbar-subscribe-email">
             </div>
-            <button type="submit" class="btn btn-default" name="subscribe" id="mc-embedded-subscribe">Enviar</button>
+            <button type="submit" class="btn-default" name="topbar-subscribe-submit" id="topbar-subscribe-submit">Enviar</button>
         </form>
         <p class="navbar-text navbar-right text-help">
             Únete al #crowdgifting

@@ -1,47 +1,92 @@
 occasion:
-  label: 'Ocasión'
+  label: 'Ocasión del bote'
   placeholder: 'Cumple de Jordi.'
-  help: 'El motivo del bote'
+  help: 'El motivo del bote.'
 
 admin_name:
   label: 'Tu nombre'
   placeholder: 'Montse Comas'
-  help: '¿De verdad te hace falta ayuda para esto?'
+  help: 'Pues eso. No hace falta aclaración ¿no?'
 
 admin_email:
   label: 'Tu email'
   placeholder: 'montse@comas.com'
-  help: 'No te estás registrando, solo es para informarte.'
+  help: 'No te estás registrando, este será el mail dónde te enviaremos la información relacionada con el bote. Así, estarás al día de cualquier modificación.'
 
 deadline:
-  label: 'Fecha límite para recaudar'
-  placeholder: ' '
-  help: '25/05/2014'
+  label: 'Fecha final'
+  help: 'Indica aquí la fecha en la que quieres finalizar el bote. ¡OJO! NO es la fecha del evento.'
+
+amount_total:
+  label: 'Cantidad total'
+  placeholder: ''
+  help: '(Opcional) Indica aquí la cantidad total que quieres reunir'
+  blank: 'Es muy recomendable que la indiques...'
+
+amount_partial:
+  label: 'Cantidad recomendada por persona'
+  placeholder: ''
+  help: '(Opcional) Indica cuánto te gustaría que aportara cada participante'
+  blank: 'Es muy recomendable que la indiques...'
+
+bank_account:
+  label: 'Indica aquí el número de cuenta'
+  placeholder: '0123 4567 89 0123456789'
+  help: 'De esta manera, recibirás los ingresos en la cuenta que elijas. El número de cuenta sólo lo verán las personas que tú invites al bote'
+
+day.placeholder: 'DD'
+month.placeholder: 'MM'
+year.placeholder: 'AAAA'
 
 create:
   title: 'crea el bote'
   data:
-    step-name: 'datos'
+    step-name: 'datos básicos'
   money:
-    step-name: 'recaudación'
+    step-name: 'cantidad a recoger'
   extra:
-    step-name: 'resumen'
+    step-name: 'en resumen'
+    created.by: 'creado por'
+    features:
+      title: 'Organizar un regalo puede ser aún más fácil. Regístrate para conseguir todas estas ventajas y mucho más.'
+      feat1: 'Activar notificaciones'
+      feat2: 'Todos los invitados pueden invitar a otros a participar'
+      feat3: 'Avisos automáticos al resto de usuarios'
+      feat4: 'Sandwiches de Nutella gratis'
   guests:
     step-name: 'invitar'
+    you.invite: 'Tú envías las invitaciones'
+    you.invite.description: '<p>Puedes hacerlo desde tu email, con la herramienta interna de tu empresa, conectando con tus amigos desde tu cuenta de Facebook… tú eliges.</p><p>Invita a quién tú quieras a participar en el bote a través del enlace que te facilitaremos al finalizar.</p>'
+    we.invite: 'Nosotros lo hacemos por ti'
+    we.invite.description: '<p>Despreocúpate, nosotros nos encargamos de enviar el mail a todos los participantes que elijas.</p><p>Escribe aquí los emails de las personas que quieres invitar. Cuando hayas acabado haz click en Finalizar.</p>'
+    emails:
+      placeholder: 'montse@comas.com, jordi@comas.com'
+      help: 'Separa los emails por comas.'
+
   button:
     next: 'siguiente'
     back: 'anterior'
-    finish: 'guardar'
+    finish: 'finalizar'
+    register: 'Registrarme'
 
 confirm:
-  thanks.admin: 'gracias, admin_name,'
+  thanks.admin: '¡Genial %admin_name%! ¡Ya has creado el bote!'
+  subtitle: 'Echa un vistazo a los enlaces que aparecen a continuación'
+  invite.link:
+    title: 'Enlace de invitación'
+    description: 'Copia y pega este enlace para enviarlo a todas las personas que quieres invitar al bote. Puedes hacerlo, por ejemplo, desde tu email'
+  admin.link:
+    title: 'Enlace de administración'
+    description: 'Te recomendamos que guardes este enlace para poder acceder al bote cuando lo necesites. Podrás modificarlo, ver quién participa y controlar en todo momento la cantidad que llevas reunida.<br><br><strong>¡IMPORTANTE! Recuerda que este enlace es sólo para ti, NO lo envíes a otras personas.</strong>'
+  footer:
+    explanation: 'Para que no los pierdas, te hemos enviado los enlaces por email a la dirección %admin_email%.<br>Comprueba que los has recibido correctamente.'
 
 notify:
-  thanks.participant: 'gracias, name,'
+  thanks.participant: 'gracias, %name%,'
 
 show:
   deadline.label: 'hasta el:'
-  created.by: 'creado por:'
+
   created.message: 'tu bote común ha sido creado'
   bank-account:
     label: "nº de cuenta"

@@ -50,32 +50,23 @@
         {% if label is empty %}
             {% set label = name %}
         {% endif %}
-        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ (form.vars.name ~ '.label')|trans({}, translation_domain) }}</label>
     {% endif %}
 {% endspaceless %}
 {% endblock form_label %}
 
-{% block date_widget %}
+{% block form_widget_simple %}
     {% spaceless %}
-        {% if attr.placeholder is defined %}
-            {% set ph_array = attr.placeholder|split('/') %}
-        {% endif %}
-        {% if widget == 'single_text' %}
-            {{ block('form_widget_simple') }}
-        {% else %}
-            <div {{ block('widget_container_attributes') }}>
-                {{ date_pattern|replace({
-                    '{{ year }}':  form_widget(form.year, { 'attr': {
-                        'placeholder': ph_array[2]
-                    } }),
-                    '{{ month }}': form_widget(form.month, { 'attr': {
-                        'placeholder': ph_array[1]
-                    } }),
-                    '{{ day }}':   form_widget(form.day, { 'attr': {
-                        'placeholder': ph_array[0]
-                    } })
-                })|raw }}
-            </div>
-        {% endif %}
+        {% set type = type|default('text') %}
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} placeholder="{{ (form.vars.name ~ '.placeholder')|trans({}, translation_domain) }}"/>
     {% endspaceless %}
-{% endblock date_widget %}
+{% endblock form_widget_simple %}
+
+{% block money_widget %}
+    {% spaceless %}
+        <div class="input-group input-group-lg">
+            {{ block('form_widget_simple') }}
+            <span class="input-group-addon">{{ money_pattern|slice(-1, 1) }}</span>
+        </div>
+    {% endspaceless %}
+{% endblock money_widget %}

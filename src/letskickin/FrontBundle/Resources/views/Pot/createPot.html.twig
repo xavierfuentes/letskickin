@@ -32,8 +32,8 @@
     </header>
 
     <section class="container">
-        <div class="pot-form">
-            <article class="form-step-data">
+        <section class="pot-form">
+            <article class="form-step">
                 {{ form_start(form) }}
                 <input type="hidden" name="{{ flow.formStepKey }}" value="{{ flow.currentStepNumber }}" />
 
@@ -41,15 +41,18 @@
                     {{ form_errors(form) }}
                 </section>
 
-                {{ include(
+                <article class="step step-{{ flow.currentStepLabel }}">
+                    {{ include(
                     'letskickinFrontBundle:Pot:blocks/' ~ flow.currentStepLabel ~ 'StepForm.html.twig', {
-                    'flow': flow,
-                    'form': form
-                }) }}
+                        'flow': flow,
+                        'form': form,
+                        'pot': pot
+                    }) }}
+                </article>
 
                 {{ form_end(form) }}
             </article>
-        </div>
+        </section>
     </section>
 {% endblock %}
 
