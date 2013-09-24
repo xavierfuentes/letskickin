@@ -86,12 +86,16 @@ notify:
   thanks.participant: 'gracias, %name%,'
 
 show:
+  participants.count: '{1} 1 Participante|]1,Inf] %count% Participantes'
   deadline.label: 'hasta el:'
-
+  days.left: '{0} Este bote ha terminado|{1} ¡Falta 1 día!|]1, 7[ Solo %count% días| {7} (Una semana) |]1, Inf] (%count% días)'
+  created.by: 'creado por:'
   created.message: 'tu bote común ha sido creado'
   bank-account:
     label: "nº de cuenta"
   amount-partial:
       label: "cantidad recomendada"
   amount-total:
-      label: "dinero recaudado"
+      label: "cantidad reunida"
+  amount-relative: %amountRelative%% Recaudado
+  description: '¡Hola! %admin_name% ha organizado un bote para <em>%occasion%</em> y <strong>cuenta contigo</strong> para hacer el regalo. Participar es muy fácil sólo tienes que echar un vistazo más abajo. Si prefieres no participar, por favor, indícalo también.'

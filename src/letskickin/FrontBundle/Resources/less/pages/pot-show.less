@@ -1,60 +1,51 @@
 #pot-show {
+  .data-basic,
+  .data-extended,
+  .pot-extra-data,
+  .pot-extra-money {
+    .make-row();
+  }
 
-  .pot-header {
-    .data-basic {
-      .make-row();
+  .pot-occasion {
+    .make-lg-column(8);
+    .make-lg-column-offset(1);
+  }
 
-      .pot-title {
-        .make-lg-column(4);
-        .make-lg-column-offset(1);
-      }
+  .pot-participants-mini {
+    .make-lg-column(2);
 
-      .pot-extra {
-        .make-lg-column(4);
-        .make-lg-column-offset(2);
+    margin-top: 2.5em;
+  }
 
-        padding-top: 40px;
-        text-align: right;
+  .data-extended {
+    margin-top: 1em;
 
-        .pot-extra-el {
-          display: inline-block;
-
-          &:last-child { margin-left: 50px; }
-
-          .pot-extra-actions {
-            .list-unstyled;
-            .list-inline;
-
-            .separator {
-              margin-left: 5px;
-              margin-right: 5px;
-            }
-          }
-
-        }
-      }
+    .pot-description,
+    .pot-more-data {
+      .make-lg-column(5);
     }
 
-    .data-money {
-      .make-row();
+    .pot-description {
+      .make-lg-column-offset(1);
 
-      margin-top: 20px;
+      padding-right: @padding-xlarge-horizontal;
+    }
 
-      .pot-bank-account,
-      .pot-amount-partial,
+    .pot-extra-money {
+      margin-top: 1.2em;
+    }
+
+    .extra-section {
+      .make-lg-column(6);
+
+      .pot-amount-sum,
       .pot-amount-total {
-        .make-lg-column-offset(1);
+        display: inline-block;
       }
 
-      .pot-bank-account,
-      .pot-amount-partial {
-        .make-lg-column(2);
-      }
-
       .pot-amount-total {
-        .make-lg-column(3);
+        .pull-right;
       }
     }
   }
-
 }

@@ -1,54 +1,58 @@
 <section class="pot-header">
     <header class="pot-data container">
-        <div class="data-basic">
-            <section class="pot-title">
-                <h1 class="h2">{{ pot.occasion }}</h1>
-                <strong>{{ "show.created.by"|trans({}, "pot")|upper }}</strong> {{ pot.adminName }}
-            </section>
-
-            <section class="pot-extra">
-                <div class="pot-extra-el">
-                    <strong>{{ "show.deadline.label"|trans({}, "pot")|upper }}</strong> {{ pot.deadline|date("d/m/Y") }}
-                </div>
-                <div class="pot-extra-el">
-                    <ul class="pot-extra-actions">
-                        <li>
-                            <span class="glyphicon glyphicon-comment"></span> 99
-                        </li>
-                        <li class="separator">|</li>
-                        <li>
-                            <span class="glyphicon glyphicon-user"></span> 99
-                        </li>
-                    </ul>
-                </div>
-            </section>
-        </div>
-
-        <div class="data-money">
-            <section class="pot-bank-account">
-                <strong>{{ "show.bank-account.label"|trans({}, "pot")|upper }}</strong>
-                <div>{{ pot.bankAccount }}</div>
-            </section>
-
-            {% if pot.amountPartial %}
-            <section class="pot-amount-partial">
-                <strong>{{ "show.amount-partial.label"|trans({}, "pot")|upper }}</strong>
-                <div>{{ pot.amountPartial }}</div>
-            </section>
+        <section class="data-basic">
+            <h1 class="pot-occasion">{{ pot.occasion }}</h1>
+            {% if pot.participants|length > 0 %}
+            <span class="pot-participants-mini"><span class="icon glyphicon glyphicon-user"></span>{{ 'show.participants.count'|transchoice(pot.participants|length, {}, "pot") }}</span>
             {% endif %}
+        </section>
 
-            {% if pot.amountTotal %}
-            <section class="pot-amount-total">
-                <strong>{{ "show.amount-total.label"|trans({}, "pot")|upper }}</strong>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="{{ pot.amountTotal }}" style="width: 60%;">
-                        <span class="sr-only">60% Complete</span>
-                    </div>
+        <section class="data-extended">
+            <div class="pot-description">
+                <p>{{ "show.description"|trans({ '%admin_name%': pot.adminName, '%occasion%': pot.occasion }, "pot")|raw }}</p>
+            </div>
+
+            <section class="pot-more-data">
+                <div class="pot-extra-data">
+                    <article class="extra-section">
+                        <strong>{{ "show.created.by"|trans({}, "pot")|capitalize }}</strong>
+                        <section>{{ pot.adminName }}</section>
+                    </article>
+
+                    <article class="extra-section">
+                        <strong>{{ "show.deadline.label"|trans({}, "pot")|capitalize }}</strong>
+                        <section>{{ pot.deadline|date("d/m/Y") }} {{ 'show.days.left'|transchoice(pot.deadline.diff(date('now')).days, {}, "pot") }}</section>
+                    </article>
+                </div>
+
+                <div class="pot-extra-money">
+                    {% if pot.amountTotal %}
+                    {% set amountNow = 0 %}
+                    {% for contribution in pot.participants %}
+                        {% set amountNow = amountNow + contribution.amount %}
+                    {% endfor %}
+                    {% set amountRelative = amountNow * 100 / pot.amountTotal %}
+                    <section class="extra-section">
+                        <strong>{{ "show.amount-total.label"|trans({}, "pot")|capitalize }}</strong>
+                        <section class="progress">
+                            <div class="progress-bar" role="progressbar"
+                                aria-valuenow="{{ amountNow }}" aria-valuemin="0" aria-valuemax="{{ pot.amountTotal }}" style="width: {{ amountRelative }}%;">
+                                <span class="sr-only">{{ "show.amount-relative"|trans({ '%amount%': amountRelative }, "pot")|capitalize }}</span>
+                            </div>
+                        </section>
+                        <span class="pot-amount-sum">{{ amountNow|currency(pot.currency) }}</span>
+                        <span class="pot-amount-total">{{ pot.amountTotal|currency(pot.currency) }}</span>
+                    </section>
+                    {% endif %}
+
+                    {% if pot.amountPartial %}
+                    <section class="extra-section">
+                        <strong>{{ "show.amount-partial.label"|trans({}, "pot")|capitalize }}</strong>
+                        <section>{{ pot.amountPartial|currency(pot.currency) }}</section>
+                    </section>
+                    {% endif %}
                 </div>
             </section>
-            {% endif %}
-        </div>
-
+        </section>
     </header>
 </section>
