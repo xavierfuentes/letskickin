@@ -28,6 +28,10 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
+    form:
+        resources:
+            - 'letskickinFrontBundle:Form:fields.html.twig'
+
     paths:
         "%kernel.root_dir%/../src/letskickin/FrontBundle/Resources/views/layouts": Layouts
         "%kernel.root_dir%/../src/letskickin/FrontBundle/Resources/views/blocks": Blocks
