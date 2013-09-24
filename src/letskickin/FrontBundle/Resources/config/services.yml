@@ -1,7 +1,8 @@
 parameters:
-#    letskickin_front.example.class: letskickin\FrontBundle\Example
+    letskickin_extension.class: letskickin\FrontBundle\Twig\LetskickinExtension
 
 services:
-#    letskickin_front.example:
-#        class: %letskickin_front.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    letskickin.twig.letskickin_extension:
+        class: %letskickin_extension.class%
+        tags:
+            - { name: twig.extension }
