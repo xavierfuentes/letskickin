@@ -1,5 +1,7 @@
-site.title: letskickin
-site.description: 'Organizar un regalo en grupo nunca había sido tan facil.'
-site.keywords: 'bote común, regalo en grupo'
-site.author: 'The Team'
-button.back: Volver
+button:
+  subscribe-me: 'Enviar'
+  loading-text: 'Espera...'
+
+email.placeholder: 'tu@email.com'
+
+join.crowdgifting: 'Únete al #crowdgifting'

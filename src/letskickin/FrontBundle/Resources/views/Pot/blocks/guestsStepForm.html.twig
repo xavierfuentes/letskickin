@@ -9,7 +9,9 @@
             {% endimage %}
             <span class="icon glyphicon glyphicon-envelope"></span>
         </header>
+
         <div>{{ 'create.guests.you.invite.description'|trans({}, "pot")|raw }}</div>
+
         {{ include(
         'letskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {
             'flow': flow
@@ -26,11 +28,12 @@
             {% endimage %}
             <span class="icon glyphicon glyphicon-envelope"></span>
         </header>
+
         <div id="weInviteRegister">
             {{ 'create.guests.we.invite.description'|trans({}, "pot")|raw }}
             <textarea id="pot-guests-email-list" placeholder="{{ 'create.guests.emails.placeholder'|trans({}, "pot") }}"></textarea>
             <p class="help-block">{{ 'create.guests.emails.help'|trans({}, "pot") }}</p>
-            <a href="#" class="btn-default">Enviar y guardar</a>
+            <button data-toggle="modal" href="#comingSoon" class="btn btn-default">{{ 'create.button.send.finish'|trans({}, "pot") }}</button>
         </div>
         {#<ul class="guests" data-prototype="{{ form_widget(form.guests.vars.prototype)|e }}"></ul>#}
     </div>

@@ -5,22 +5,46 @@
 
         /**
          * @param $form
+         */
+        self.validateForm = function( $form ){
+            // Add some validation
+            return true;
+        };
+
+        /**
+         * @param $form
          * @param callback
          */
         self.postForm = function( $form, callback ){
             var values = {};
+
             $.each( $form.serializeArray(), function(i, field) {
                 values[field.name] = field.value;
             });
 
             $.ajax({
-                type        : $form.prop( 'method' ),
-                url         : $form.prop( 'action' ),
-                data        : values,
-                success     : function(data) {
+                type:           $form.prop( 'method' ),
+                url:            $form.prop( 'action' ),
+                data:           $form.serialize(),
+                cache:          false,
+                dataType:       'json',
+                contentType:    "application/json; charset=utf-8",
+                success: function(data) {
                     callback( data );
                 }
             });
+        };
+
+        self.showAndDestroyTooltip = function ( $element, message ) {
+            $element.tooltip({
+                container: 'body',
+                placement: 'auto bottom',
+                title: message,
+            }).tooltip('show');
+
+            setTimeout(function() {
+                $element.tooltip('destroy');
+            }, 5000);
         };
 
         return self;
@@ -38,13 +62,20 @@
             .on('submit', '.-ajax', function( e ) {
                 e.preventDefault();
 
-                var cb = $(this).data('cb');
+                var $form = $(this),
+                    $button = $form.find("[type='submit']");
 
-                app.postForm( $(this), function( response ){
-                    cb();
-                });
+                if ( $form.length > 0 ) {
+                    if ( app.validateForm($form) ) {
+                        $button.button('loading');
 
-                return false;
+                        app.postForm( $form, function( response ){
+                            app.showAndDestroyTooltip($button, response.msg);
+                            $form.get(0).reset();
+                            $button.button('reset');
+                        });
+                    }
+                }
             })
         ;
     };

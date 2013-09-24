@@ -1,0 +1,14 @@
+{% extends '@Layouts/mailTXT.html.twig' %}
+
+{% block subject %}{{ 'invite.link.for'|trans({ '%occasion%': pot.occasion }, "email") }}{% endblock %}
+
+{% block message %}
+    <div style="font: 16px arial; color: #333333; margin-bottom: 25px">{{ 'invite.link.created'|trans({ '%occasion%': pot.occasion }, "email") }}</div>
+
+    <a href="{{ url('pot_show', { 'pot_key': pot.potKey|default('null') }) }}""
+       target="_blank" title="{{ 'invite.link.action'|trans({ '%occasion%': pot.occasion }, "email") }}">
+    {{ url('pot_show', { 'pot_key': pot.potKey|default('null') }) }}</a>
+
+    <div style="font: 16px arial; color: #333333; margin-top: 25px;">{{ 'invite.share'|trans({}, "email") }}</div>
+    <div style="font: 12px arial; color: #333333; margin-top: 20px">{{ 'invite.ignore'|trans({}, "email") }}</div>
+{% endblock %}

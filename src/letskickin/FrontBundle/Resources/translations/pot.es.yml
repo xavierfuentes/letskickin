@@ -68,6 +68,7 @@ create:
     back: 'anterior'
     finish: 'finalizar'
     register: 'Registrarme'
+    send.finish: 'Enviar y guardar'
 
 confirm:
   thanks.admin: '¡Genial %admin_name%! ¡Ya has creado el bote!'

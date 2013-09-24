@@ -38,7 +38,7 @@ twig:
             diagnostic_mode: false
             #sitemap: "/sitemap.xml"
         mailchimp_form:
-          action: 'http://letskickin.us6.list-manage.com/subscribe/post-json?u=18a9a22847&id=34cba8f1c1'
+          action: 'http://letskickin.us6.list-manage1.com/subscribe/post-json?u=18a9a22847&id=34cba8f1c1&c=?'
           method: 'GET'
 
         # google:

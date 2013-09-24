@@ -1,0 +1,16 @@
+admin:
+  dont.forward: 'No reenvíes este email.*'
+  dont.forward.more: '* No deberías reenviar este email para prevenir que otros participantes modifiquen o borren el bote. Si no quieres usar las opciones administrativas, puedes ignorar o borrar este email. Igualmente, los botes antiguos de Letskickin son automáticamente borrados cada cierto tiempo.'
+  error: 'Si tú no has creado este bote, alguien debe haber usado tu email por accidente. Ignora este email por favor.'
+  hi: ¡Hola %admin_name%!
+  pot.created: 'Has creado el bote:'
+  keep.email: 'Deberías guardar este email en caso de que quieras editar el bote o invitar a más gente más adelante.'
+  button.go: 'Administrar el bote'
+
+invite:
+  link:
+    for: 'Enlace para el bote: %occasion%:'
+    created: 'Has creado un bote para "%occasion%". El enlace para el bote es:'
+    action: 'Ir al bote'
+  share: 'Comparte este enlace con todos aquellos que quieran participar. ¡No te olvides de contarte a tí también!'
+  ignore: '(Si tú no has creado este bote, alguien lo habrá hecho usando tu email accidentalmente; solo ignora este email, por favor.)'

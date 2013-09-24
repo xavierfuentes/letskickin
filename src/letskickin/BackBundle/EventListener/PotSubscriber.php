@@ -10,10 +10,12 @@ use letskickin\BackBundle\PotEvents;
 class PotSubscriber implements EventSubscriberInterface
 {
     private $mailer;
+	private $templating;
 
-    public function __construct(\Swift_Mailer $mailer)
+    public function __construct(\Swift_Mailer $mailer, \Symfony\Bundle\TwigBundle\Debug\TimedTwigEngine $templating)
     {
         $this->mailer = $mailer;
+	    $this->templating = $templating;
     }
 
 	public function onPotCreated(PotEvent $event)
@@ -25,19 +27,33 @@ class PotSubscriber implements EventSubscriberInterface
     {
         $pot = $event->getPot();
 
-		$message = \Swift_Message::newInstance()
+		$messageHTML = \Swift_Message::newInstance()
 			->setSubject($pot->getOccasion())
-			->setFrom('send@example.com')
+			->setFrom(array('mailer@letskickin.com' => 'Letskickin'))
+			->setContentType('text/html')
 			->setTo($pot->getAdminEmail())
-//			->setBody(
-//				$this->renderView(
-//					'HelloBundle:Hello:email.txt.twig',
-//					array('name' => $name)
-//				)
-//			)
-			->setBody("Hi " . $pot->getAdminName() . ", you have created your pot: " . $pot->getOccasion())
+			->setBody(
+				$this->templating->render(
+					'letskickinFrontBundle:Email:potCreatedAdminLink.html.twig',
+					array('pot' => $pot)
+				)
+			)
 		;
-		$this->mailer->send($message);
+		$this->mailer->send($messageHTML);
+
+	    $messageTXT = \Swift_Message::newInstance()
+		    ->setSubject('Letskickin: "' . $pot->getOccasion() . '"')
+		    ->setFrom(array('mailer@letskickin.com' => 'Letskickin'))
+		    ->setContentType('text/html')
+		    ->setTo($pot->getAdminEmail())
+		    ->setBody(
+			    $this->templating->render(
+				    'letskickinFrontBundle:Email:potCreatedInviteLink.html.twig',
+				    array('pot' => $pot)
+			    )
+		    )
+	    ;
+	    $this->mailer->send($messageTXT);
     }
 
 	public function onPotUpdated(PotEvent $event)
@@ -46,7 +62,7 @@ class PotSubscriber implements EventSubscriberInterface
 
 		$message = \Swift_Message::newInstance()
 			->setSubject($pot->getOccasion())
-			->setFrom('send@example.com')
+			->setFrom('mailer@letskickin.com')
 			->setTo($pot->getAdminEmail())
 //			->setBody(
 //				$this->renderView(
@@ -67,7 +83,7 @@ class PotSubscriber implements EventSubscriberInterface
 
 		$message = \Swift_Message::newInstance()
 			->setSubject($pot->getOccasion())
-			->setFrom('send@example.com')
+			->setFrom('mailer@letskickin.com')
 			->setTo($pot->getAdminEmail())
 //			->setBody(
 //				$this->renderView(

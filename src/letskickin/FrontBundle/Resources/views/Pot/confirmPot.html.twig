@@ -23,7 +23,6 @@
             <p>{{ 'confirm.invite.link.description'|trans({}, "pot")|raw }}</p>
             {% set participation_link = url("pot_show", { 'pot_key' : pot.potKey }) %}
             <a class="link" href="{{ participation_link }}">{{ participation_link }}</a>
-            <button>{{ 'confirm.invite.link.title'|trans({}, "pot") }}</button>
         </article>
 
         <article class="administration-link">

@@ -2,8 +2,10 @@
 landingpage:
     pattern:  /
     defaults:
-      _controller: FrameworkBundle:Template:template
-      template: 'letskickinFrontBundle:Static:landing.html.twig'
+        _controller: FrameworkBundle:Template:template
+        template: 'letskickinFrontBundle:Static:landing.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400
 
 # POTS
 pot_create:

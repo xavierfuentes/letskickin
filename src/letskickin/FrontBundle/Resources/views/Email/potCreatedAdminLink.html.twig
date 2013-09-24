@@ -1,0 +1,22 @@
+{% extends '@Layouts/mailHTML.html.twig' %}
+
+{% block subject %}{{ pot.occasion }}{% endblock %}
+
+{% block achtung %}
+<div style="font: 14px arial; color: #333333">{{ 'admin.dont.forward'|trans({} ,"email") }}</div>
+{% endblock %}
+
+{% block message %}
+<div style="font: 18px arial; color: #429e8a">{{ 'admin.hi'|trans({ '%admin_name%': pot.adminName|default('Ruperta') } ,"email") }}</div>
+<div style="font: 16px arial; color: #333333; margin: 20px 0 10px">{{ 'admin.pot.created'|trans({} ,"email") }}</div>
+<div style="font: 18px arial; color: #333333; font-weight: bold">"{{ pot.occasion|default('Cumple de Rufino') }}"</div>
+<div style="font: 16px arial; color: #333333; margin: 20px 0">{{ 'admin.pot.created'|trans({} ,"email") }}</div>
+{% endblock %}
+
+{% block actions %}
+<a href="{{ url('pot_admin', { 'pot_key': pot.potKey|default('null'), 'admin_key': pot.adminKey|default('null') }) }}"
+   target="_blank" title="Administrar el bote"
+   style="background-color: #ea9c3e; color: white; text-decoration: none; font: 16px arial; padding: 10px 20px">{{ 'admin.button.go'|trans({} ,"email") }}</a>
+{% endblock %}
+
+{% block notes %}{{ 'admin.dont.forward.more'|trans({} ,"email") }}{% endblock %}

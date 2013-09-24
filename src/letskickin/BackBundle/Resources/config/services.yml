@@ -39,5 +39,6 @@ services:
         class: "%letskickin.subscriber.pot%"
         arguments:
             mailer: "@mailer"
+            container: "@templating"
         tags:
             - { name: kernel.event_subscriber }

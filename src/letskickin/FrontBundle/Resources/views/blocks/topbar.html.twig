@@ -18,14 +18,14 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <form id="topbar-subscribe" class="validate navbar-form navbar-right" role="subscribe" novalidate action="{{ mailchimp_form.action }}" method="{{ mailchimp_form.method }}">
+        <form target="_blank" id="topbar-subscribe-form" class="-validate -ajax navbar-form navbar-right" role="subscribe" action="{{ mailchimp_form.action|raw }}" method="{{ mailchimp_form.method }}" novalidate>
             <div class="form-group">
-                <input type="text" class="form-control required email" placeholder="tu@email.com" name="topbar-subscribe-email" id="topbar-subscribe-email">
+                <input type="text" class="form-control required email" id="topbar-subscribe-email" name="EMAIL" placeholder="{{ 'email.placeholder'|trans({}, "global") }}"/>
             </div>
-            <button type="submit" class="btn-default" name="topbar-subscribe-submit" id="topbar-subscribe-submit">Enviar</button>
+            <button id="topbar-subscribe-submit" data-loading-text="{{ 'button.loading-text'|trans({}, "global") }}" name="subscribe" class="btn btn-default" type="submit">{{ 'button.subscribe-me'|trans({}, "global") }}</button>
         </form>
         <p class="navbar-text navbar-right text-help">
-            Únete al #crowdgifting
+            {{ 'join.crowdgifting'|trans({}, "global") }}
             {% image output="image/unete-al-crowdgifting.png"
                 '@letskickinFrontBundle/Resources/image/topbar/small_arrow.png'
             %}
