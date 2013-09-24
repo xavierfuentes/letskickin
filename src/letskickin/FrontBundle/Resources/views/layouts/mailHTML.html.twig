@@ -134,7 +134,7 @@
     <![endif]-->
 </head>
 <body style="background-color: #fcfcfc">
-<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="background-color: #fcfcfc">
+<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="background-color: #fcfcfc" width="100%">
     <tr>
         <td valign="top">
             <table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td width="480" valign="top">
@@ -145,8 +145,8 @@
                 <table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
                     <tr><td valign="top" width="15"></td>
                         <td valign="top">
-                        {% image output="image/letskickin.gif" '@letskickinFrontBundle/Resources/image/email/logo.gif' %}
-                        <img src="{{ asset_url }}" alt="Letskickin" title="Letskickin" class="image_fix" width="187" height="39"/>
+                        {% image output="image/letskickin.gif" '@letskickinFrontBundle/Resources/public/image/email/logo.gif' %}
+                        <img src="{{ app.request.getSchemeAndHttpHost ~ asset_url }}" alt="Letskickin" title="Letskickin" class="image_fix" width="187" height="39"/>
                         {% endimage %}
                         </td>
                         <td valign="middle" align="right"><div style="font: 14px arial; color: #429e8a">This is #crowdgifting!</div></td>

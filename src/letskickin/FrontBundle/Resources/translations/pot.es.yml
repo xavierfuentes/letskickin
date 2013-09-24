@@ -49,14 +49,15 @@ create:
     created.by: 'creado por'
     features:
       title: 'Organizar un regalo puede ser aún más fácil. Regístrate para conseguir todas estas ventajas y mucho más.'
-      feat1: 'Activar notificaciones'
-      feat2: 'Todos los invitados pueden invitar a otros a participar'
-      feat3: 'Avisos automáticos al resto de usuarios'
-      feat4: 'Sandwiches de Nutella gratis'
+      feat1: 'Eventos privados'
+      feat2: 'Recibir los ingresos en tu cuenta de PayPal®'
+      feat3: 'Avisos automáticos a todos los participantes'
+      feat4: 'Personalizar las notificaciones'
+      feat5: 'Cobros totalmente automatizados'
   guests:
     step-name: 'invitar'
     you.invite: 'Tú envías las invitaciones'
-    you.invite.description: '<p>Puedes hacerlo desde tu email, con la herramienta interna de tu empresa, conectando con tus amigos desde tu cuenta de Facebook… tú eliges.</p><p>Invita a quién tú quieras a participar en el bote a través del enlace que te facilitaremos al finalizar.</p>'
+    you.invite.description: '<p>Puedes hacerlo desde tu email, conectando con tus amigos desde tu cuenta de Facebook, enlazando tus contactos de Gmail... tú eliges.</p><p>Invita a quién tú quieras a participar en el bote a través del enlace que te facilitaremos al finalizar.</p>'
     we.invite: 'Nosotros lo hacemos por ti'
     we.invite.description: '<p>Despreocúpate, nosotros nos encargamos de enviar el mail a todos los participantes que elijas.</p><p>Escribe aquí los emails de las personas que quieres invitar. Cuando hayas acabado haz click en Finalizar.</p>'
     emails:

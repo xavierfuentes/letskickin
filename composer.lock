@@ -665,12 +665,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "1ee84a86a5e82420c6459705110b1804dd9063b8"
+                "reference": "b4840d8b3293386dba685d91169559eb20f2d767"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/1ee84a86a5e82420c6459705110b1804dd9063b8",
-                "reference": "1ee84a86a5e82420c6459705110b1804dd9063b8",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/b4840d8b3293386dba685d91169559eb20f2d767",
+                "reference": "b4840d8b3293386dba685d91169559eb20f2d767",
                 "shasum": ""
             },
             "require": {
@@ -725,7 +725,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2013-09-16 22:05:58"
+            "time": "2013-09-23 12:09:51"
         },
         {
             "name": "hwi/oauth-bundle",
@@ -734,12 +734,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hwi/HWIOAuthBundle.git",
-                "reference": "4ac3ee70e86032305cc997dbe5d14bc8ed110748"
+                "reference": "6fd693212ed1557fe0af75d3b85155234e42b0a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/4ac3ee70e86032305cc997dbe5d14bc8ed110748",
-                "reference": "4ac3ee70e86032305cc997dbe5d14bc8ed110748",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/6fd693212ed1557fe0af75d3b85155234e42b0a5",
+                "reference": "6fd693212ed1557fe0af75d3b85155234e42b0a5",
                 "shasum": ""
             },
             "require": {
@@ -805,6 +805,7 @@
                 "deviantart",
                 "disqus",
                 "dropbox",
+                "eventbrite",
                 "facebook",
                 "firewall",
                 "flickr",
@@ -825,6 +826,7 @@
                 "sina weibo",
                 "stack exchange",
                 "stereomood",
+                "trello",
                 "twitch",
                 "twitter",
                 "vkontakte",
@@ -833,7 +835,7 @@
                 "yahoo",
                 "yandex"
             ],
-            "time": "2013-09-17 16:40:03"
+            "time": "2013-09-24 12:03:40"
         },
         {
             "name": "incenteev/composer-parameter-handler",

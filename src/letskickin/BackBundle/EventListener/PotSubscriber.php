@@ -2,6 +2,7 @@
 
 namespace letskickin\BackBundle\EventListener;
 
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 use letskickin\BackBundle\Event\PotEvent;
@@ -12,7 +13,7 @@ class PotSubscriber implements EventSubscriberInterface
     private $mailer;
 	private $templating;
 
-    public function __construct(\Swift_Mailer $mailer, \Symfony\Bundle\TwigBundle\Debug\TimedTwigEngine $templating)
+    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating = null)
     {
         $this->mailer = $mailer;
 	    $this->templating = $templating;

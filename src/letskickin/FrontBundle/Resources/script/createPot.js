@@ -22,7 +22,7 @@
         //bind all events
         $wrapper
             //PRIMARY BINDINGS
-            .on('click', '#pot-guests-email-list', function() {
+            .on('click', '#pot-guests-email-list', function( e ) {
                 e.preventDefault();
 
                 $modalComingSoon.modal('show');
