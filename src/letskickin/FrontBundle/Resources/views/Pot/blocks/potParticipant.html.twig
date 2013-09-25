@@ -1,1 +1,16 @@
-<article>{{ participant.name }} - {{ participant.amount }}€ - {{ participant.status }}</article>
+<article class="pot-participant row {{ participant.status|statusToString() }}">
+    <div class="participant-avatar"><span class="icon glyphicon glyphicon-user"></span></div>
+    <div class="participant-data">{{ participant.name }}</div>
+    {#{{ participant.amount|currency(pot.currency) }}#}
+
+    {% if participant.status|statusToString() != 'waiting' %}
+    <div class="participant-status">
+        {% if participant.status|statusToString() == 'confirmed' %}
+            {% set icon = 'thumbs-up' %}
+        {% else %}
+            {% set icon = 'thumbs-down' %}
+        {% endif %}
+        <span class="icon glyphicon glyphicon-{{ icon }}"></span>
+    </div>
+    {% endif %}
+</article>

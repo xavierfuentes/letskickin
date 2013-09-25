@@ -1,0 +1,75 @@
+<article class="new-participant-form">
+    {{ form_start(form, { 'attr': {
+        'class': 'form-inline row'
+    } }) }}
+
+    <section class="col-name">
+        <h5>{{ 'participant.name.label'|trans({}, "pot") }}</h5>
+
+        {{ form_widget(form.name, {
+            'placeholder': 'participant.name.placeholder'|trans({}, "pot"),
+            'attr': {
+                'class': 'form-control input-lg'
+            }
+        }) }}
+
+        <div class="help-name">
+            <span class="icon glyphicon glyphicon-arrow-up"></span>
+            <p class="help-text">{{ 'participant.name.help'|trans({ '%admin_name%': pot.adminName }, "pot") }}</p>
+        </div>
+    </section>
+
+    <section class="col-amount">
+        <h5>{{ 'participant.amount.label'|trans({}, "pot") }}</h5>
+
+        {{ form_widget(form.amount, {
+            'placeholder': 'participant.amount.placeholder'|trans({}, "pot"),
+            'attr': {
+                'class': 'form-control input-lg'
+            }
+        }) }}
+
+        <div class="help-amount">
+            <span class="icon glyphicon glyphicon-arrow-up"></span>
+            <p class="help-text">
+                {{ 'participant.amount.help'|trans({ '%admin_name%': pot.adminName }, "pot") }}
+
+                {{ form_widget(form.cannot, {
+                    'text': 'participant.cannot'|trans({}, "pot"),
+                    'attr': {
+                        'class': 'btn btn-xs btn-link btn-cannot'
+                    }
+                }) }}
+            </p>
+        </div>
+    </section>
+
+    <section class="col-account">
+        <h5>{{ 'participant.account.label'|trans({}, "pot") }}</h5>
+
+        <p class="pot-bank-account">{{ pot.bankAccount }}</p>
+
+        <div class="help-account">
+            <span class="icon glyphicon glyphicon-arrow-up"></span>
+            <p class="help-text">{{ 'participant.account.help'|trans({ '%occasion%': pot.occasion }, "pot") }}</p>
+        </div>
+    </section>
+
+    <section class="col-save">
+        {{ form_widget(form.save, {
+            'text': 'participant.save.text'|trans({}, "pot"),
+            'attr': {
+                'class': 'btn btn-primary btn-xl'
+            }
+        }) }}
+
+        {#<div class="help-save">
+            <span class="icon glyphicon glyphicon-arrow-up"></span>
+            <p class="help-text">{{ 'participant.save.help'|trans({}, "pot") }}</p>
+        </div>#}
+    </section>
+
+    {{ form_rest(form) }}
+
+    {{ form_end(form) }}
+</article>

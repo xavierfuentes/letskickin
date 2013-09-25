@@ -1,4 +1,11 @@
 #pot-show {
+  background-color: #fff;
+
+  .pot-header {
+    background-color: @body-bg;
+    padding-bottom: 2em;
+  }
+
   .data-basic,
   .data-extended,
   .pot-extra-data,
@@ -45,6 +52,119 @@
 
       .pot-amount-total {
         .pull-right;
+      }
+    }
+  }
+
+  .pot-participants {
+    .new-participant-section,
+    .old-participants-section {
+      .make-row();
+    }
+
+    .new-participant-form,
+    .old-participants-list {
+      .make-lg-column(10);
+      .make-lg-column-offset(1);
+    }
+
+    .new-participant-section {
+      margin-top: 2em;
+
+      .new-participant-form {
+        .col-name,
+        .col-amount,
+        .col-account,
+        .col-save {
+          .make-lg-column(3);
+
+          h5 {
+            text-align: center;
+          }
+        }
+
+        .help-name,
+        .help-amount,
+        .help-account,
+        .help-save {
+          text-align: center;
+          margin-top: .8em;
+          font-size: ceil(@font-size-base * .7);
+        }
+
+        .col-account {
+          .text-center;
+        }
+
+        .new-participant-form {
+          margin-top: 2.5em;
+        }
+
+        .pot-bank-account {
+          margin-top: 1.4em;
+          margin-bottom: 1.5em;
+        }
+
+        .col-save {
+          button {
+            display: block;
+            margin: .8em auto 0;
+          }
+        }
+
+        .btn-cannot {
+          font-size: @font-size-small;
+        }
+      }
+    }
+
+    .old-participants-section {
+      margin-top: 2em;
+
+      .old-participants-list {
+        .make-lg-column(6);
+        .make-lg-column-offset(3);
+
+        .pot-participant {
+          padding-top: 1em;
+          padding-bottom: 1em;
+          margin-bottom: .2em;
+
+          &.waiting {
+            background-color: @brand-warning;
+          }
+
+          &.cannot {
+            background-color: @brand-danger;
+          }
+
+          &.confirmed {
+            background-color: @brand-success;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .participant-avatar,
+          .participant-status {
+            .make-lg-column(2);
+            text-align: center;
+            font-size: @font-size-xlarge;
+          }
+
+          .participant-data {
+            .make-lg-column(8);
+            margin-top: .5em;
+          }
+
+          .participant-status {
+            .icon {
+//              color: #ffffff;
+              opacity: .3;
+            }
+          }
+        }
       }
     }
   }

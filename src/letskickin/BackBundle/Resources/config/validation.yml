@@ -29,7 +29,7 @@ letskickin\BackBundle\Entity\Participant:
             - Length:
                 minMessage: "participant.name.too_short"
                 min: 2
-        amount:
-            - GreaterThan:
-                value: 2
-                message: "participant.amount.too_small"
+#        amount:
+#            - GreaterThan:
+#                value: 2
+#                message: "participant.amount.too_small"

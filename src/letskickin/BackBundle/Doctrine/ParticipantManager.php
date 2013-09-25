@@ -42,8 +42,7 @@ class ParticipantManager
 
 	const STATUS_NO_PARTICIPATES = 0;
 	const STATUS_WAITING = 1;
-	const STATUS_CONTRIBUTED = 2;
-	const STATUS_CONFIRMED = 3;
+	const STATUS_CONFIRMED = 2;
 
 	public function __construct(EventDispatcherInterface $dispatcher, ObjectManager $om, $class)
 	{
@@ -95,7 +94,9 @@ class ParticipantManager
 
 	public function saveParticipant(Participant $participant)
 	{
-		// ...
+		if( $participant->getAmount() == 0 ) {
+			$this->notParticipant($participant);
+		}
 
 		$this->om->persist($participant);
 		$this->om->flush();

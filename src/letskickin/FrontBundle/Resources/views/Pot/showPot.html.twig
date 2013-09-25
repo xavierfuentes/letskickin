@@ -20,16 +20,33 @@
         }) }}
     {% endif %}
 
-    {% for participant in pot.participants %}
-        {{ include(
-            'letskickinFrontBundle:Pot:elements/potParticipant.html.twig', {
-            'participant': participant
-        }) }}
-    {% endfor %}
+    <section class="pot-participants">
+        <div class="container">
+            {% if not isAdmin %}
+            <section class="new-participant-section">
+                {{ include(
+                'letskickinFrontBundle:Pot:blocks/potNewParticipant.html.twig', {
+                    'form': participant_form,
+                    'pot': pot
+                }) }}
+            </section>
+            {% endif %}
 
-    {{ form(participant_form, {'attr': {
-        'id': 'participant_form'
-    }}) }}
+            <section class="old-participants-section">
+                <article class="old-participants-list">
+                    {% for participant in pot.participants %}
+                        {{ include(
+                        'letskickinFrontBundle:Pot:blocks/potParticipant.html.twig', {
+                            'participant': participant,
+                            'pot': pot
+                        }) }}
+                    {% endfor %}
+                </article>
+            </section>
+        </div>
+    </section>
+
+
 
 {% endblock %}
 

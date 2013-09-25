@@ -1,3 +1,4 @@
+# Pot
 occasion:
   label: 'Ocasión del bote'
   placeholder: 'Cumple de Jordi.'
@@ -34,10 +35,24 @@ bank_account:
   placeholder: '0123 4567 89 0123456789'
   help: 'De esta manera, recibirás los ingresos en la cuenta que elijas. El número de cuenta sólo lo verán las personas que tú invites al bote'
 
-day.placeholder: 'DD'
-month.placeholder: 'MM'
-year.placeholder: 'AAAA'
+# Participant
+participant.name:
+  label: '1. Tu nombre'
+  placeholder: 'Jordi Comas'
+  help: 'Escribe tu nombre, aunque no quieras contribuir, ayudarás a %admin_name% a tener el bote bajo control.'
+participant.amount:
+  label: '2. Tu aportación'
+  placeholder: '30'
+  help: 'Di cuánto quieres aportar. La cantidad que indiques sólo la verá el organizador del bote.'
+participant.account:
+  label: '3. Haz el ingreso'
+  help: 'Haz una transferencia a esta cuenta bancaria. Un consejo: Como concepto indica: "%occasion%".'
+participant.save:
+  text: 'Guardar'
+  help: 'Recuerda que %admin_name% debe confirmar que has hecho tu contribución, antes de que aparezca que lo has hecho.'
+participant.cannot: 'No participo'
 
+# Pages
 create:
   title: 'crea el bote'
   data:
@@ -100,3 +115,8 @@ show:
       label: "cantidad reunida"
   amount-relative: %amountRelative%% Recaudado
   description: '¡Hola! %admin_name% ha organizado un bote para <em>%occasion%</em> y <strong>cuenta contigo</strong> para hacer el regalo. Participar es muy fácil sólo tienes que echar un vistazo más abajo. Si prefieres no participar, por favor, indícalo también.'
+
+# Other
+day.placeholder: 'DD'
+month.placeholder: 'MM'
+year.placeholder: 'AAAA'
