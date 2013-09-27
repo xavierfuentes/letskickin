@@ -70,9 +70,10 @@
                         $button.button('loading');
 
                         app.postForm( $form, function( response ){
-                            app.showAndDestroyTooltip($button, response.msg);
-                            $form.get(0).reset();
+                            //app.showAndDestroyTooltip($button, response.msg);
+                            //$form.get(0).reset();
                             $button.button('reset');
+                            console.log(response.msg);
                         });
                     }
                 }

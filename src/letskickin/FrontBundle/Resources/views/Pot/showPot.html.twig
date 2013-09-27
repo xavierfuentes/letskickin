@@ -15,7 +15,7 @@
         })) }}
     {% else %}
         {{ include(
-            'letskickinFrontBundle:Pot:blocks/potHeader.html.twig', {
+            'letskickinFrontBundle:Pot:blocks/headerForParticipant.html.twig', {
             'pot': pot
         }) }}
     {% endif %}
@@ -25,7 +25,7 @@
             {% if not isAdmin %}
             <section class="new-participant-section">
                 {{ include(
-                'letskickinFrontBundle:Pot:blocks/potNewParticipant.html.twig', {
+                'letskickinFrontBundle:Pot:blocks/newParticipant.html.twig', {
                     'form': participant_form,
                     'pot': pot
                 }) }}
@@ -35,11 +35,10 @@
             <section class="old-participants-section">
                 <article class="old-participants-list">
                     {% for participant in pot.participants %}
-                        {{ include(
-                        'letskickinFrontBundle:Pot:blocks/potParticipant.html.twig', {
-                            'participant': participant,
-                            'pot': pot
-                        }) }}
+                        {{ render(controller('letskickinBackBundle:Pot:adminParticipant', {
+                            'participant_key': participant.participantKey,
+                            'admin_key': app.request.get('admin_key')
+                        })) }}
                     {% endfor %}
                 </article>
             </section>
@@ -55,7 +54,7 @@
 
     <script>
 
-        function getParameterByName(name) {
+        /*function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                     results = regex.exec(location.search);
@@ -67,7 +66,7 @@
                  , admin_key = getParameterByName('admin_key');
 
             $( $form ).find('#editPotType_key').val(admin_key);
-        });
+        });*/
         {#// Get the ul that holds the collection of guests
         var collectionHolder = $('.guests');
 

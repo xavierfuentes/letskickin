@@ -103,6 +103,8 @@ class ParticipantManager
 
 		$event = new PotEvent($participant->getPot());
 		$this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
+
+		return true;
 	}
 
 }

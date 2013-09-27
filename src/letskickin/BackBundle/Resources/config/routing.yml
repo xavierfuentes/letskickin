@@ -28,6 +28,10 @@ pot_admin:
     pattern: /pot/edit/{pot_key}
     defaults: { _controller: letskickinBackBundle:Pot:adminPot, pot_key: null }
 
+participant_admin:
+    pattern: /participant/edit/{participant_key}
+    defaults: { _controller: letskickinBackBundle:Pot:adminParticipant, participant_key: null }
+
 #FosUserBundle Routes
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

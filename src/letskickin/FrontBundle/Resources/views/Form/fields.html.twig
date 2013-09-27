@@ -48,9 +48,11 @@
             {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
         {% endif %}
         {% if label is empty %}
-            {% set label = name %}
+            {% set label = form.vars.name ~ '.label' %}
+        {% else %}
+            {% set label = label.label %}
         {% endif %}
-        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ (form.vars.name ~ '.label')|trans({}, translation_domain) }}</label>
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
     {% endif %}
 {% endspaceless %}
 {% endblock form_label %}
@@ -64,10 +66,14 @@
 
 {% block money_widget %}
     {% spaceless %}
-        <div class="input-group input-group-lg">
+        {% if simple is not defined %}
+        <div class="input-group">
             {{ block('form_widget_simple') }}
             <span class="input-group-addon">{{ money_pattern|slice(-1, 1) }}</span>
         </div>
+        {% else %}
+            {{ block('form_widget_simple') }}
+        {% endif %}
     {% endspaceless %}
 {% endblock money_widget %}
 

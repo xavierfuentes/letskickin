@@ -4,6 +4,7 @@ namespace letskickin\BackBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class EditPotType extends AbstractType {
 
@@ -14,7 +15,7 @@ class EditPotType extends AbstractType {
 			))
 			->add('admin_name', 'text')
 			->add('admin_email', 'email')
-			->add('occasion', 'text')
+//			->add('occasion', 'text')
 			->add('deadline', 'date', array(
 				'input'   => 'datetime',
 				'widget'  => 'single_text',
@@ -31,12 +32,19 @@ class EditPotType extends AbstractType {
 //					'currency' => false,
 			))
 			->add('bank_account', 'text')
-			->add('save', 'submit')
+//			->add('save', 'submit')
 		;
 	}
 
 	public function getName() {
 		return 'editPotType';
+	}
+
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
+	{
+		$resolver->setDefaults(array(
+			'translation_domain' => 'pot'
+		));
 	}
 
 }

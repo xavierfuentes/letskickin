@@ -1,0 +1,48 @@
+<article class="pot-participant {{ participant.status|statusToString() }} {% if isAdmin %}admin{% endif %}">
+    <div class="row">
+    <section class="participant-avatar">
+        <span class="icon glyphicon glyphicon-user"></span>
+    </section>
+
+    {% if isAdmin %}{{ form_start(form, { 'attr': { 'class': '-ajax' }}) }}{% endif %}
+
+    <section class="participant-data {% if isAdmin %}form-group{% endif %}">
+        {% if isAdmin %}
+            {{ form_widget(form.name, { 'attr': { 'class': 'form-control' } }) }}
+        {% else %}
+            {{ participant.name }}
+        {% endif %}
+    </section>
+
+    <section class="participant-status">
+        {% if isAdmin %}
+            <div class="form-group">{{ form_widget(form.amount, { 'attr': { 'class': 'form-control' } }) }}</div>
+        {% else %}
+            {% if participant.status|statusToString() == 'waiting' %}
+                {% set icon = 'link' %}
+            {% elseif participant.status|statusToString() == 'confirmed' %}
+                {% set icon = 'thumbs-up' %}
+            {% else %}
+                {% set icon = 'thumbs-down' %}
+            {% endif %}
+            <span class="icon glyphicon glyphicon-{{ icon }}"></span>
+        {% endif %}
+    </section>
+    </div>
+</article>
+
+{% if isAdmin and participant.status|statusToString() != 'confirmed' %}
+    <section class="participant-actions">
+        {{ form_widget(form.save, {
+            'label': 'participant.confirm',
+            'attr': { 'class': 'btn btn-primary' }
+        }) }}
+        {{ form_widget(form.cannot, {
+            'label': 'participant.cancelled',
+            'attr': { 'class': 'btn btn-link' }
+        }) }}
+    </section>
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endif %}

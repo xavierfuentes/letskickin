@@ -1,0 +1,121 @@
+<section class="pot-header">
+    <header class="pot-data container">
+        <section class="data-basic">
+            <div class="pot-occasion">
+                <h1>{{ pot.occasion }}</h1>
+            </div>
+            {% if pot.participants|length > 0 %}
+                <span class="pot-participants-mini"><span class="icon glyphicon glyphicon-user"></span>{{ 'show.participants.count'|transchoice(pot.participants|length, {}, "pot") }}</span>
+            {% endif %}
+        </section>
+
+        <section class="data-extended">
+            {{ form_start(form, { 'attr': { 'id': 'potForm', 'class': 'container' } }) }}
+
+            <div class="pot-admin-info">
+                <div class="info-name">
+                    <article class="form-group">
+                    {{ form_label(form.admin_name, { 'label': 'edit.admin_name.label' }) }}
+                    {{ form_widget(form.admin_name, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </div>
+
+                <div class="info-email">
+                    <article class="form-group">
+                    {{ form_label(form.admin_email, { 'label': 'edit.admin_email.label' }) }}
+                    {{ form_widget(form.admin_email, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </div>
+
+                <div class="info-deadline">
+                    <article class="form-group">
+                    {{ form_label(form.deadline, { 'label': 'edit.deadline.label' }) }}
+                    {{ form_widget(form.deadline, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </div>
+            </div>
+
+            <div class="pot-admin-money">
+                <div class="money-bank">
+                    <article class="form-group">
+                        <label>Enlace</label>
+                        <p class="form-control-static">{{ url('pot_show', { 'pot_key': pot.potKey }) }}</p>
+                    </article>
+                </div>
+
+                <div class="money-partial">
+                    <article class="form-group">
+                    {{ form_label(form.amount_partial, { 'label': 'edit.amount_partial.label' }) }}
+                    {{ form_widget(form.amount_partial, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </div>
+
+                <div class="money-total">
+                    <article class="form-group">
+                    {{ form_label(form.amount_total, { 'label': 'edit.amount_total.label' }) }}
+                    {{ form_widget(form.amount_total, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </div>
+            </div>
+
+            <div class="pot-admin-invite">
+                <div class="invite-account">
+                    <article class="form-group">
+                        {{ form_label(form.bank_account, { 'label': 'edit.bank_account.label' }) }}
+                        {{ form_widget(form.bank_account, { 'attr': {
+                            'class': 'form-control'
+                        } }) }}
+                    </article>
+                </div>
+
+                <div class="invite-now">
+                    <div class="row">
+                    {% if pot.amountTotal %}
+                        {% set amountNow = 0 %}
+
+                        {% for contribution in pot.participants %}
+                            {% if contribution.status|statusToString() == 'confirmed' %}
+                                {% set amountNow = amountNow + contribution.amount %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% set amountRelative = amountNow * 100 / pot.amountTotal %}
+                        <span class="col-lg-2 text-right pot-amount-sum">{{ amountNow|currency(pot.currency) }}</span>
+                        <section class="col-lg-8 progress">
+                            <div class="progress-bar" role="progressbar"
+                                 aria-valuenow="{{ amountNow }}" aria-valuemin="0" aria-valuemax="{{ pot.amountTotal }}" style="width: {{ amountRelative }}%;">
+                                <span class="sr-only">{{ "show.amount-relative"|trans({ '%amount%': amountRelative }, "pot")|capitalize }}</span>
+                            </div>
+                        </section>
+                        <span class="col-lg-2 text-left pot-amount-total">{{ pot.amountTotal|currency(pot.currency) }}</span>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+            <section class="admin-actions">
+                <div class="col-lg-8 col-lg-offset-1">
+                    <ul class="unstyled list-inline">
+                        <li>
+                            <button id="editPotData" class="btn btn-link">Editar</button>
+                            <button id="savePotEdition" class="btn btn-primary">Editar</button>
+                        </li>
+                        {#<li><button class="btn btn-link">Cerrar</button></li>#}
+                        {#<li><button class="btn btn-link">Borrar</button></li>#}
+                    </ul>
+                </div>
+            </section>
+        </section>
+    </header>
+</section>

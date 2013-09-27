@@ -25,6 +25,7 @@ class ParticipantType extends AbstractType
 		        'precision' => 2,
 //				'currency' => false,
 	        ))
+            ->add('status', 'hidden')
 	        ->add('save', 'submit')
             ->add('cannot', 'submit')
         ;
@@ -37,6 +38,7 @@ class ParticipantType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'letskickin\BackBundle\Entity\Participant',
+	        'translation_domain' => 'pot',
         ));
     }
 

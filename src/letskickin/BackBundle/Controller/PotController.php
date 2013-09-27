@@ -7,10 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-use letskickin\BackBundle\Entity\Pot;
 use letskickin\BackBundle\Doctrine\PotManager;
-use letskickin\BackBundle\Form\EditPotType;
 use letskickin\BackBundle\Doctrine\ParticipantManager;
+use letskickin\BackBundle\Form\EditPotType;
 use letskickin\BackBundle\Form\ParticipantType;
 
 class PotController extends Controller
@@ -54,7 +53,7 @@ class PotController extends Controller
                 // flow finished
                 $this->getPotManager()->savePot($pot);
 
-                return $this->redirect($this->generateUrl('pot_confirm', array(
+                return $this->redirect($this->get('router')->generate('pot_confirm', array(
                     'pot_key' => $pot->getPotKey(),
                 )));
             }
@@ -107,7 +106,7 @@ class PotController extends Controller
 
 			$this->getParticipantManager()->saveParticipant($participant);
 
-			return $this->redirect($this->generateUrl('pot_notify', array(
+			return $this->redirect($this->get('router')->generate('pot_notify', array(
 				'pot_key'           => $pot_key,
 				'participant_key'   => $participant->getParticipantKey(),
 			)));
@@ -139,7 +138,7 @@ class PotController extends Controller
 	}
 
 	/**
-	 * @Template("letskickinFrontBundle:Pot:blocks/potAdmin.html.twig")
+	 * @Template("letskickinFrontBundle:Pot:blocks/headerForAdmin.html.twig")
 	 */
 	public function adminPotAction(Request $request, $pot_key)
 	{
@@ -171,7 +170,48 @@ class PotController extends Controller
 		}
 
 		return array(
-			'pot_form' => $pot_form->createView(),
+			'form'      => $pot_form->createView(),
+			'pot'       => $pot,
+		);
+	}
+
+	/**
+	 * @Template("letskickinFrontBundle:Pot:blocks/participant.html.twig")
+	 */
+	public function adminParticipantAction(Request $request, $participant_key, $admin_key = null)
+	{
+		$participant = $this->getParticipantManager()->find($participant_key);
+		if (!$participant) {
+			throw $this->createNotFoundException();
+		}
+
+		$pot = $participant->getPot();
+		$isAdmin = $pot->getAdminKey() == $admin_key ? true : false;
+
+		$participant_form = $this->createForm(new ParticipantType(), $participant, array(
+			'action' => $this->get('router')->generate('participant_admin', array('participant_key' => $participant_key)),
+		));
+
+		// AJAX form submission
+		if ( $request->isMethod( 'POST' ) ) {
+			$participant_form->handleRequest($request);
+
+			if ( $participant_form->isValid() ) {
+				$this->getParticipantManager()->saveParticipant($participant);
+
+				$response['success'] = true;
+			} else {
+				$response['success'] = false;
+				$response['error'] = $participant_form->getErrors();
+			}
+
+			return new JsonResponse( $response );
+		}
+
+		return array(
+			'form'          => $participant_form->createView(),
+			'participant'   => $participant,
+			'isAdmin'       => $isAdmin,
 		);
 	}
 }

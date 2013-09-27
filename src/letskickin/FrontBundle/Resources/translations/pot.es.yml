@@ -17,6 +17,7 @@ admin_email:
 deadline:
   label: 'Fecha final'
   help: 'Indica aquí la fecha en la que quieres finalizar el bote. ¡OJO! NO es la fecha del evento.'
+  placeholder: 'DD-MM-AAAA'
 
 amount_total:
   label: 'Cantidad total'
@@ -40,9 +41,10 @@ participant.name:
   label: '1. Tu nombre'
   placeholder: 'Jordi Comas'
   help: 'Escribe tu nombre, aunque no quieras contribuir, ayudarás a %admin_name% a tener el bote bajo control.'
+amount.placeholder: ''
 participant.amount:
   label: '2. Tu aportación'
-  placeholder: '30'
+  placeholder: ''
   help: 'Di cuánto quieres aportar. La cantidad que indiques sólo la verá el organizador del bote.'
 participant.account:
   label: '3. Haz el ingreso'
@@ -51,6 +53,26 @@ participant.save:
   text: 'Guardar'
   help: 'Recuerda que %admin_name% debe confirmar que has hecho tu contribución, antes de que aparezca que lo has hecho.'
 participant.cannot: 'No participo'
+participant.confirm: 'Confirmar'
+participant.cancelled: 'No participa'
+
+# Admin
+edit:
+  link.label: 'Enlace de participación'
+  bank_account:
+      label: 'Número de cuenta'
+  admin_name:
+      label: 'Tu nombre'
+  admin_email:
+    label: 'Tu email'
+  amount_partial:
+    label: 'Por persona'
+  amount_total:
+    label: 'Total a recaudar'
+  deadline:
+    label: 'Fecha final'
+  amount_now:
+    label: 'Cantidad reunida'
 
 # Pages
 create:
