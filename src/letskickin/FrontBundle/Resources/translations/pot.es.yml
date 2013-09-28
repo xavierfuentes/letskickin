@@ -54,6 +54,7 @@ participant.save:
   help: 'Recuerda que %admin_name% debe confirmar que has hecho tu contribución, antes de que aparezca que lo has hecho.'
 participant.cannot: 'No participo'
 participant.confirm: 'Confirmar'
+participant.modify: 'Modificar'
 participant.cancelled: 'No participa'
 
 # Admin
@@ -73,6 +74,10 @@ edit:
     label: 'Fecha final'
   amount_now:
     label: 'Cantidad reunida'
+  button:
+    edit: 'Editar bote'
+    save: 'Guardar cambios'
+    loading: 'Guardando...'
 
 # Pages
 create:

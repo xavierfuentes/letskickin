@@ -1,6 +1,6 @@
 <article class="new-participant-form">
     {{ form_start(form, { 'attr': {
-        'class': 'form-inline row'
+        'class': '-new-participant-form form-inline row'
     } }) }}
 
     <section class="col-name">
@@ -37,7 +37,7 @@
                 {{ form_widget(form.cannot, {
                     'text': 'participant.cannot'|trans({}, "pot"),
                     'attr': {
-                        'class': 'btn btn-xs btn-link btn-cannot'
+                        'class': 'btn btn-xs btn-link btn-cannot -not-participate'
                     }
                 }) }}
             </p>

@@ -27,7 +27,7 @@ class ParticipantType extends AbstractType
 	        ))
             ->add('status', 'hidden')
 	        ->add('save', 'submit')
-            ->add('cannot', 'submit')
+            ->add('cannot', 'button')
         ;
     }
     

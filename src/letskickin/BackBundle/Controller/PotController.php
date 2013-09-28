@@ -100,10 +100,6 @@ class PotController extends Controller
 		$participant_form->handleRequest($request);
 
 		if ($participant_form->isValid()) {
-			if ($participant_form->get('cannot')->isClicked()) {
-				$this->getParticipantManager()->notParticipant($participant);
-			}
-
 			$this->getParticipantManager()->saveParticipant($participant);
 
 			return $this->redirect($this->get('router')->generate('pot_notify', array(
@@ -148,16 +144,17 @@ class PotController extends Controller
 		}
 
 		$pot_form = $this->createForm(new EditPotType(), $pot, array(
-			'action' => $this->generateUrl('pot_admin', array('pot_key' => $pot_key)),
+			'action' => $this->get('router')->generate('pot_admin', array('pot_key' => $pot_key), true),
 		));
 
 		// AJAX form submission
 		if ( $request->isMethod( 'POST' ) ) {
 			$pot_form->handleRequest($request);
 
-			$admin_key = $pot_form->get('key')->getData();
+//			$admin_key = $pot_form->get('key')->getData();
 
-			if ( $pot->getAdminKey() == $admin_key && $pot_form->isValid() ) {
+//			if ( $pot->getAdminKey() == $admin_key && $pot_form->isValid() ) {
+			if ( $pot_form->isValid() ) {
 				$this->getPotManager()->savePot($pot);
 
 				$response['success'] = true;
@@ -189,7 +186,7 @@ class PotController extends Controller
 		$isAdmin = $pot->getAdminKey() == $admin_key ? true : false;
 
 		$participant_form = $this->createForm(new ParticipantType(), $participant, array(
-			'action' => $this->get('router')->generate('participant_admin', array('participant_key' => $participant_key)),
+			'action' => $this->get('router')->generate('participant_admin', array('participant_key' => $participant_key), true),
 		));
 
 		// AJAX form submission
@@ -197,7 +194,7 @@ class PotController extends Controller
 			$participant_form->handleRequest($request);
 
 			if ( $participant_form->isValid() ) {
-				$this->getParticipantManager()->saveParticipant($participant);
+				$this->getParticipantManager()->editParticipant($participant);
 
 				$response['success'] = true;
 			} else {

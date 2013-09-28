@@ -81,6 +81,21 @@ class ParticipantManager
 		return $participant;
 	}
 
+	public function editParticipant(Participant $participant)
+	{
+		if( $participant->getAmount() == 0 ) {
+			$this->notParticipant($participant);
+		}
+
+		$this->om->persist($participant);
+		$this->om->flush();
+
+		$event = new PotEvent($participant->getPot());
+		$this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
+
+		return true;
+	}
+
 	/**
 	 * @return Participant
 	 */

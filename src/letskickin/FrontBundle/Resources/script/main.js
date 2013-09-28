@@ -16,22 +16,23 @@
          * @param callback
          */
         self.postForm = function( $form, callback ){
-            var values = {};
+            $form.trigger( 'form.beforeSend', $form );
 
-            $.each( $form.serializeArray(), function(i, field) {
-                values[field.name] = field.value;
-            });
-
-            $.ajax({
-                type:           $form.prop( 'method' ),
-                url:            $form.prop( 'action' ),
-                data:           $form.serialize(),
-                cache:          false,
-                dataType:       'json',
-                contentType:    "application/json; charset=utf-8",
-                success: function(data) {
-                    callback( data );
-                }
+            var request = $.ajax({
+                url:    $form.prop( 'action' ),
+                type:   $form.prop( 'method' ),
+                data:   $form.serialize(),
+                cache:  false
+            })
+            .done(function( msg ) {
+                $form.trigger( 'form.done', $form );
+            })
+            .fail(function( jqXHR, textStatus ) {
+                $form.trigger( 'form.fail', textStatus );
+            })
+            .always(function( msg ) {
+                callback( msg );
+                $form.trigger( 'form.always', this );
             });
         };
 
@@ -65,17 +66,14 @@
                 var $form = $(this),
                     $button = $form.find("[type='submit']");
 
-                if ( $form.length > 0 ) {
-                    if ( app.validateForm($form) ) {
-                        $button.button('loading');
+                if ( $form.length > 0 && app.validateForm($form) ) {
+                    $button.button('loading');
 
-                        app.postForm( $form, function( response ){
-                            //app.showAndDestroyTooltip($button, response.msg);
-                            //$form.get(0).reset();
-                            $button.button('reset');
-                            console.log(response.msg);
-                        });
-                    }
+                    app.postForm( $form, function( response ){
+                        //app.showAndDestroyTooltip($button, response.msg);
+                        //$form.get(0).reset();
+                        $button.button( 'reset' );
+                    });
                 }
             })
         ;

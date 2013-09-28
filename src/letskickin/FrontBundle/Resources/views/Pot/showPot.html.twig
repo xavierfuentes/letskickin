@@ -33,14 +33,12 @@
             {% endif %}
 
             <section class="old-participants-section">
-                <article class="old-participants-list">
-                    {% for participant in pot.participants %}
-                        {{ render(controller('letskickinBackBundle:Pot:adminParticipant', {
-                            'participant_key': participant.participantKey,
-                            'admin_key': app.request.get('admin_key')
-                        })) }}
-                    {% endfor %}
-                </article>
+                {% for participant in pot.participants %}
+                    {{ render(controller('letskickinBackBundle:Pot:adminParticipant', {
+                        'participant_key': participant.participantKey,
+                        'admin_key': app.request.get('admin_key')
+                    })) }}
+                {% endfor %}
             </section>
         </div>
     </section>
@@ -53,8 +51,19 @@
     {{ parent() }}
 
     <script>
+        $(function() {
+            {% if isAdmin %}
+            adminPot.performBinding(new adminPot.CommunicationLayer(), "#pot-show");
+            {% else %}
+            showPot.performBinding(new showPot.CommunicationLayer(), "#pot-show");
+            {% endif %}
+        });
+    </script>
 
-        /*function getParameterByName(name) {
+    {#
+    <script>
+
+        function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                     results = regex.exec(location.search);
@@ -66,8 +75,9 @@
                  , admin_key = getParameterByName('admin_key');
 
             $( $form ).find('#editPotType_key').val(admin_key);
-        });*/
-        {#// Get the ul that holds the collection of guests
+        });
+
+        // Get the ul that holds the collection of guests
         var collectionHolder = $('.guests');
 
         // setup an "add a guest" link
@@ -129,6 +139,6 @@
                 // remove the li for the guest form
                 $guestFormLi.remove();
             });
-        }#}
-    </script>
+        }
+    </script>#}
 {% endblock %}

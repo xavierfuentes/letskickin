@@ -13,9 +13,9 @@
   .pot-admin-info,
   .pot-admin-money,
   .pot-admin-invite,
+  .admin-actions,
   .new-participant-section,
-  .old-participants-section,
-  .admin-actions {
+  .old-participants-section {
     .make-row();
   }
 
@@ -28,6 +28,10 @@
     .make-md-column(2);
 
     margin-top: 2.5em;
+
+    .icon {
+      margin-right: .7em;
+    }
   }
 
   .data-extended {
@@ -73,7 +77,41 @@
     }
 
     .invite-now {
-      .make-md-column(6); padding-top: 2em; }
+      .make-md-column(6);
+      padding-top: 2em;
+
+      .pot-amount-sum {
+        .make-md-column(2);
+
+        text-align: right;
+      }
+
+      .progress {
+        .make-md-column(8);
+
+        padding: 0;
+      }
+
+      .pot-amount-total {
+        .make-lg-column(2);
+      }
+    }
+
+    #save-pot-edition {
+//      display: none;
+    }
+
+    .admin-actions-list {
+      .list-unstyled;
+      .list-inline;
+
+      .make-md-column(10);
+      .make-md-column-offset(1);
+
+      li:first-child {
+        padding-left: 0;
+      }
+    }
   }
 
   // Participants
@@ -129,65 +167,74 @@
     }
 
     .old-participants-section {
-      margin-top: 2em;
+      margin-top: 4em;
       margin-bottom: 5em;
 
-      .old-participants-list {
-        .make-row();
+      .pot-participant {
+        .make-md-column(6);
+        .make-md-column-offset(3);
 
-        .pot-participant {
-          .make-md-column(6);
-          .make-md-column-offset(3);
+        padding-top: .6em;
+        padding-bottom: .6em;
+        margin-bottom: .2em;
 
-          padding-top: .6em;
-          padding-bottom: .6em;
-          margin-bottom: .2em;
-
-          &.waiting { background-color: @brand-warning; }
-          &.cannot { background-color: @brand-danger; }
-          &.confirmed { background-color: @brand-success; }
-
-          &:last-child { margin-bottom: 0; }
-
-          .participant-avatar { .make-md-column(2); }
-
-          .participant-avatar,
-          .participant-status {
-            text-align: center;
-            .icon { font-size: @font-size-xlarge; }
+        &.waiting {
+          background-color: @brand-warning;
+          .icon {
+            color: @brand-primary;
           }
-
-          .participant-data {
-            .make-md-column(7);
-
-            font-size: @font-size-large + 2;
-            margin-top: .3em;
+        }
+        &.cannot {
+          background-color: @brand-danger;
+          .icon {
+            color: darken(@brand-danger, 30%);
           }
-
-          .participant-status {
-            .make-md-column(3);
-            .icon { opacity: .3; }
-            text-align: right;
-          }
-
-          &.admin {
-            position: relative;
-
-            .participant-data,
-            .participant-status {
-              margin: 0;
-
-              .form-group { margin: 0; }
-            }
-
+        }
+        &.confirmed {
+          background-color: @brand-success;
+          .icon {
+            color: @brand-default;
           }
         }
 
-        .participant-actions {
+        &:last-child { margin-bottom: 0; }
+
+        .participant-avatar { .make-md-column(2); }
+
+        .participant-avatar,
+        .participant-status {
+          text-align: center;
+          .icon { font-size: @font-size-xlarge; }
+        }
+
+        .participant-data {
+          .make-md-column(7);
+
+          font-size: @font-size-large + 2;
+          margin-top: .3em;
+        }
+
+        .participant-status {
           .make-md-column(3);
-
-          padding-top: .5em;
+          text-align: right;
         }
+
+        &.admin {
+          position: relative;
+
+          .participant-data,
+          .participant-status {
+            margin: 0;
+
+            .form-group { margin: 0; }
+          }
+        }
+      }
+
+      .participant-actions {
+        .make-md-column(3);
+
+        padding-top: .5em;
       }
     }
   }

@@ -32,7 +32,7 @@ class EditPotType extends AbstractType {
 //					'currency' => false,
 			))
 			->add('bank_account', 'text')
-//			->add('save', 'submit')
+			->add('save', 'submit')
 		;
 	}
 

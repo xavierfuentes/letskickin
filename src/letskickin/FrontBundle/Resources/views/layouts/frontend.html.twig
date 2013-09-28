@@ -52,6 +52,8 @@
     {% javascripts output='script/app.js'
         '@letskickinFrontBundle/Resources/script/main.js'
         '@letskickinFrontBundle/Resources/script/createPot.js'
+        '@letskickinFrontBundle/Resources/script/showPot.js'
+        '@letskickinFrontBundle/Resources/script/adminPot.js'
     %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -59,7 +61,6 @@
     <script>
         $(function() {
             lkApp.performBinding(new lkApp.CommunicationLayer(), "#app-wrapper");
-            createPot.performBinding(new createPot.CommunicationLayer(), ".pot-form");
         });
     </script>
 {% endblock %}

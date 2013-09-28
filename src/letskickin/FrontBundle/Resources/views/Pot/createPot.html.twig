@@ -55,11 +55,16 @@
     </section>
 {% endblock %}
 
-{#
 {% block foot_scripts %}
     {{ parent() }}
 
     <script>
+        $(function() {
+            createPot.performBinding(new createPot.CommunicationLayer(), ".pot-form");
+        });
+    </script>
+
+    {#<script>
         // Get the ul that holds the collection of guests
         var collectionHolder = $('.guests');
 
@@ -123,7 +128,5 @@
                 $guestFormLi.remove();
             });
         }
-    </script>
-    {{ form_end(form) }}
+    </script>#}
 {% endblock %}
-#}
