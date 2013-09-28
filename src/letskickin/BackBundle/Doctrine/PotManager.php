@@ -120,7 +120,7 @@ class PotManager
 	    $event = new PotEvent($pot);
 	    $this->dispatcher->dispatch(PotEvents::FLUSHED, $event);
 
-	    return true
+	    return true;
     }
 
 }
