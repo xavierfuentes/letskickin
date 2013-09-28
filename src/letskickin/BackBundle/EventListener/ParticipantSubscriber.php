@@ -21,10 +21,28 @@ class ParticipantSubscriber implements EventSubscriberInterface
 		// ...
 	}
 
+	public function onParticipantAdded(ParticipantEvent $event)
+	{
+		// ...
+	}
+
+	public function onParticipantUpdated(ParticipantEvent $event)
+	{
+		// ...
+	}
+
+	public function onParticipantRefused(ParticipantEvent $event)
+	{
+		// ...
+	}
+
 	public static function getSubscribedEvents()
 	{
 		return array(
-			ParticipantEvents::ADDED  => array('onParticipantCreated', 5),
+			ParticipantEvents::CREATED  => array('onParticipantCreated', 5),
+			ParticipantEvents::ADDED    => array('onParticipantAdded', 4),
+			ParticipantEvents::UPDATED  => array('onParticipantUpdated', 3),
+			ParticipantEvents::REFUSED  => array('onParticipantRefused', 2),
 		);
 	}
 }

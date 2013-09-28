@@ -16,7 +16,7 @@ final class PotEvents
      * The event listener method receives a \letskickin\BackBundle\Event\PotEvent instance
      * @var string
      */
-    const SAVED = 'pot.saved';
+    const FLUSHED = 'pot.flushed';
 
 	/**
 	 * The UPDATED event occurs when a pot is updated AND is flushed into the DB
@@ -26,16 +26,16 @@ final class PotEvents
 	const UPDATED = 'pot.updated';
 
 	/**
-	 * The PREMIUM event occurs when a pot is created AND is flushed into the DB
+	 * The PARTICIPANT_ADDED event occurs when a participant is added into the pot
 	 * The event listener method receives a \letskickin\BackBundle\Event\PotEvent instance
 	 * @var string
 	 */
-	const PREMIUM = 'pot.premium';
+	const PARTICIPANT_ADDED = 'pot.participant_added';
 
 	/**
 	 * The PARTICIPANT_ADDED event occurs when a participant is added into the pot
 	 * The event listener method receives a \letskickin\BackBundle\Event\PotEvent instance
 	 * @var string
 	 */
-	const PARTICIPANT_ADDED = 'pot.participant_added';
+	const PARTICIPANT_REFUSED = 'pot.participant_refused';
 }

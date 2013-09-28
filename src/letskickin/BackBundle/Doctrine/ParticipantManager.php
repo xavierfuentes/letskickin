@@ -62,10 +62,19 @@ class ParticipantManager
 		return $participant;
 	}
 
+	public function saveParticipant(Participant $participant)
+	{
+		// TODO: DB Error management
+		$this->om->persist($participant);
+		$this->om->flush();
+
+		return true;
+	}
+
 	/**
 	 * @return Participant
 	 */
-	public function addParticipant(Pot $pot)
+	public function createParticipant(Pot $pot)
 	{
 		$class = $this->class;
 		$participant = new $class();
@@ -78,46 +87,50 @@ class ParticipantManager
 
 		$participant->setDate(new \DateTime);
 
+		$event = new ParticipantEvent($participant);
+		$this->dispatcher->dispatch(ParticipantEvents::CREATED, $event);
+
 		return $participant;
 	}
 
 	public function editParticipant(Participant $participant)
 	{
 		if( $participant->getAmount() == 0 ) {
-			$this->notParticipant($participant);
+			$this->addEmptyParticipant($participant);
 		}
 
-		$this->om->persist($participant);
-		$this->om->flush();
+		$this->saveParticipant($participant);
 
-		$event = new PotEvent($participant->getPot());
-		$this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
+		$event = new ParticipantEvent($participant);
+		$this->dispatcher->dispatch(ParticipantEvents::UPDATED, $event);
 
 		return true;
 	}
 
-	/**
-	 * @return Participant
-	 */
-	public function notParticipant(Participant $participant)
+	public function addEmptyParticipant(Participant $participant)
 	{
 		$participant->setStatus(self::STATUS_NO_PARTICIPATES);
-		$participant->setAmount(0);
-
-		return $participant;
-	}
-
-	public function saveParticipant(Participant $participant)
-	{
-		if( $participant->getAmount() == 0 ) {
-			$this->notParticipant($participant);
-		}
-
-		$this->om->persist($participant);
-		$this->om->flush();
 
 		$event = new PotEvent($participant->getPot());
-		$this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
+
+		$this->dispatcher->dispatch(PotEvents::PARTICIPANT_REFUSED, $event);
+		$this->dispatcher->dispatch(ParticipantEvents::REFUSED, $event);
+
+		return true;
+	}
+
+	public function addParticipant(Participant $participant)
+	{
+		if( $participant->getAmount() == 0 ) {
+			$this->addEmptyParticipant($participant);
+		} else {
+			$event = new PotEvent($participant->getPot());
+
+			$this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
+			$this->dispatcher->dispatch(ParticipantEvents::ADDED, $event);
+		}
+
+		$this->saveParticipant($participant);
 
 		return true;
 	}

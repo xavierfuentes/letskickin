@@ -24,86 +24,58 @@ class PotSubscriber implements EventSubscriberInterface
 		// ...
 	}
 
-    public function onPotSaved(PotEvent $event)
-    {
-        $pot = $event->getPot();
-
-		$messageHTML = \Swift_Message::newInstance()
+	private function sendEmailToAdmin($pot, $template, $html = true)
+	{
+		$message = \Swift_Message::newInstance()
 			->setSubject($pot->getOccasion())
 			->setFrom(array('mailer@letskickin.com' => 'Letskickin'))
-			->setContentType('text/html')
 			->setTo($pot->getAdminEmail())
 			->setBody(
 				$this->templating->render(
-					'letskickinFrontBundle:Email:potCreatedAdminLink.html.twig',
+					$template,
 					array('pot' => $pot)
 				)
 			)
 		;
-		$this->mailer->send($messageHTML);
 
-	    $messageTXT = \Swift_Message::newInstance()
-		    ->setSubject('Letskickin: "' . $pot->getOccasion() . '"')
-		    ->setFrom(array('mailer@letskickin.com' => 'Letskickin'))
-		    ->setContentType('text/html')
-		    ->setTo($pot->getAdminEmail())
-		    ->setBody(
-			    $this->templating->render(
-				    'letskickinFrontBundle:Email:potCreatedInviteLink.html.twig',
-				    array('pot' => $pot)
-			    )
-		    )
-	    ;
-	    $this->mailer->send($messageTXT);
+		$contentType = $html == true ? 'text/html' : 'text/plain';
+
+		$message->setContentType($contentType);
+
+		$this->mailer->send($message);
+	}
+
+    public function onPotFlushed(PotEvent $event)
+    {
+        $pot = $event->getPot();
+
+	    $this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potCreatedAdminLink.html.twig');
+		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potCreatedInviteLink.txt.twig', false);
     }
 
 	public function onPotUpdated(PotEvent $event)
 	{
 		$pot = $event->getPot();
 
-		$message = \Swift_Message::newInstance()
-			->setSubject($pot->getOccasion())
-			->setFrom('mailer@letskickin.com')
-			->setTo($pot->getAdminEmail())
-//			->setBody(
-//				$this->renderView(
-//					'HelloBundle:Hello:email.txt.twig',
-//					array('name' => $name)
-//				)
-//			)
-			->setBody("Hi " . $pot->getAdminName() . ", you have edited your pot: " . $pot->getOccasion())
-		;
-		$this->mailer->send($message);
+		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potUpdated.txt.twig', false);
 
-		// Warn all the participants
+		// Warn all the participants ??
 	}
 
 	public function onParticipantAdded(PotEvent $event)
 	{
 		$pot = $event->getPot();
 
-		$message = \Swift_Message::newInstance()
-			->setSubject($pot->getOccasion())
-			->setFrom('mailer@letskickin.com')
-			->setTo($pot->getAdminEmail())
-//			->setBody(
-//				$this->renderView(
-//					'HelloBundle:Hello:email.txt.twig',
-//					array('name' => $name)
-//				)
-//			)
-			->setBody("Hi " . $pot->getAdminName() . ", a new participant contributed to: " . $pot->getOccasion())
-		;
-		$this->mailer->send($message);
+		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potNewParticipant.txt.twig', false);
 
-		// Warn all the participants
+		// Warn all the participants ??
 	}
 
     public static function getSubscribedEvents()
     {
         return array(
 	        PotEvents::CREATED              => array('onPotCreated', 5),
-	        PotEvents::SAVED                => array('onPotSaved', 4),
+	        PotEvents::FLUSHED              => array('onPotFlushed', 4),
 	        PotEvents::UPDATED              => array('onPotUpdated', 3),
 	        PotEvents::PARTICIPANT_ADDED    => array('onParticipantAdded', 2),
 		);

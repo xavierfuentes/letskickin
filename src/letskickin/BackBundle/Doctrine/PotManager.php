@@ -98,7 +98,19 @@ class PotManager
         return $pot;
     }
 
-    public function savePot(Pot $pot, $status = self::STATUS_ACTIVE)
+    public function updatePot(Pot $pot)
+    {
+	    // TODO: add last edition date to object
+
+	    $event = new PotEvent($pot);
+	    $this->dispatcher->dispatch(PotEvents::UPDATED, $event);
+
+	    $this->savePot($pot);
+
+	    return true;
+    }
+
+	public function savePot(Pot $pot, $status = self::STATUS_ACTIVE)
     {
 		$pot->setStatus($status);
 
@@ -106,18 +118,9 @@ class PotManager
 	    $this->om->flush();
 
 	    $event = new PotEvent($pot);
-	    $this->dispatcher->dispatch(PotEvents::SAVED, $event);
+	    $this->dispatcher->dispatch(PotEvents::FLUSHED, $event);
+
+	    return true
     }
-
-	public function setPremiumPot(Pot $pot)
-	{
-		// ...
-
-		$this->om->persist($pot);
-		$this->om->flush();
-
-		$event = new PotEvent($pot);
-		$this->dispatcher->dispatch(PotEvents::PREMIUM, $event);
-	}
 
 }

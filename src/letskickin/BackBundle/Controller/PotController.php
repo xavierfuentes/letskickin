@@ -94,13 +94,13 @@ class PotController extends Controller
 
 		$isAdmin = $pot->getAdminKey() == $request->get('admin_key') ? true : false;
 
-		$participant = $this->getParticipantManager()->addParticipant($pot);
+		$participant = $this->getParticipantManager()->createParticipant($pot);
 
 		$participant_form = $this->createForm(new ParticipantType(), $participant);
 		$participant_form->handleRequest($request);
 
 		if ($participant_form->isValid()) {
-			$this->getParticipantManager()->saveParticipant($participant);
+			$this->getParticipantManager()->addParticipant($participant);
 
 			return $this->redirect($this->get('router')->generate('pot_notify', array(
 				'pot_key'           => $pot_key,
@@ -155,7 +155,7 @@ class PotController extends Controller
 
 //			if ( $pot->getAdminKey() == $admin_key && $pot_form->isValid() ) {
 			if ( $pot_form->isValid() ) {
-				$this->getPotManager()->savePot($pot);
+				$this->getPotManager()->updatePot($pot);
 
 				$response['success'] = true;
 			} else {
