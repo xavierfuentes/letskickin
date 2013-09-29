@@ -16,13 +16,12 @@
          * @param callback
          */
         self.postForm = function( $form, callback ){
-            $form.trigger( 'form.postBegin', $form );
+            $form.trigger( 'form.ajaxBegin', $form );
 
             var jqXHR = $.ajax({
                   url:        $form.prop( 'action' )
                 , type:       $form.prop( 'method' )
                 , data:       $form.serialize()
-                , dataType:   'json'
                 , cache:      false
                 , beforeSend: function( xhr, settings ) {
                     var xhrObject = {
@@ -32,22 +31,16 @@
 
                     $form.trigger( 'form.beforeSend', xhrObject );
                 }
-                /*, error: function( jqXHR, textStatus, errorThrown ) {
-                    // ...
-                }*/
-                /*, success: function( data, textStatus, jqXHR ) {
-                 // ...
-                 }*/
             })
             .done(function( data, textStatus, jqXHR ) {
-                $form.trigger( 'form.done', data );
+                $form.trigger( 'form.done', [ data, textStatus, jqXHR ] );
             })
             .fail(function( jqXHR, textStatus, errorThrown ) {
-                $form.trigger( 'form.fail', errorThrown );
+                $form.trigger( 'form.fail', [ jqXHR, textStatus, errorThrown ] );
             })
             .always(function( jqXHR, textStatus ) {
-                callback( textStatus, $form, jqXHR );
-                $form.trigger( 'form.always', jqXHR );
+                callback( jqXHR, textStatus, $form );
+                $form.trigger( 'form.always', [ jqXHR, textStatus, $form ] );
             });
         };
 
@@ -70,27 +63,27 @@
                 if ( $form.length > 0 && app.validateForm($form) ) {
                     $button.button('loading');
 
-                    app.postForm( $form, function( textStatus, $form, jqXHR ){
+                    app.postForm( $form, function( jqXHR, textStatus, $form ){
                         //$form.get(0).reset();
                         $button.button( 'reset' );
                     });
                 }
             })
             .on('form.beforeSend', subscribeFormSel, function( event, xhrObject ) {
-                console.log(xhrObject.settings);
-                xhrObject.xhr.overrideMimeType( "application/json; charset=utf-8" );
+                xhrObject.settings.dataType = 'json';
+                xhrObject.settings.contentType = "application/json; charset=utf-8";
             })
-            .on('form.done', subscribeFormSel, function( event, data ) {
-                console.log( 'succes!' );
-                console.log( data );
-            })
-            .on('form.fail', subscribeFormSel, function( event, errorThrown ) {
-                console.log( 'error!' );
-                console.log( errorThrown );
-            })
-            .on('form.always', subscribeFormSel, function( event, jqXHR ) {
-                console.log( 'always' );
-                console.log( event );
+            .on('form.always', subscribeFormSel, function( event, jqXHR, textStatus, $form ) {
+                var tooltipOpts = {
+                      placement: 'left'
+                    , title: 'caca'
+                    , container: 'body'
+                };
+
+                $form.get(0).reset();
+
+                console.log($(this).find('input'));
+//                    .tooltip('show');
             })
         ;
     };

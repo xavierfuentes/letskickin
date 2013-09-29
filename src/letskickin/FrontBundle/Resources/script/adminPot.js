@@ -22,7 +22,7 @@
         //bind all events
         $wrapper
             //PRIMARY BINDINGS
-            .on('form.postBegin', participantClass, function( event, form ) {
+            .on('form.ajaxBegin', participantClass, function( event, form ) {
                 var $form = $(form),
                     participantId = $form.prop('id').replace('form_','');
 
