@@ -57,8 +57,6 @@ class PotSubscriber implements EventSubscriberInterface
 	{
 		$pot = $event->getPot();
 
-		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potUpdated.txt.twig', false);
-
 		// Warn all the participants ??
 	}
 
@@ -71,6 +69,15 @@ class PotSubscriber implements EventSubscriberInterface
 		// Warn all the participants ??
 	}
 
+	public function onParticipantRefused(PotEvent $event)
+	{
+		$pot = $event->getPot();
+
+		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potParticipantRefused.txt.twig', false);
+
+		// Warn all the participants ??
+	}
+
     public static function getSubscribedEvents()
     {
         return array(
@@ -78,6 +85,7 @@ class PotSubscriber implements EventSubscriberInterface
 	        PotEvents::FLUSHED              => array('onPotFlushed', 4),
 	        PotEvents::UPDATED              => array('onPotUpdated', 3),
 	        PotEvents::PARTICIPANT_ADDED    => array('onParticipantAdded', 2),
+	        PotEvents::PARTICIPANT_REFUSED  => array('onParticipantRefused', 1),
 		);
     }
 }

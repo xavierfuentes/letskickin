@@ -18,6 +18,7 @@
         <h4>{{ pot.bankAccount }}</h4>
         <p class="lead">{{ 'notify.thanks'|trans({}, "pot") }}</p>
         <a href="{{ url('pot_show', {'pot_key': pot.potKey} ) }}">{{ 'button.back'|trans({}, "global") }}</a>
+        {# auto notifications? #}
     </article>
 
     <article class="engage-participant">

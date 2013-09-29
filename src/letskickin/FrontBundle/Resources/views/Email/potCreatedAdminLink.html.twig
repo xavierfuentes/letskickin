@@ -1,4 +1,4 @@
-{% extends '@Layouts/mailHTML.html.twig' %}
+{% extends '@Layouts/mail.html.twig' %}
 
 {% block subject %}{{ pot.occasion }}{% endblock %}
 
@@ -10,7 +10,7 @@
 <div style="font: 18px arial; color: #429e8a">{{ 'admin.hi'|trans({ '%admin_name%': pot.adminName|default('Ruperta') } ,"email") }}</div>
 <div style="font: 16px arial; color: #333333; margin: 20px 0 10px">{{ 'admin.pot.created'|trans({} ,"email") }}</div>
 <div style="font: 18px arial; color: #333333; font-weight: bold">"{{ pot.occasion|default('Cumple de Rufino') }}"</div>
-<div style="font: 16px arial; color: #333333; margin: 20px 0">{{ 'admin.pot.created'|trans({} ,"email") }}</div>
+<div style="font: 16px arial; color: #333333; margin: 20px 0">{{ 'admin.keep.email'|trans({} ,"email") }}</div>
 {% endblock %}
 
 {% block actions %}
