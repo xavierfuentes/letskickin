@@ -59,8 +59,6 @@
     {% endjavascripts %}
 
     <script>
-        $(function() {
-            lkApp.performBinding(new lkApp.CommunicationLayer(), "#app-wrapper");
-        });
+        $(function() { lkApp.performBinding(new lkApp.CommunicationLayer(), ".default-layout"); });
     </script>
 {% endblock %}

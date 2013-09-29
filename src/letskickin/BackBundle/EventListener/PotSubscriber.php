@@ -24,10 +24,12 @@ class PotSubscriber implements EventSubscriberInterface
 		// ...
 	}
 
-	private function sendEmailToAdmin($pot, $template, $html = true)
+	private function sendEmailToAdmin($pot, $template, $subject = null, $html = true)
 	{
+		if( null == $subject ) { $subject = $pot->getOccasion(); }
+
 		$message = \Swift_Message::newInstance()
-			->setSubject($pot->getOccasion())
+			->setSubject($subject)
 			->setFrom(array('mailer@letskickin.com' => 'Letskickin'))
 			->setTo($pot->getAdminEmail())
 			->setBody(
@@ -50,7 +52,7 @@ class PotSubscriber implements EventSubscriberInterface
         $pot = $event->getPot();
 
 	    $this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potCreatedAdminLink.html.twig');
-		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potCreatedInviteLink.txt.twig', false);
+		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potCreatedInviteLink.txt.twig', 'Letskickin: ' . $pot->getOccasion(), false);
     }
 
 	public function onPotUpdated(PotEvent $event)
@@ -64,7 +66,7 @@ class PotSubscriber implements EventSubscriberInterface
 	{
 		$pot = $event->getPot();
 
-		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potNewParticipant.txt.twig', false);
+		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potNewParticipant.txt.twig', 'Alguien ha contribuido a: ' . $pot->getOccasion(), false);
 
 		// Warn all the participants ??
 	}
@@ -73,7 +75,7 @@ class PotSubscriber implements EventSubscriberInterface
 	{
 		$pot = $event->getPot();
 
-		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potParticipantRefused.txt.twig', false);
+		$this->sendEmailToAdmin($pot, 'letskickinFrontBundle:Email:potParticipantRefused.txt.twig', 'Alguien no quiere participar en: ' . $pot->getOccasion(), false);
 
 		// Warn all the participants ??
 	}

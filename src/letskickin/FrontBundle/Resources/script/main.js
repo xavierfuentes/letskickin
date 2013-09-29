@@ -22,10 +22,15 @@
                   url:        $form.prop( 'action' )
                 , type:       $form.prop( 'method' )
                 , data:       $form.serialize()
+                , dataType:   'json'
                 , cache:      false
                 , beforeSend: function( xhr, settings ) {
-                    console.log( 'beforeSend' );
-                    $form.trigger( 'form.beforeSend', xhr );
+                    var xhrObject = {
+                          'xhr': xhr
+                        , 'settings': settings
+                    };
+
+                    $form.trigger( 'form.beforeSend', xhrObject );
                 }
                 /*, error: function( jqXHR, textStatus, errorThrown ) {
                     // ...
@@ -72,7 +77,8 @@
                 }
             })
             .on('form.beforeSend', subscribeFormSel, function( event, xhrObject ) {
-                xhrObject.overrideMimeType( "application/json; charset=utf-8" );
+                console.log(xhrObject.settings);
+                xhrObject.xhr.overrideMimeType( "application/json; charset=utf-8" );
             })
             .on('form.done', subscribeFormSel, function( event, data ) {
                 console.log( 'succes!' );

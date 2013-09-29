@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block actions %}
-<a href="{{ url('pot_admin', { 'pot_key': pot.potKey|default('null'), 'admin_key': pot.adminKey|default('null') }) }}"
+<a href="{{ url('pot_show', { 'pot_key': pot.potKey, 'admin_key': pot.adminKey }) }}"
    target="_blank" title="Administrar el bote"
    style="background-color: #ea9c3e; color: white; text-decoration: none; font: 16px arial; padding: 10px 20px">{{ 'admin.button.go'|trans({} ,"email") }}</a>
 {% endblock %}
