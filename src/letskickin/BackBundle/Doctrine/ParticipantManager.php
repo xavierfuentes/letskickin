@@ -112,7 +112,6 @@ class ParticipantManager
 		$participant->setStatus(self::STATUS_NO_PARTICIPATES);
 
 		$event = new PotEvent($participant->getPot());
-
 		$this->dispatcher->dispatch(PotEvents::PARTICIPANT_REFUSED, $event);
 		$this->dispatcher->dispatch(ParticipantEvents::REFUSED, $event);
 
@@ -125,7 +124,6 @@ class ParticipantManager
 			$this->addEmptyParticipant($participant);
 		} else {
 			$event = new PotEvent($participant->getPot());
-
 			$this->dispatcher->dispatch(PotEvents::PARTICIPANT_ADDED, $event);
 			$this->dispatcher->dispatch(ParticipantEvents::ADDED, $event);
 		}
