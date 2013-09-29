@@ -16,22 +16,26 @@
 
         //DOM wrapper element, all event handlers are bound to this element
         var $wrapper = $(selector || window.document),
-            newParticipantClass = ".-new-participant-form",
+            newParticipantFormClass = ".-new-participant-form",
+            newParticipantButtonClass = ".-btn-add-new-participant",
             notParticipateButtonClass = ".-not-participate",
             $amountInput = $("#createParticipant_amount");
 
-        //bind all events
         $wrapper
-            //PRIMARY BINDINGS
-            .on( 'click', notParticipateButtonClass, function( event ) {
+            .on('submit', newParticipantFormClass, function() {
+                var $button = $(newParticipantButtonClass);
+
+                $button.button('loading');
+            })
+            .on('click', notParticipateButtonClass, function( event ) {
                 event.preventDefault();
 
                 $amountInput.val('0');
                 $(newParticipantClass).trigger('not.participate');
             })
-            .on( 'not.participate', $(newParticipantClass), function (){
+            .on('not.participate', newParticipantClass, function (){
                 // validate and submit the form
-                $(newParticipantClass).find("[type='submit']").trigger('click');
+                $(newParticipantFormClass).find('[type="submit"]').trigger('click');
             })
         ;
     };
