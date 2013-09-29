@@ -6,7 +6,7 @@
 {% block modalBody %}
 <p>{{ 'coming.soon.description'|trans({}, "modal")|raw }}</p>
 <p>{{ 'coming.soon.form.text'|trans({}, "modal")|raw }}</p>
-<form target="_blank" id="modal-subscribe-form" class="-validate -ajax" role="subscribe" action="{{ mailchimp_form.action|raw }}" method="{{ mailchimp_form.method }}" novalidate>
+<form target="_blank" id="modal-subscribe-form" class="-ajax" role="subscribe" action="{{ mailchimp_form.action|raw }}" method="{{ mailchimp_form.method }}" novalidate>
     <div class="input-group input-group-lg">
         <span class="input-group-addon">@</span>
         <input id="modal-subscribe-email" name="EMAIL" class="form-control required email" type="text" placeholder="{{ 'email.placeholder'|trans({}, "global") }}"/>

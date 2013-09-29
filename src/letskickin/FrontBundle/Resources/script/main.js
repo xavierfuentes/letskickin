@@ -16,65 +16,75 @@
          * @param callback
          */
         self.postForm = function( $form, callback ){
-            $form.trigger( 'form.beforeSend', $form );
+            $form.trigger( 'form.postBegin', $form );
 
-            var request = $.ajax({
-                url:    $form.prop( 'action' ),
-                type:   $form.prop( 'method' ),
-                data:   $form.serialize(),
-                cache:  false
+            var jqXHR = $.ajax({
+                  url:        $form.prop( 'action' )
+                , type:       $form.prop( 'method' )
+                , data:       $form.serialize()
+                , cache:      false
+                , beforeSend: function( xhr, settings ) {
+                    console.log( 'beforeSend' );
+                    $form.trigger( 'form.beforeSend', xhr );
+                }
+                /*, error: function( jqXHR, textStatus, errorThrown ) {
+                    // ...
+                }*/
+                /*, success: function( data, textStatus, jqXHR ) {
+                 // ...
+                 }*/
             })
-            .done(function( msg ) {
-                $form.trigger( 'form.done', $form );
+            .done(function( data, textStatus, jqXHR ) {
+                $form.trigger( 'form.done', data );
             })
-            .fail(function( jqXHR, textStatus ) {
-                $form.trigger( 'form.fail', textStatus );
+            .fail(function( jqXHR, textStatus, errorThrown ) {
+                $form.trigger( 'form.fail', errorThrown );
             })
-            .always(function( msg ) {
-                callback( msg );
-                $form.trigger( 'form.always', this );
+            .always(function( jqXHR, textStatus ) {
+                callback( textStatus, $form, jqXHR );
+                $form.trigger( 'form.always', jqXHR );
             });
-        };
-
-        self.showAndDestroyTooltip = function ( $element, message ) {
-            $element.tooltip({
-                container: 'body',
-                placement: 'auto bottom',
-                title: message,
-            }).tooltip('show');
-
-            setTimeout(function() {
-                $element.tooltip('destroy');
-            }, 5000);
         };
 
         return self;
     };
 
     application.performBinding = function (app, selector) {
-        //Handle all HTML-specific code here
+        // Handle all HTML-specific code here
 
-        //DOM wrapper element, all event handlers are bound to this element
-        var $wrapper = $(selector || window.document);
+        var $wrapper = $(selector || window.document),
+            subscribeFormSel = "form[role='subscribe']";
 
-        //bind all events
         $wrapper
-            //PRIMARY BINDINGS
             .on('submit', '.-ajax', function( e ) {
                 e.preventDefault();
 
-                var $form = $(this),
-                    $button = $form.find("[type='submit']");
+                var $form = $(this)
+                  , $button = $form.find("[type='submit']");
 
                 if ( $form.length > 0 && app.validateForm($form) ) {
                     $button.button('loading');
 
-                    app.postForm( $form, function( response ){
-                        //app.showAndDestroyTooltip($button, response.msg);
+                    app.postForm( $form, function( textStatus, $form, jqXHR ){
                         //$form.get(0).reset();
                         $button.button( 'reset' );
                     });
                 }
+            })
+            .on('form.beforeSend', subscribeFormSel, function( event, xhrObject ) {
+                xhrObject.overrideMimeType( "application/json; charset=utf-8" );
+            })
+            .on('form.done', subscribeFormSel, function( event, data ) {
+                console.log( 'succes!' );
+                console.log( data );
+            })
+            .on('form.fail', subscribeFormSel, function( event, errorThrown ) {
+                console.log( 'error!' );
+                console.log( errorThrown );
+            })
+            .on('form.always', subscribeFormSel, function( event, jqXHR ) {
+                console.log( 'always' );
+                console.log( event );
             })
         ;
     };

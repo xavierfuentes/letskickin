@@ -19,7 +19,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <form target="_blank" id="topbar-subscribe-form" class="-validate -ajax navbar-form navbar-right" role="subscribe" action="{{ mailchimp_form.action|raw }}" method="{{ mailchimp_form.method }}" novalidate>
+        <form target="_blank" id="topbar-subscribe-form" class="-ajax navbar-form navbar-right" role="subscribe" action="{{ mailchimp_form.action|raw }}" method="{{ mailchimp_form.method }}" novalidate>
             <div class="form-group">
                 <input type="text" class="form-control required email" id="topbar-subscribe-email" name="EMAIL" placeholder="{{ 'email.placeholder'|trans({}, "global") }}"/>
             </div>
