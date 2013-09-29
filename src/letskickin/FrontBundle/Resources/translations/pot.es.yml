@@ -77,7 +77,6 @@ edit:
   button:
     edit: 'Editar bote'
     save: 'Guardar cambios'
-    loading: 'Guardando...'
 
 # Pages
 create:
@@ -126,7 +125,17 @@ confirm:
     explanation: 'Para que no los pierdas, te hemos enviado los enlaces por email a la dirección %admin_email%.<br>Comprueba que los has recibido correctamente.'
 
 notify:
-  thanks.participant: 'gracias, %name%,'
+  thanks.participant: '¡Muchas gracias %name% por participar!'
+  subtitle: 'Entre todos conseguiréis el mejor de los regalos.'
+  attention: '<strong>¡Atención!</strong> Asegúrate de haber realizado la transferencia de <strong>%amount%</strong>, para que el organizador la reciba.'
+  remember: 'Te recordamos el número de cuenta bancaria por si acaso ;)'
+  thanks: '¡Gracias!'
+  create.pot:
+    text: '¿Tienes que organizar un <em>bote</em> y no quieres tener problemas?'
+    button: 'Crear un bote'
+  trust.us: '<strong>Cuenta con nosotros</strong>'
+  its.free: '¡Es gratis!'
+
 
 show:
   participants.count: '{1} 1 Participante|]1,Inf] %count% Participantes'

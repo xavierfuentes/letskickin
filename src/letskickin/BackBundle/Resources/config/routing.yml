@@ -9,7 +9,7 @@ landingpage:
 
 # POTS
 pot_create:
-    pattern:  /pots/wizard
+    pattern:  /pots/wizard/
     defaults: { _controller: letskickinBackBundle:Pot:createPot }
 
 pot_confirm:
@@ -25,11 +25,11 @@ pot_show:
     defaults: { _controller: letskickinBackBundle:Pot:showPot, pot_key: null }
 
 pot_admin:
-    pattern: /pot/edit/{pot_key}
+    pattern: /pots/edit/{pot_key}
     defaults: { _controller: letskickinBackBundle:Pot:adminPot, pot_key: null }
 
 participant_admin:
-    pattern: /participant/edit/{participant_key}
+    pattern: /participant/{participant_key}
     defaults: { _controller: letskickinBackBundle:Pot:adminParticipant, participant_key: null }
 
 #FosUserBundle Routes

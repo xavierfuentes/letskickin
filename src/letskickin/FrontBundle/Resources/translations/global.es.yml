@@ -1,6 +1,7 @@
 button:
   subscribe-me: 'Enviar'
   loading-text: 'Espera...'
+  back: 'Volver'
 
 email.placeholder: 'tu@email.com'
 
