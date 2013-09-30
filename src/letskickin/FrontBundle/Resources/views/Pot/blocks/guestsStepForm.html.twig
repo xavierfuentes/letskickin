@@ -1,13 +1,12 @@
 <div class="row">
     <div class="pot-you-invite">
         <header>
-            <h4>{{ 'create.guests.you.invite'|trans({}, "pot") }}</h4>
-            {% image output="image/user-unknown.png"
-            '@letskickinFrontBundle/Resources/public/image/wizard/unknown-user.jpg'
+            {% image output="image/tu-debes-enviar-invitaciones.png"
+            '@letskickinFrontBundle/Resources/public/image/wizard/user_send.png'
             %}
             <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
             {% endimage %}
-            <span class="icon glyphicon glyphicon-envelope"></span>
+            <h4>{{ 'create.guests.you.invite'|trans({}, "pot") }}</h4>
         </header>
 
         <div>{{ 'create.guests.you.invite.description'|trans({}, "pot")|raw }}</div>
@@ -20,13 +19,12 @@
 
     <div class="pot-we-invite">
         <header>
-            <h4>{{ 'create.guests.we.invite'|trans({}, "pot") }}</h4>
-            {% image output="image/letskickin-70x70.png"
-            '@letskickinFrontBundle/Resources/public/image/wizard/logo-70x70.png'
+            {% image output="image/organizamos-el-mejor-regalo-en-grupo.png"
+            '@letskickinFrontBundle/Resources/public/image/wizard/letskickin_send.png'
             %}
             <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
             {% endimage %}
-            <span class="icon glyphicon glyphicon-envelope"></span>
+            <h4>{{ 'create.guests.we.invite'|trans({}, "pot") }}</h4>
         </header>
 
         <div id="weInviteRegister">

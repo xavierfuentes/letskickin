@@ -11,8 +11,8 @@ admin:
 invite:
   hi: '¡Hola!'
   link:
-    for: 'Enlace para el bote: %occasion%'
-    created: 'Has creado un bote para: %occasion% Envía el enlace a todas las personas que quieras que participen:'
+    for: 'Enlace para el bote: %occasion%:'
+    created: 'Has creado un bote para: %occasion%. Envía el enlace a todas las personas que quieras que participen:'
     action: 'Ir al bote'
   share: 'Comparte este enlace con todos aquellos que quieran participar. ¡No te olvides de contarte a tí también!'
   ignore: '(Si tú no has creado este bote, alguien lo habrá hecho usando tu email accidentalmente; solo ignora este email, por favor.)'

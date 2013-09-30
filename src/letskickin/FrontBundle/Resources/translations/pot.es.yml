@@ -120,9 +120,9 @@ confirm:
     description: 'Copia y pega este enlace para enviarlo a todas las personas que quieres invitar al bote. Puedes hacerlo, por ejemplo, desde tu email'
   admin.link:
     title: 'Enlace de administración'
-    description: 'Te recomendamos que guardes este enlace para poder acceder al bote cuando lo necesites. Podrás modificarlo, ver quién participa y controlar en todo momento la cantidad que llevas reunida.<br><br><strong>¡IMPORTANTE! Recuerda que este enlace es sólo para ti, NO lo envíes a otras personas.</strong>'
+    description: '<p>Te recomendamos que guardes este enlace para poder acceder al bote cuando lo necesites. Podrás modificarlo, ver quién participa y controlar en todo momento la cantidad que llevas reunida.</p><p><strong>¡IMPORTANTE! Recuerda que este enlace es sólo para ti, NO lo envíes a otras personas.</strong></p>'
   footer:
-    explanation: 'Para que no los pierdas, te hemos enviado los enlaces por email a la dirección %admin_email%.<br>Comprueba que los has recibido correctamente.'
+    explanation: 'Para que no los pierdas, te hemos enviado los enlaces por email a la dirección <strong>%admin_email%</strong>.<br>Comprueba que los has recibido correctamente.'
 
 notify:
   thanks.participant: '¡Muchas gracias %name% por participar!'
@@ -151,6 +151,11 @@ show:
       label: "cantidad reunida"
   amount-relative: %amountRelative%% Recaudado
   description: '¡Hola! %admin_name% ha organizado un bote para <em>%occasion%</em> y <strong>cuenta contigo</strong> para hacer el regalo. Participar es muy fácil sólo tienes que echar un vistazo más abajo. Si prefieres no participar, por favor, indícalo también.'
+  no-participants:
+    admin: 'De momento, nadie ha participado en "%occasion%". No te preocupes. Si quieres, puedes invitar a más personas para que colaboren. Es fácil, copia y pega este enlace y envíalo a quién tú quieras.'
+    participant: '¡Sé el primero en participar! Entre todos ayudaréis a %admin_name% a conseguir el mejor regalo'
+    admin-extras: 'Organizar un regalo en grupo puede ser aún más fácil. Si quieres disfrutar de todas las ventajas que te ofrecemos, entra y únete a nuestra comunidad. This is #Crowdgifting!'
+    admin-cta: '¡Únete ya!'
 
 # Other
 day.placeholder: 'DD'

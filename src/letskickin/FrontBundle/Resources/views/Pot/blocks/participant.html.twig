@@ -41,7 +41,7 @@
                 </div>
             {% else %}
                 {% if participant.status|statusToString() == 'waiting' %}
-                    {% set icon = 'link' %}
+                    {% set icon = 'time' %}
                 {% elseif participant.status|statusToString() == 'confirmed' %}
                     {% set icon = 'thumbs-up' %}
                 {% else %}

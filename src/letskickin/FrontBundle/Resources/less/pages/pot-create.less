@@ -93,8 +93,9 @@
       .step-guests {
         .pot-you-invite,
         .pot-we-invite {
-          .make-md-column(5);
-          .make-md-column-offset(1);
+          .make-md-column(6);
+
+          padding: 0 3em;
 
           header {
             text-align: center;
@@ -111,6 +112,8 @@
         }
 
         .pot-we-invite {
+          border-left: 2px solid @gray-lightest;
+
           #pot-guests-email-list {
             .resizable(none);
 

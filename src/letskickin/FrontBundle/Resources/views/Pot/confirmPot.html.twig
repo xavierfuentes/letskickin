@@ -13,30 +13,46 @@
     <header class="section">
         <article class="hgroup">
             <h2 class="page-title">{{ 'confirm.thanks.admin'|trans({'%admin_name%': pot.adminName}, "pot") }}</h2>
-            <p class="page-subtitle">{{ 'confirm.subtitle'|trans({}, "pot") }}</p>
+            <p class="lead page-subtitle">{{ 'confirm.subtitle'|trans({}, "pot") }}</p>
         </article>
     </header>
 
-    <section class="section">
-        <article class="participation-link">
-            <h4>{{ 'confirm.invite.link.title'|trans({}, "pot")|raw }}</h4>
-            <p>{{ 'confirm.invite.link.description'|trans({}, "pot")|raw }}</p>
-            {% set participation_link = url("pot_show", { 'pot_key' : pot.potKey }) %}
-            <a class="link" href="{{ participation_link }}">{{ participation_link }}</a>
-        </article>
+    <section class="thanks">
+        <section class="section">
+            <article class="participation-link">
+                <header class="text-center">
+                    {% image output="image/comparte-la-ilusion.png"
+                    '@letskickinFrontBundle/Resources/public/image/wizard/guest-link.png'
+                    %}
+                    <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
+                    {% endimage %}
+                    <h4>{{ 'confirm.invite.link.title'|trans({}, "pot")|raw }}</h4>
+                </header>
+                <p>{{ 'confirm.invite.link.description'|trans({}, "pot")|raw }}</p>
+                {% set participation_link = url("pot_show", { 'pot_key' : pot.potKey }) %}
+                <a class="link" href="{{ participation_link }}">{{ participation_link }}</a>
+            </article>
 
-        <article class="administration-link">
-            <h4>{{ 'confirm.admin.link.title'|trans({}, "pot")|raw }}</h4>
-            <p>{{ 'confirm.admin.link.description'|trans({}, "pot")|raw }}</p>
-            {% set admin_link = url("pot_show", { 'pot_key' : pot.potKey, 'admin_key' : pot.adminKey }) %}
-            <a class="link" href="{{ admin_link }}">{{ admin_link }}</a>
-        </article>
-    </section>
-
-    <footer class="section">
-        <section class="fgroup">
-            <p>{{ 'confirm.footer.explanation'|trans({'%admin_email%': pot.adminEmail}, "pot")|raw }}</p>
+            <article class="administration-link">
+                <header class="text-center">
+                    {% image output="image/administra-el-bote-comun.png"
+                    '@letskickinFrontBundle/Resources/public/image/wizard/admin-link.png'
+                    %}
+                    <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
+                    {% endimage %}
+                    <h4>{{ 'confirm.admin.link.title'|trans({}, "pot")|raw }}</h4>
+                </header>
+                <div>{{ 'confirm.admin.link.description'|trans({}, "pot")|raw }}</div>
+                {% set admin_link = url("pot_show", { 'pot_key' : pot.potKey, 'admin_key' : pot.adminKey }) %}
+                <a class="link" href="{{ admin_link }}">{{ admin_link }}</a>
+            </article>
         </section>
-    </footer>
+
+        <footer class="section">
+            <section class="fgroup">
+                <p class="footer-title">{{ 'confirm.footer.explanation'|trans({'%admin_email%': pot.adminEmail}, "pot")|raw }}</p>
+            </section>
+        </footer>
+    </section>
 </article>
 {% endblock %}

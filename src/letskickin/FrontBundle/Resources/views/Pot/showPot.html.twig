@@ -38,6 +38,14 @@
                         'participant_key': participant.participantKey,
                         'admin_key': app.request.get('admin_key')
                     })) }}
+                {% else %}
+                    <article class="container">
+                    {% if isAdmin %}
+                        {{ 'show.no-participants.admin'|trans({ '%occasion%': pot.occasion }, "pot") }}
+                    {% else %}
+                        {{ 'show.no-participants.participant'|trans({ '%admin_name%': pot.adminName }, "pot") }}
+                    {% endif %}
+                    </article>
                 {% endfor %}
             </section>
         </div>

@@ -1,5 +1,10 @@
 #pot-confirm {
 
+  .thanks {
+    .make-md-column(10);
+    .make-md-column-offset(1);
+  }
+
   .section {
     .make-row();
   }
@@ -12,34 +17,26 @@
     text-align: center;
   }
 
-  .hgroup {
-    .page-subtitle {
-      .lead;
+  .hgroup { margin-top: 2em; }
 
-      margin-bottom: 3em;
-    }
-  }
+  .page-subtitle { margin-bottom: 2em; }
 
-  .fgroup {
-    .h5;
-
-    margin-top: 3em;
-  }
+  .fgroup { margin-top: 3em; }
 
   .participation-link,
   .administration-link {
-    .make-md-column(5);
+    .make-md-column(6);
 
-    .link {
-      font-size: @font-size-small;
+    padding: 0 3em;
+
+    header img {
+      margin-bottom: 1em;
     }
   }
 
-  .participation-link {
-    .make-md-column-offset(1);
+  .administration-link {
+    border-left: 2px solid @gray-lightest;
   }
 
-  .administration-link {
-    border-left: 1px solid @text-color;
-  }
+  .footer-title { font-size: @font-size-large; }
 }
