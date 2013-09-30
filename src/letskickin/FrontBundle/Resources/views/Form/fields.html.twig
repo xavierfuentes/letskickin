@@ -68,8 +68,8 @@
     {% spaceless %}
         {% if simple is not defined %}
         <div class="input-group">
-            {{ block('form_widget_simple') }}
             <span class="input-group-addon">{{ money_pattern|slice(-1, 1) }}</span>
+            {{ block('form_widget_simple') }}
         </div>
         {% else %}
             {{ block('form_widget_simple') }}

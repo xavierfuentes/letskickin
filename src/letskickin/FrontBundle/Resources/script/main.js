@@ -51,11 +51,18 @@
         // Handle all HTML-specific code here
 
         var $wrapper = $(selector || window.document),
-            subscribeFormSel = "form[role='subscribe']";
+            subscribeFormSel = "form[role='subscribe']",
+            tooltipDeafaultOpts = {
+                  placement: 'auto right'
+                , container: 'body'
+                , trigger: 'hover focus'
+            };
+
+        $wrapper.find('[data-toggle="tooltip"]').tooltip(tooltipDeafaultOpts);
 
         $wrapper
-            .on('submit', '.-ajax', function( e ) {
-                e.preventDefault();
+            .on('submit', '.-ajax', function( event ) {
+                event.preventDefault();
 
                 var $form = $(this)
                   , $button = $form.find("[type='submit']");

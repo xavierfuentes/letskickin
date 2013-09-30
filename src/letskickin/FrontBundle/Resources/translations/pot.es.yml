@@ -2,39 +2,39 @@
 occasion:
   label: 'Ocasión del bote'
   placeholder: 'Cumple de Jordi.'
-  help: 'El motivo del bote.'
+  help: 'El motivo del bote. (obligatorio)'
 
 admin_name:
   label: 'Tu nombre'
   placeholder: 'Montse Comas'
-  help: 'Pues eso. No hace falta aclaración ¿no?'
+  help: 'Pues eso. No hace falta aclaración ¿no? (obligatorio)'
 
 admin_email:
   label: 'Tu email'
   placeholder: 'montse@comas.com'
-  help: 'No te estás registrando, este será el mail dónde te enviaremos la información relacionada con el bote. Así, estarás al día de cualquier modificación.'
+  help: 'No te estás registrando, este será el mail dónde te enviaremos la información relacionada con el bote. Así, estarás al día de cualquier modificación. (obligatorio)'
 
 deadline:
   label: 'Fecha final'
-  help: 'Indica aquí la fecha en la que quieres finalizar el bote. ¡OJO! NO es la fecha del evento.'
+  help: 'Indica aquí la fecha en la que quieres finalizar el bote. NO es la fecha del evento. (obligatorio)'
   placeholder: 'DD-MM-AAAA'
 
 amount_total:
   label: 'Cantidad total'
   placeholder: ''
-  help: '(Opcional) Indica aquí la cantidad total que quieres reunir'
+  help: 'Indica aquí la cantidad total que quieres reunir. (opcional)'
   blank: 'Es muy recomendable que la indiques...'
 
 amount_partial:
   label: 'Cantidad recomendada por persona'
   placeholder: ''
-  help: '(Opcional) Indica cuánto te gustaría que aportara cada participante'
+  help: 'Indica cuánto te gustaría que aportara cada participante. (opcional)'
   blank: 'Es muy recomendable que la indiques...'
 
 bank_account:
   label: 'Indica aquí el número de cuenta'
   placeholder: '0123 4567 89 0123456789'
-  help: 'De esta manera, recibirás los ingresos en la cuenta que elijas. El número de cuenta sólo lo verán las personas que tú invites al bote'
+  help: 'De esta manera, recibirás los ingresos en la cuenta que elijas. El número de cuenta sólo lo verán las personas que tú invites al bote. (obligatorio)'
 
 # Participant
 participant.name:

@@ -1,11 +1,17 @@
-{{ form_row(form.amount_total, {
-}) }}
+{{ form_row(form.amount_total, { 'attr': {
+    'data-toggle': 'tooltip',
+    'title': 'amount_total.help'|trans({}, "pot")
+} }) }}
 
-{{ form_row(form.amount_partial, {
-}) }}
+{{ form_row(form.amount_partial, { 'attr': {
+    'data-toggle': 'tooltip',
+    'title': 'amount_partial.help'|trans({}, "pot")
+} }) }}
 
-{{ form_row(form.bank_account, {
-}) }}
+{{ form_row(form.bank_account, { 'attr': {
+    'data-toggle': 'tooltip',
+    'title': 'bank_account.help'|trans({}, "pot")
+} }) }}
 
 {{ include(
 'letskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {

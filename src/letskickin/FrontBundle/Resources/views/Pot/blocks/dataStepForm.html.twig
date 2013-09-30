@@ -5,14 +5,25 @@
     }
 }) }}#}
 
-{{ form_row(form.occasion) }}
+{{ form_row(form.occasion, { 'attr': {
+    'data-toggle': 'tooltip',
+    'title': 'occasion.help'|trans({}, "pot")
+} }) }}
 
-{{ form_row(form.admin_name) }}
+{{ form_row(form.admin_name, { 'attr': {
+    'data-toggle': 'tooltip',
+    'title': 'admin_name.help'|trans({}, "pot")
+} }) }}
 
-{{ form_row(form.admin_email) }}
+{{ form_row(form.admin_email, { 'attr': {
+    'data-toggle': 'tooltip',
+    'title': 'admin_email.help'|trans({}, "pot")
+} }) }}
 
 {{ form_row(form.deadline, { 'attr': {
-    'class': 'pot-deadline'
+    'class': 'pot-deadline',
+    'data-toggle': 'tooltip',
+    'title': 'deadline.help'|trans({}, "pot")
 }}) }}
 
 {{ include(
