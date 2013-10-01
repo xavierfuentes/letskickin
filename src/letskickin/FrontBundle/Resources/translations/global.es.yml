@@ -1,3 +1,6 @@
+site:
+  title: 'Letskickin - Organiza tus regalos en grupo y reúne el dinero fácilmente'
+  description: 'Letskickin es la solución para organizar tus regalos en grupo. Ahora, compartir gastos y recaudar dinero es muy fácil. This is #crowdgifting'
 button:
   subscribe-me: 'Enviar'
   loading-text: 'Espera...'
