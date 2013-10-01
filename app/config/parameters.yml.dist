@@ -17,3 +17,5 @@ parameters:
 
     node_path:          /usr/local/bin/node
     node_modules_path:  /usr/local/lib/node_modules
+
+    google_ga_code:     UA-37692812-1

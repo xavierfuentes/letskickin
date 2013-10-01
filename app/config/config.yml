@@ -45,9 +45,9 @@ twig:
           action: 'http://letskickin.us6.list-manage.com/subscribe/post-json?u=18a9a22847&id=34cba8f1c1'
           method: 'GET'
 
-        # google:
-        #     verification_code: %google_verification_code%
-        #     ga_code: %google_ga_code%
+        google:
+             # verification_code: %google_verification_code%
+             ga_code: %google_ga_code%
 
 # Assetic Configuration
 assetic:
