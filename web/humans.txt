@@ -3,13 +3,18 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Letskickin -- @letskickin
+    Xavi Fuentes -- CEO -- @xavifuefer
+    Xavi Miró -- UX -- @mirografic
+    Alba Tejada -- Social Media -- @albatejada
+    David Marquina -- BD -- @dmarquina1
 
 # THANKS
 
-    <name>
+    David Pombar -- Advisor -- @davidpombar
 
 # TECHNOLOGY COLOPHON
 
+	Symfony 2
     HTML5, CSS3
     jQuery, Modernizr
