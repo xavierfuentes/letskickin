@@ -1,8 +1,8 @@
 <article class="container">
-    <p class="footer-brand">©letskickin 2013</p>
+    <p class="footer-brand">©letskickin {{ date("Y") }}</p>
     <ul class="footer-menu">
-        <li><a href="#">Condiciones de uso</a></li>
-        <li><a href="#">Politica de privacidad</a></li>
+        <li><a href="#">{{ 'footer.conditions'|trans({}, "global") }}</a></li>
+        <li><a href="#">{{ 'footer.privacy'|trans({}, "global") }}Politica de privacidad</a></li>
     </ul>
     <ul class="footer-social">
         <li>

@@ -9,3 +9,7 @@ button:
 email.placeholder: 'tu@email.com'
 
 join.crowdgifting: 'Únete al #crowdgifting'
+
+footer:
+  conditions: 'Condiciones de uso'
+  privacy: 'Política de privacidad'

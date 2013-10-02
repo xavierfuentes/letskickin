@@ -5,35 +5,35 @@
 {% block content %}
     <header id="landing-hd">
         <article class="jumbo col-md-8 col-md-offset-2">
-            <h1 class="h1">This is #crowdgifting!</h1>
-            <h2 class="h3 lead">Organiza tus regalos en grupo y recauda el dinero<br>de manera fácil y segura.</h2>
+            <h1 class="h1">{{ 'title'|trans({}, "landing")|raw }}</h1>
+            <h2 class="h3 lead">{{ 'subtitle'|trans({}, "landing")|raw }}</h2>
 
             <div class="jumbo-cta">
-                <a href="{{ url('pot_create') }}" type="button" class="btn btn-primary btn-xl">EMPEZAR</a>
+                <a href="{{ url('pot_create') }}" type="button" class="btn btn-primary btn-xl">{{ 'bob'|trans({}, "landing") }}</a>
             </div>
 
             <div class="block-help left">
                 {% image output="image/arrowr.png"
                     '@letskickinFrontBundle/Resources/public/image/landing/point-to-the-right.png'
                 %}
-                <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
+                <img src="{{ asset_url }}" alt="{{ 'bob.support-1'|trans({}, "landing") }}"/>
                 {% endimage %}
-                <p class="text-help">Fácil y gratuito</p>
+                <p class="text-help">{{ 'bob.support-1'|trans({}, "landing") }}</p>
             </div>
             <div class="block-help right">
                 {% image output="image/arrowl.png"
                     '@letskickinFrontBundle/Resources/public/image/landing/point-to-the-left.png'
                 %}
-                <img src="{{ asset_url }}" alt="¡No lo dudes ni un momento!"/>
+                <img src="{{ asset_url }}" alt="{{ 'bob.support-2'|trans({}, "landing") }}"/>
                 {% endimage %}
-                <p class="text-help">Sin registro</p>
+                <p class="text-help">{{ 'bob.support-2'|trans({}, "landing") }}</p>
             </div>
         </article>
     </header>
 
     <article class="love container">
         <header class="title">
-            <h3 class="h1">Nos tendrás siempre a tu lado</h3>
+            <h3 class="h1">{{ 'lead'|trans({}, "landing") }}</h3>
         </header>
 
         <section class="things">
@@ -42,11 +42,11 @@
                     {% image output="image/dividir-gastos-no-es-problema.png"
                         '@letskickinFrontBundle/Resources/public/image/landing/icon_heart.png'
                     %}
-                    <img src="{{ asset_url }}" alt="Compartir gastos ya no es un problema"/>
+                    <img src="{{ asset_url }}" alt="{{ 'reason1'|trans({}, "landing")|raw }}"/>
                     {% endimage %}
-                    <h2 class="h4 thing-title">Compartir gastos<br>ya no es un problema</h2>
+                    <h2 class="h4 thing-title">{{ 'reason1'|trans({}, "landing")|raw }}</h2>
                 </header>
-                <div class="advice">"Ahora no tengo suelto, mañana te lo doy..."<br>No te compliques y olvídate de excusas.<br>Ya no tendrás que perseguir a nadie.</div>
+                <div class="advice">{{ 'reason1.explanation'|trans({}, "landing")|raw }}</div>
             </article>
 
             <article class="safe">
@@ -54,11 +54,11 @@
                     {% image output="image/claro-facil-seguro.png"
                         '@letskickinFrontBundle/Resources/public/image/landing/icon_safe.png'
                     %}
-                    <img src="{{ asset_url }}" alt="Es claro, fácil y seguro"/>
+                    <img src="{{ asset_url }}" alt="{{ 'reason2'|trans({}, "landing")|raw }}"/>
                     {% endimage %}
-                    <h2 class="h4 thing-title">Es claro,<br>fácil y seguro</h2>
+                    <h2 class="h4 thing-title">{{ 'reason2'|trans({}, "landing")|raw }}</h2>
                 </header>
-                <div class="advice">Crea un bote, invita a quién tú quieras<br>y empieza a recaudar el dinero<br>al instante.</div>
+                <div class="advice">{{ 'reason2.explanation'|trans({}, "landing")|raw }}</div>
             </article>
 
             <article class="gift">
@@ -66,26 +66,26 @@
                     {% image output="image/no-estaras-solo.png"
                         '@letskickinFrontBundle/Resources/public/image/landing/icon_together.png'
                     %}
-                    <img src="{{ asset_url }}" alt="Ahora no estarás solo"/>
+                    <img src="{{ asset_url }}" alt="{{ 'reason3'|trans({}, "landing")|raw }}"/>
                     {% endimage %}
-                    <h2 class="h4 thing-title">Ahora<br>no estarás solo</h2>
+                    <h2 class="h4 thing-title">{{ 'reason3'|trans({}, "landing")|raw }}</h2>
                 </header>
-                <div class="advice">Queremos que disfrutes haciendo regalos.<br>Cuenta con nosotros, entre todos<br>conseguiremos el mejor.</div>
+                <div class="advice">{{ 'reason13.explanation'|trans({}, "landing")|raw }}</div>
             </article>
         </section>
 
         <footer class="cta-net">
             <div class="jumbo-cta">
-                <a href="{{ url('pot_create') }}" type="button" class="btn btn-primary btn-xl">EMPEZAR</a>
+                <a href="{{ url('pot_create') }}" type="button" class="btn btn-primary btn-xl">{{ 'bob'|trans({}, "landing") }}</a>
             </div>
 
             <div class="block-help right">
                 {% image output="image/arrowl-big.png"
                 '@letskickinFrontBundle/Resources/public/image/landing/arrow_big.png'
                 %}
-                <img src="{{ asset_url }}" class="img-help" alt="¡No lo dudes ni un momento!"/>
+                <img src="{{ asset_url }}" class="img-help" alt="{{ 'bob.support-3'|trans({}, "landing") }}"/>
                 {% endimage %}
-                <p class="text-help">Fácil, gratuito<br>y sin registro</p>
+                <p class="text-help">{{ 'bob.support-3'|trans({}, "landing") }}</p>
             </div>
         </footer>
     </article>
