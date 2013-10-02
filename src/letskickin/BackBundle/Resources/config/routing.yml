@@ -7,6 +7,22 @@ landingpage:
         maxAge: 86400
         sharedMaxAge: 86400
 
+privacy:
+    pattern:  /legal/privacy
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'letskickinFrontBundle:Static:privacy.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400
+
+terms:
+    pattern:  /legal/terms
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'letskickinFrontBundle:Static:terms.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400
+
 # POTS
 pot_create:
     pattern:  /pots/wizard/
