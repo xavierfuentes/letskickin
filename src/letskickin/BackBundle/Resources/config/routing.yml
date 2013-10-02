@@ -8,7 +8,7 @@ landingpage:
         sharedMaxAge: 86400
 
 privacy:
-    pattern:  /legal/privacy
+    pattern:  /legal/privacy/
     defaults:
         _controller: FrameworkBundle:Template:template
         template: 'letskickinFrontBundle:Static:privacy.html.twig'
@@ -16,7 +16,7 @@ privacy:
         sharedMaxAge: 86400
 
 terms:
-    pattern:  /legal/terms
+    pattern:  /legal/terms/
     defaults:
         _controller: FrameworkBundle:Template:template
         template: 'letskickinFrontBundle:Static:terms.html.twig'
