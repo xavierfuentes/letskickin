@@ -2,7 +2,7 @@
 occasion:
   label: 'Ocasión del bote'
   placeholder: 'Cumple de Jordi.'
-  help: 'El motivo del bote. (obligatorio)'
+  help: 'La ocasión del bote. (obligatorio)'
 
 admin_name:
   label: 'Tu nombre'
