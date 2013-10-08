@@ -29,3 +29,18 @@ assetic:
 
 swiftmailer:
     delivery_address: xavifuefer@gmail.com
+
+# Twig Configuration
+twig:
+    globals:
+        site:
+            locale: %locale%
+            diagnostic_mode: false
+            #sitemap: "/sitemap.xml"
+        mailchimp_form:
+          action: '#'
+          method: 'GET'
+
+        google:
+             # verification_code: %google_verification_code%
+             # ga_code: UA-37692812-1
