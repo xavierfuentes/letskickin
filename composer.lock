@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "085759bb2f17706f5b0a24ed23a68d72",
+    "hash": "b61bef870fb0b3e832ec9c3d0fae336c",
     "packages": [
         {
             "name": "craue/formflow-bundle",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/craue/CraueFormFlowBundle.git",
-                "reference": "2.0.1"
+                "reference": "cb8fd2eb3698d1eaadc3e1677b2ec8a1115145ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craue/CraueFormFlowBundle/zipball/2.0.1",
-                "reference": "2.0.1",
+                "url": "https://api.github.com/repos/craue/CraueFormFlowBundle/zipball/cb8fd2eb3698d1eaadc3e1677b2ec8a1115145ee",
+                "reference": "cb8fd2eb3698d1eaadc3e1677b2ec8a1115145ee",
                 "shasum": ""
             },
             "require": {
@@ -132,16 +132,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "2c9761ff1d13e188d5f7378066c1ce2882d7a336"
+                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/2c9761ff1d13e188d5f7378066c1ce2882d7a336",
-                "reference": "2c9761ff1d13e188d5f7378066c1ce2882d7a336",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/d0e4447707a064a5814b18cb0dcc2f24185f6179",
+                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179",
                 "shasum": ""
             },
             "require": {
@@ -185,7 +185,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -197,7 +197,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-08-07 16:04:25"
+            "time": "2013-09-26 19:23:25"
         },
         {
             "name": "doctrine/collections",
@@ -233,7 +233,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/"
                 },
@@ -520,9 +520,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -665,12 +665,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "b4840d8b3293386dba685d91169559eb20f2d767"
+                "reference": "f9ea1de0698e3055c9916e88c19f42e28844ef61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/b4840d8b3293386dba685d91169559eb20f2d767",
-                "reference": "b4840d8b3293386dba685d91169559eb20f2d767",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f9ea1de0698e3055c9916e88c19f42e28844ef61",
+                "reference": "f9ea1de0698e3055c9916e88c19f42e28844ef61",
                 "shasum": ""
             },
             "require": {
@@ -725,7 +725,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2013-09-23 12:09:51"
+            "time": "2013-10-09 22:58:46"
         },
         {
             "name": "hwi/oauth-bundle",
@@ -734,18 +734,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hwi/HWIOAuthBundle.git",
-                "reference": "6fd693212ed1557fe0af75d3b85155234e42b0a5"
+                "reference": "630d61ca64dfcafd02a13b61698fa99d7ec2c74e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/6fd693212ed1557fe0af75d3b85155234e42b0a5",
-                "reference": "6fd693212ed1557fe0af75d3b85155234e42b0a5",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/630d61ca64dfcafd02a13b61698fa99d7ec2c74e",
+                "reference": "630d61ca64dfcafd02a13b61698fa99d7ec2c74e",
                 "shasum": ""
             },
             "require": {
                 "kriswallsmith/buzz": "~0.7",
                 "php": ">=5.3.3",
                 "symfony/framework-bundle": "~2.1",
+                "symfony/options-resolver": "~2.1",
                 "symfony/security-bundle": "~2.1"
             },
             "require-dev": {
@@ -835,7 +836,7 @@
                 "yahoo",
                 "yandex"
             ],
-            "time": "2013-09-24 12:03:40"
+            "time": "2013-09-28 12:37:04"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1014,12 +1015,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/Buzz.git",
-                "reference": "v0.10"
+                "reference": "759432d66387e3433d3b06cb6f773b97225b9b17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/v0.10",
-                "reference": "v0.10",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/759432d66387e3433d3b06cb6f773b97225b9b17",
+                "reference": "759432d66387e3433d3b06cb6f773b97225b9b17",
                 "shasum": ""
             },
             "require": {
@@ -1123,13 +1124,13 @@
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/log",
-                "reference": "1.0.0"
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/php-fig/log/archive/1.0.0.zip",
-                "reference": "1.0.0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
                 "shasum": ""
             },
             "type": "library",
@@ -1669,16 +1670,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.4",
+            "version": "v2.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "4fb225f4e315c11aa6d8935b1c0ceaf48ba39f1f"
+                "reference": "d0597156c4c03ceca039f6b7770a47397ba295f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/4fb225f4e315c11aa6d8935b1c0ceaf48ba39f1f",
-                "reference": "4fb225f4e315c11aa6d8935b1c0ceaf48ba39f1f",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/d0597156c4c03ceca039f6b7770a47397ba295f0",
+                "reference": "d0597156c4c03ceca039f6b7770a47397ba295f0",
                 "shasum": ""
             },
             "require": {
@@ -1773,7 +1774,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-08-27 08:58:24"
+            "time": "2013-10-10 13:24:22"
         },
         {
             "name": "twig/extensions",
@@ -1824,16 +1825,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.13.2",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "6d6a1009427d1f398c9d40904147bf9f723d5755"
+                "reference": "224fc55635d544a2ec8edb3592be18db5a093f59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/6d6a1009427d1f398c9d40904147bf9f723d5755",
-                "reference": "6d6a1009427d1f398c9d40904147bf9f723d5755",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/224fc55635d544a2ec8edb3592be18db5a093f59",
+                "reference": "224fc55635d544a2ec8edb3592be18db5a093f59",
                 "shasum": ""
             },
             "require": {
@@ -1842,7 +1843,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -1869,20 +1870,20 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-08-03 15:35:31"
+            "time": "2013-10-03 06:41:20"
         },
         {
             "name": "twitter/bootstrap",
-            "version": "dev-3.0.0-wip",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "7bc845abfa7aed4c1647ff537bd8bca80df20da3"
+                "reference": "dcef0a78d5151b492f1acc93656c6df5f6201c51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/7bc845abfa7aed4c1647ff537bd8bca80df20da3",
-                "reference": "7bc845abfa7aed4c1647ff537bd8bca80df20da3",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/dcef0a78d5151b492f1acc93656c6df5f6201c51",
+                "reference": "dcef0a78d5151b492f1acc93656c6df5f6201c51",
                 "shasum": ""
             },
             "type": "library",
@@ -1892,12 +1893,12 @@
             ],
             "authors": [
                 {
-                    "name": "Mark Otto",
-                    "email": "markdotto@gmail.com"
-                },
-                {
                     "name": "Jacob Thornton",
                     "email": "jacobthornton@gmail.com"
+                },
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
                 }
             ],
             "description": "Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.",
@@ -1906,7 +1907,7 @@
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-08-19 16:31:16"
+            "time": "2013-10-12 01:52:57"
         }
     ],
     "packages-dev": [

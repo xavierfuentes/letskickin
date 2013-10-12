@@ -25,9 +25,7 @@
         ,"friendsofsymfony/user-bundle": "2.0.*@dev"
         ,"craue/formflow-bundle": "~2.0.0"
 
-        ,"hwi/oauth-bundle": "0.3.*@dev"
-
-        ,"twitter/bootstrap": "dev-3.0.0-wip"
+        ,"twitter/bootstrap": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

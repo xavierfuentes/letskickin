@@ -14,20 +14,14 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             new letskickin\FrontBundle\letskickinFrontBundle(),
             new letskickin\BackBundle\letskickinBackBundle(),
 
             new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
-
             new FOS\UserBundle\FOSUserBundle(),
-
-            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-
             new Craue\FormFlowBundle\CraueFormFlowBundle(),
         );
 

@@ -11,7 +11,7 @@ use letskickin\BackBundle\Entity\Pot;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="participant")
+ * @ORM\Table(name="lk_participant")
  */
 class Participant
 {
