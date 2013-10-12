@@ -3,9 +3,9 @@ parameters:
     database_host:      127.0.0.1
     database_port:      3306
     database_socket:    ~
-    database_name:      letskickin
-    database_user:      letskickin
-    database_password:  letskickin
+    database_name:      dev.letskickin.com
+    database_user:      letskickin.com
+    database_password:  letskickin.com
 
     mailer_transport:   gmail
     mailer_host:        ~
