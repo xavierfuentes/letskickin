@@ -1,0 +1,8 @@
+services:
+    letskickin.admin.pot:
+        class: letskickin\BackBundle\Admin\PotAdmin
+        arguments: [~, letskickin\BackBundle\Entity\Pot, letskickinBackBundle:PotAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "admin", label: "Pot"}
+        calls:
+            - [ setTranslationDomain, [letskickinBackBundle]]

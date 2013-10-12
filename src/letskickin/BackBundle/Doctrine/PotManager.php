@@ -38,16 +38,8 @@ class PotManager
      */
     protected $class;
 
-	// Anonymous pot
-	const OWNER_ANONYMOUS = null;
-
-    // Created but not finished
-    const STATUS_INACTIVE = 0;
-    // Created and valid
-    const STATUS_ACTIVE = 1;
-
-    // Bank transfer
-    const METHOD_TRANSFER = 0;
+    // not registered user's pot. If registered, the owner is a User object
+    const OWNER_ANONYMOUS = null;
 
     public function __construct(EventDispatcherInterface $dispatcher, ObjectManager $om, $class)
     {
@@ -60,9 +52,9 @@ class PotManager
     /**
      * @return Pot
      */
-    public function find($pot_key)
+    public function find($id)
     {
-	    $pot = $this->repo->findOneBy(array('pot_key' => $pot_key));
+        $pot = $this->repo->findOneBy(array('id' => $id));
 
         return $pot;
     }
@@ -70,7 +62,17 @@ class PotManager
     /**
      * @return Pot
      */
-    public function createPot()
+    public function findByKey($pot_key)
+    {
+        $pot = $this->repo->findOneBy(array('pot_key' => $pot_key));
+
+        return $pot;
+    }
+
+    /**
+     * @return Pot
+     */
+    public function createPot($eventsActive = true)
     {
         $class = $this->class;
         $pot = new $class();
@@ -78,9 +80,12 @@ class PotManager
         $generator = new SecureRandom();
 
         // Basic data default values
-	    $pot->setOwner(self::OWNER_ANONYMOUS);
-        $pot->setStatus(self::STATUS_INACTIVE);
-        $pot->setCreationDate(new \DateTime);
+        $pot->setOwner(self::OWNER_ANONYMOUS);
+        $pot->setStatus($pot::STATUS_INACTIVE);
+
+        $date = new \DateTime;
+        $pot->setCreationDate($date);
+        $pot->setLastEditionDate($date);
 
         $pot_key = bin2hex($generator->nextBytes(8));
         $pot->setPotKey($pot_key);
@@ -89,38 +94,52 @@ class PotManager
         $pot->setAdminKey($admin_key);
 
         // Money default values
-	    $pot->setCurrency("EUR");
-        $pot->setCollectionMethod(self::METHOD_TRANSFER);
+        $pot->setCurrency("EUR");
+        $pot->setCollectionMethod($pot::METHOD_TRANSFER);
 
-		$event = new PotEvent($pot);
-		$this->dispatcher->dispatch(PotEvents::CREATED, $event);
+        if(true === $eventsActive) {
+            $event = new PotEvent($pot);
+            $this->dispatcher->dispatch(PotEvents::CREATED, $event);
+        }
 
         return $pot;
     }
 
-    public function updatePot(Pot $pot)
+    public function updatePot(Pot $pot, $status = null, $eventsActive = true)
     {
-	    // TODO: add last edition date to object
+        $status = null === $status ? $pot::STATUS_ACTIVE : $status;
 
-	    $event = new PotEvent($pot);
-	    $this->dispatcher->dispatch(PotEvents::UPDATED, $event);
+        $pot->setStatus($status);
 
-	    $this->savePot($pot);
+        $date = new \DateTime;
+        $pot->setLastEditionDate($date);
 
-	    return true;
+        if(true === $eventsActive) {
+            $event = new PotEvent($pot);
+            $this->dispatcher->dispatch(PotEvents::UPDATED, $event);
+        }
+
+        $this->om->persist($pot);
+        $this->om->flush();
+
+        return true;
     }
 
-	public function savePot(Pot $pot, $status = self::STATUS_ACTIVE)
+    public function savePot(Pot $pot, $status = null, $eventsActive = true)
     {
-		$pot->setStatus($status);
+        $status = null === $status ? $pot::STATUS_ACTIVE : $status;
 
-	    $this->om->persist($pot);
-	    $this->om->flush();
+        $pot->setStatus($status);
 
-	    $event = new PotEvent($pot);
-	    $this->dispatcher->dispatch(PotEvents::FLUSHED, $event);
+        $this->om->persist($pot);
+        $this->om->flush();
 
-	    return true;
+        if(true === $eventsActive) {
+            $event = new PotEvent($pot);
+            $this->dispatcher->dispatch(PotEvents::FLUSHED, $event);
+        }
+
+        return true;
     }
 
 }

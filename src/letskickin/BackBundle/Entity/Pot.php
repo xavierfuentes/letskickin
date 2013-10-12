@@ -10,6 +10,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Pot
 {
+    const STATUS_INACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_FINISHED = 2;
+    const STATUS_CLOSED = 3;
+
+    const METHOD_TRANSFER = 0;
+
     /**
      * @var integer $id
      *
@@ -32,6 +39,13 @@ class Pot
      * @ORM\Column(type="datetime")
      */
     private $creation_date;
+
+    /**
+     * @var \DateTime $date
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $last_edition_date;
 
     /**
      * @var string $pot_key
@@ -160,6 +174,13 @@ class Pot
         return $this->status;
     }
 
+    public static function getStatusList() {
+        return array(
+            self::STATUS_ACTIVE, 
+            self::STATUS_INACTIVE
+        );
+    }
+
     /**
      * Set creation_date
      *
@@ -181,6 +202,29 @@ class Pot
     public function getCreationDate()
     {
         return $this->creation_date;
+    }
+
+    /**
+     * Set last_edition_date
+     *
+     * @param \DateTime $creationDate
+     * @return Pot
+     */
+    public function setlastEditionDate($creationDate)
+    {
+        $this->last_edition_date = $creationDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get last_edition_date
+     *
+     * @return \DateTime 
+     */
+    public function getlastEditionDate()
+    {
+        return $this->last_edition_date;
     }
 
     /**
