@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /web/bundles/
 /app/bootstrap.php.cache
 /app/cache/*
@@ -12,3 +13,19 @@
 /web/script/
 /web/image/
 app/sessions/*
+=======
+.DS_Store
+web/bundles/
+app/bootstrap.php.cache
+app/cache/*
+app/logs/*
+app/sessions/*
+build/
+vendor
+composer.phar
+.idea/*
+web/image/*
+web/script/*
+web/bundles/*
+web/style/*
+>>>>>>> ignores DS_Store, web elements and some
