@@ -59,6 +59,7 @@ class PotSubscriber implements EventSubscriberInterface
 	{
 		$pot = $event->getPot();
 
+        $this->sendEmailToAdmin($pot, 'ApplicationLetskickinFrontBundle:Email:potUpdated.txt.twig', 'Letskickin: ' . $pot->getOccasion(), false);
 		// Warn all the participants ??
 	}
 

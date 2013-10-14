@@ -1,0 +1,5 @@
+{{ 'admin.hi'|trans({ '%admin_name%': pot.adminName }, "email")|raw }}
+
+{{ 'admin.pot.updated'|trans({ '%occasion%': pot.occasion }, "email")|raw }}
+
+{{ 'admin.button.go'|trans({}, "email") }}: {{ url('pot_show', { 'pot_key': pot.potKey|default('null'), 'admin_key': pot.adminKey|default('null') })|raw }}

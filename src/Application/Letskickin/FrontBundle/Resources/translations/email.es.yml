@@ -4,6 +4,7 @@ admin:
   dont.forward.more: '* No deberías reenviar este email para prevenir que otros participantes modifiquen o borren el bote. Si no quieres usar las opciones administrativas, puedes ignorar o borrar este email. Igualmente, los botes inactivos de Letskickin son automáticamente borrados.'
   error: 'Si tú no has creado este bote, alguien debe haber usado tu email por accidente. Ignora este email por favor.'
   pot.created: 'Has creado el bote:'
+  pot.updated: 'Has modificado el bote: %occasion%'
   keep.email: 'Deberías guardar este email en caso de que quieras editar el bote o invitar a más gente.'
   button.go: 'Administrar el bote'
   button.discover: 'Descubre quién ha sido'

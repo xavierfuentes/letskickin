@@ -2,4 +2,4 @@
 
 {{ 'participate.refused'|trans({ '%occasion%': pot.occasion }, "email")|raw }}
 
-{{ 'admin.button.discover'|trans({}, "email") }}: {{ url('pot_show', { 'pot_key': pot.potKey|default('null') })|raw }}
+{{ 'admin.button.discover'|trans({}, "email") }}: {{ url('pot_show', { 'pot_key': pot.potKey, 'admin_key': pot.adminKey })|raw }}
