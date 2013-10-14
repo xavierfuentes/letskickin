@@ -1,7 +1,11 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+<<<<<<< HEAD
     - { resource: @letskickinBackBundle/Resources/config/admin.yml }
+=======
+    - { resource: @ApplicationLetskickinCoreBundle/Resources/config/admin.yml }
+>>>>>>> adds sonataadminbundle + fosuserbundle (pending style)
 
 framework:
     #esi:             ~
@@ -17,11 +21,16 @@ framework:
         engines: ['twig']
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
+<<<<<<< HEAD
     trusted_proxies: ~
     session:
         save_path: "%kernel.root_dir%/sessions/"
     fragments:       ~
     http_method_override: true
+=======
+    session:
+        save_path: "%kernel.root_dir%/sessions/"
+>>>>>>> adds sonataadminbundle + fosuserbundle (pending style)
 
 # Twig Configuration
 twig:
@@ -42,10 +51,28 @@ twig:
             diagnostic_mode: false
             #sitemap: "/sitemap.xml"
 
+    form:
+        resources:
+            - 'ApplicationLetskickinFrontBundle:Form:fields.html.twig'
+
+    paths:
+        "%kernel.root_dir%/../src/Application/Letskickin/FrontBundle/Resources/views/layouts": Layouts
+        "%kernel.root_dir%/../src/Application/Letskickin/FrontBundle/Resources/views/blocks": Blocks
+
+    globals:
+        site:
+            locale: %locale%
+            diagnostic_mode: false
+            #sitemap: "/sitemap.xml"
+
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
     use_controller: false
+<<<<<<< HEAD
+=======
+    # bundles:        [ ]
+>>>>>>> adds sonataadminbundle + fosuserbundle (pending style)
     #java: /usr/bin/java
     #bundles:        [ ]
     filters:
@@ -85,7 +112,13 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
+<<<<<<< HEAD
     user_class: letskickin\BackBundle\Entity\User
+=======
+    user_class: Application\Sonata\UserBundle\Entity\User
+    # group:
+    #     group_class: Application\Sonata\UserBundle\Entity\Group
+>>>>>>> adds sonataadminbundle + fosuserbundle (pending style)
 
 sonata_block:
     default_contexts: [cms]
@@ -106,8 +139,13 @@ sonata_block:
         #sonata.media.block.feature_media:
 
 sonata_admin:
+<<<<<<< HEAD
     title:      'Admin Panel'
     title_logo: /bundles/letskickinfront/image/topbar/logo_header.png
+=======
+    title:      Admin Panel
+    title_logo: /bundles/applicationletskickinfront/image/topbar/logo_header.png
+>>>>>>> adds sonataadminbundle + fosuserbundle (pending style)
     templates:
         # default global templates
         layout:  SonataAdminBundle::standard_layout.html.twig

@@ -1,0 +1,38 @@
+parameters:
+    letskickin.user_provider.class: Application\Letskickin\CoreBundle\Security\Core\User\FOSUBUserProvider
+    letskickin.form.create_pot.flow: Application\Letskickin\CoreBundle\Form\potFlow
+
+    letskickin.manager.pot_manager: Application\Letskickin\CoreBundle\Doctrine\PotManager
+    letskickin.manager.pot_class: Application\Letskickin\CoreBundle\Entity\Pot
+    letskickin.subscriber.pot: Application\Letskickin\CoreBundle\EventListener\PotSubscriber
+
+    letskickin.manager.participant_manager: Application\Letskickin\CoreBundle\Doctrine\ParticipantManager
+    letskickin.manager.participant_class: Application\Letskickin\CoreBundle\Entity\Participant
+
+services:
+    letskickin.form.flow.createPot:
+        class: "%letskickin.form.create_pot.flow%"
+        parent: craue.form.flow
+        scope: request
+
+    letskickin.manager.pot:
+        class: "%letskickin.manager.pot_manager%"
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: "%letskickin.manager.pot_class%"
+
+    letskickin.manager.participant:
+        class: "%letskickin.manager.participant_manager%"
+        arguments:
+            dispatcher: "@event_dispatcher"
+            em: "@doctrine.orm.entity_manager"
+            class: "%letskickin.manager.participant_class%"
+
+    letskickin.subscriber.pot:
+        class: "%letskickin.subscriber.pot%"
+        arguments:
+            mailer: "@mailer"
+            container: "@templating"
+        tags:
+            - { name: kernel.event_subscriber }

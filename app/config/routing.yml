@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 letskickin_back:
     resource: "@letskickinBackBundle/Resources/config/routing.yml"
     prefix:   /
 
 letskickin_front:
     resource: "@letskickinFrontBundle/Resources/config/routing.yml"
+=======
+letskickin_core:
+    resource: "@ApplicationLetskickinCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+letskickin_front:
+    resource: "@ApplicationLetskickinFrontBundle/Resources/config/routing.yml"
+>>>>>>> adds sonataadminbundle + fosuserbundle (pending style)
     prefix:   /

@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="pot-you-invite">
+        <header>
+            {% image output="image/tu-debes-enviar-invitaciones.png"
+            '@ApplicationLetskickinFrontBundle/Resources/public/image/wizard/user_send.png'
+            %}
+            <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
+            {% endimage %}
+            <h4>{{ 'create.guests.you.invite'|trans({}, "pot") }}</h4>
+        </header>
+
+        <div>{{ 'create.guests.you.invite.description'|trans({}, "pot")|raw }}</div>
+
+        {{ include(
+        'ApplicationLetskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {
+            'flow': flow
+        }) }}
+    </div>
+
+    <div class="pot-we-invite">
+        <header>
+            {% image output="image/organizamos-el-mejor-regalo-en-grupo.png"
+            '@ApplicationLetskickinFrontBundle/Resources/public/image/wizard/letskickin_send.png'
+            %}
+            <img src="{{ asset_url }}" alt="¡Crea ya un bote!"/>
+            {% endimage %}
+            <h4>{{ 'create.guests.we.invite'|trans({}, "pot") }}</h4>
+        </header>
+
+        <div id="weInviteRegister">
+            {{ 'create.guests.we.invite.description'|trans({}, "pot")|raw }}
+            <textarea id="pot-guests-email-list" placeholder="{{ 'create.guests.emails.placeholder'|trans({}, "pot") }}"></textarea>
+            <p class="help-block">{{ 'create.guests.emails.help'|trans({}, "pot") }}</p>
+            <button data-toggle="modal" href="#comingSoon" class="btn btn-default">{{ 'create.button.send.finish'|trans({}, "pot") }}</button>
+        </div>
+        {#<ul class="guests" data-prototype="{{ form_widget(form.guests.vars.prototype)|e }}"></ul>#}
+    </div>
+</div>

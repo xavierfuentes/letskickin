@@ -1,0 +1,33 @@
+{% extends '@Layouts/default.html.twig' %}
+
+{% block head_top %}
+    {{ parent() }}
+
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block body_id %}pot-notify{% endblock %}
+
+{% block content %}
+<section class="container text-center">
+    <article class="thanks-participant">
+        <h1>{{ 'notify.thanks.participant'|trans({'%name%': participant.name}, "pot")|raw }}</h1>
+        <p class="lead">{{ 'notify.subtitle'|trans({}, "pot")|raw }}</p>
+        <p class="alert alert-warning">{{ 'notify.attention'|trans({ '%amount%': participant.amount|currency(pot.currency) }, "pot")|raw }}</p>
+        <p>{{ 'notify.remember'|trans({}, "pot")|raw }}</p>
+        <h4>{{ pot.bankAccount }}</h4>
+        <p class="lead">{{ 'notify.thanks'|trans({}, "pot") }}</p>
+        <a href="{{ url('pot_show', {'pot_key': pot.potKey} ) }}">{{ 'button.back'|trans({}, "global") }}</a>
+        {# auto notifications? #}
+    </article>
+
+    <article class="engage-participant">
+        <p class="lead">{{ 'notify.create.pot.text'|trans({}, "pot")|raw }}</p>
+        <p>{{ 'notify.trust.us'|trans({}, "pot")|raw }}</p>
+        <a href="{{ url('pot_create') }}" class="btn btn-lg btn-primary">{{ 'notify.create.pot.button'|trans({}, "pot") }}</a>
+        <p>{{ 'notify.its.free'|trans({}, "pot") }}</p>
+    </article>
+
+    {# Banners? Gift suggestions? #}
+</section>
+{% endblock %}

@@ -27,8 +27,20 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+<<<<<<< HEAD
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
+=======
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+
+            new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
+            new Craue\FormFlowBundle\CraueFormFlowBundle(),
+
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Application\Letskickin\FrontBundle\ApplicationLetskickinFrontBundle(),
+            new Application\Letskickin\CoreBundle\ApplicationLetskickinCoreBundle(),
+>>>>>>> adds sonataadminbundle + fosuserbundle (pending style)
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,45 @@
+<article class="container">
+    <p class="footer-brand">©letskickin {{ 'now'|date("Y") }}</p>
+    <ul class="footer-menu">
+        <li><a href="{{ url('terms') }}">{{ 'footer.conditions'|trans({}, "global") }}</a></li>
+        <li><a href="{{ url('privacy') }}">{{ 'footer.privacy'|trans({}, "global") }}</a></li>
+    </ul>
+    <ul class="footer-social">
+        <li>
+            <a href="http://facebook.com/Letskickin">
+            {% image output="image/facebook.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/icon_social_facebook.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin en Facebook"/>
+            {% endimage %}
+            </a>
+        </li>
+        <li>
+            <a href="http://twitter.com/Letskickin">
+            {% image output="image/twitter.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/icon_social_twitter.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin en Twitter"/>
+            {% endimage %}
+            </a>
+        </li>
+        <li>
+            <a href="http://linkedin.com/company/letskickin">
+            {% image output="image/linkedin.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/icon_social_linkedin.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin en LinkedIn"/>
+            {% endimage %}
+            </a>
+        </li>
+        <li>
+            <a href="http://plus.google.com/107462301305478609564">
+            {% image output="image/google.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/icon_social_googleplus.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin en Google+"/>
+            {% endimage %}
+            </a>
+        </li>
+    </ul>
+</article>

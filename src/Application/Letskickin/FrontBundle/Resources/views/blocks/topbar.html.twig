@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ url('landingpage') }}">
+            {% image output="image/organiza-regalos-en-grupo-facil-seguro.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/topbar/logo_header.png'
+            %}
+            <img src="{{ asset_url }}" alt="Bienvenido al crowdgifting"/>
+            {% endimage %}
+        </a>
+        <p class="beta-text navbar-text">beta</p>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <form target="_blank" id="topbar-subscribe-form" class="-ajax navbar-form navbar-right" role="subscribe" action="{{ mailchimp_form.action|raw }}" method="{{ mailchimp_form.method }}" novalidate>
+            <div class="form-group">
+                <input type="text" class="form-control required email" id="topbar-subscribe-email" name="EMAIL" placeholder="{{ 'email.placeholder'|trans({}, "global") }}"/>
+            </div>
+            <button id="topbar-subscribe-submit" data-loading-text="{{ 'button.loading-text'|trans({}, "global") }}" class="btn btn-default" type="submit">{{ 'button.subscribe-me'|trans({}, "global") }}</button>
+        </form>
+        <p class="navbar-text navbar-right text-help">
+            {{ 'join.crowdgifting'|trans({}, "global") }}
+            {% image output="image/unete-al-crowdgifting.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/topbar/small_arrow.png'
+            %}
+            <img src="{{ asset_url }}" alt="Únete al crowdgifting"/>
+            {% endimage %}
+        </p>
+    </div><!-- /.navbar-collapse -->
+</nav>

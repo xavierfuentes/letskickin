@@ -1,0 +1,6 @@
+coming.soon:
+  title: 'Coming soon'
+  description: '<strong>¡Un momento!</strong> Para realizar esta acción tienes que estar registrado en Letskickin'
+  form:
+    text: '¿Quieres que te avisemos cuando esté disponible?'
+    button: '¡Avisadme!'

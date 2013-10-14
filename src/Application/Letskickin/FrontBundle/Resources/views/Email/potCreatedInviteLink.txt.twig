@@ -1,0 +1,7 @@
+{{ ('invite.link.created'|trans({ '%occasion%': pot.occasion }, "email"))|raw }}
+
+{{ url('pot_show', { 'pot_key': pot.potKey|default('null') }) }}
+
+{{ 'invite.share'|trans({ '%occasion%': pot.occasion }, "email")|raw }}
+
+{{ 'invite.ignore'|trans({ '%occasion%': pot.occasion }, "email")|raw }}

@@ -1,0 +1,32 @@
+{#{{ form_row(form.occasion, {
+    'help': 'occasion.help'|trans({}, "pot"),
+    'attr': {
+        'class': 'pot-occasion'
+    }
+}) }}#}
+
+{{ form_row(form.occasion, { 'attr': {
+    'data-toggle': 'tooltip',
+    'title': 'occasion.help'|trans({}, "pot")
+} }) }}
+
+{{ form_row(form.admin_name, { 'attr': {
+    'data-toggle': 'tooltip',
+    'title': 'admin_name.help'|trans({}, "pot")
+} }) }}
+
+{{ form_row(form.admin_email, { 'attr': {
+    'data-toggle': 'tooltip',
+    'title': 'admin_email.help'|trans({}, "pot")
+} }) }}
+
+{{ form_row(form.deadline, { 'attr': {
+    'class': 'pot-deadline',
+    'data-toggle': 'tooltip',
+    'title': 'deadline.help'|trans({}, "pot")
+}}) }}
+
+{{ include(
+'ApplicationLetskickinFrontBundle:Pot:blocks/potFormButtons.html.twig', {
+    'flow': flow
+}) }}

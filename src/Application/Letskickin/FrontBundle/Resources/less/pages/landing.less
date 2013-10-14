@@ -1,0 +1,125 @@
+#landing {
+
+  #page_content {
+    margin: 0 !important;
+  }
+
+  #landing-hd {
+    background: url('/bundles/applicationletskickinfront/image/landing/top_photo_760.jpg') no-repeat;
+    background-size: cover;
+    min-height: 760px;
+
+    .jumbo {
+      text-align: center;
+      background-color: rgba(255,255,255,.9);
+      border: 2px solid rgba(221,221,221,.9);
+      border-radius: 4px;
+      margin-top: 10%;
+      padding: 35px 80px 60px;
+
+      .h1 {
+        font-size: (@font-size-base * 3.9375); // 63px
+        margin-bottom: 25px;
+      }
+
+      .lead {
+        color: @text-color;
+      }
+
+      .jumbo-cta {
+        margin: 40px auto 0;
+      }
+
+      .block-help {
+        display: inline-block;
+
+        .text-help {
+          font-size: @font-size-large;
+        }
+
+        &.left {
+          .pull-left;
+          margin-left: 125px;
+        }
+
+        &.right {
+          .pull-right;
+          margin-right: 135px;
+          .text-help {
+            padding-left: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  .love {
+    text-align: center;
+
+    .title {
+      .make-row();
+      margin: 40px 0 100px;
+    }
+
+    .things {
+      .make-row();
+
+      .share,
+      .safe,
+      .gift {
+        .make-md-column(4);
+
+        .thing-title {
+          color: @text-color;
+          margin: 35px 0 25px;
+        }
+
+        .advice {
+          font-weight: 300;
+        }
+      }
+    }
+
+    .cta-net {
+      position: relative;
+      margin: 120px 0 90px;
+
+      .block-help {
+        position: absolute;
+
+        .img-help,
+        .text-help {
+          display: inline-block;
+        }
+
+        .img-help {
+          vertical-align: baseline;
+          margin-right: 15px;
+        }
+
+        .text-help {
+          font-size: @font-size-large;
+        }
+
+        &.right {
+          right: 280px;
+          top: 10px;
+        }
+      }
+    }
+  }
+
+  .talking {
+    background: #ededed;
+    text-align: center;
+    padding: 50px 0;
+
+    .logo {
+      margin-right: 15px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

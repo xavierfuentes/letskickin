@@ -1,0 +1,106 @@
+<article class="row">
+    <section id="{{ participant.participantKey }}" class="pot-participant {{ participant.status|statusToString() }} {% if isAdmin %}admin{% endif %}">
+        <div class="row">
+        <section class="participant-avatar">
+            <span class="icon glyphicon glyphicon-user"></span>
+        </section>
+
+        {% if isAdmin %}
+            {{ form_start(form, {
+                'attr': {
+                    'class': '-ajax -participant-form -participant-form-' ~ participant.status|statusToString(),
+                    'id': 'form_' ~ participant.participantKey
+                }
+            }) }}
+        {% endif %}
+
+        <section class="participant-data {% if isAdmin %}form-group{% endif %}">
+            {% if isAdmin %}
+                {{ form_widget(form.name, {
+                    'id':   'createParticipant_name_' ~ participant.id,
+                    'attr': { 'class': 'form-control' },
+                    'placeholder': ''
+                }) }}
+            {% else %}
+                {{ participant.name }}
+            {% endif %}
+        </section>
+
+        <section class="participant-status">
+            {% if isAdmin %}
+                <div class="form-group">
+                    {{ form_widget(form.amount, {
+                        'id':   'createParticipant_amount_' ~ participant.id,
+                        'attr': { 'class': 'form-control' },
+                        'placeholder': ''
+                    }) }}
+
+                    {{ form_widget(form.status, {
+                        'id':   'createParticipant_status_' ~ participant.id,
+                    }) }}
+                </div>
+            {% else %}
+                {% if participant.status|statusToString() == 'waiting' %}
+                    {% set icon = 'time' %}
+                {% elseif participant.status|statusToString() == 'confirmed' %}
+                    {% set icon = 'thumbs-up' %}
+                {% else %}
+                    {% set icon = 'thumbs-down' %}
+                {% endif %}
+                <span class="icon glyphicon glyphicon-{{ icon }}"></span>
+            {% endif %}
+        </section>
+        </div>
+    </section>
+
+    {% if isAdmin %}
+    <section class="participant-actions -participant-actions">
+        {{ form_widget(form._token, {
+            'id':   'createParticipant__token_' ~ participant.id,
+        }) }}
+
+    {% if participant.status|statusToString() == 'waiting' %}
+        {{ form_widget(form.save, {
+            'id':   'createParticipant_save_' ~ participant.id,
+            'label': 'participant.confirm',
+            'attr': {
+                'class': 'btn btn-primary',
+                'data-loading-text': 'button.loading-text'|trans({}, "global")
+            }
+        }) }}
+    {% else %}
+        {{ form_widget(form.save, {
+            'id':   'createParticipant_save_' ~ participant.id,
+            'label': 'participant.modify',
+            'attr': {
+                'class': 'btn',
+                'data-loading-text': 'button.loading-text'|trans({}, "global")
+            }
+        }) }}
+    {% endif %}
+
+    {% if participant.status|statusToString() != 'cannot' %}
+        {{ form_widget(form.cannot, {
+            'id':   'createParticipant_cannot_' ~ participant.id,
+            'label': 'participant.cancelled',
+            'attr': {
+                'class': 'btn btn-link',
+                'data-loading-text': 'button.loading-text'|trans({}, "global")
+            }
+        }) }}
+    {% else %}
+        {{ form_widget(form.cannot, {
+            'id':   'createParticipant_cannot_' ~ participant.id,
+            'label': 'participant.cancelled',
+            'attr': {
+                'class': 'btn btn-link hidden',
+                'data-loading-text': 'button.loading-text'|trans({}, "global")
+            }
+        }) }}
+    {% endif %}
+    </section>
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+    {% endif %}
+</article>

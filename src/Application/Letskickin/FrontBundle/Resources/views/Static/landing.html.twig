@@ -1,0 +1,126 @@
+{% extends '@Layouts/default.html.twig' %}
+
+{% block body_id %}landing{% endblock %}
+
+{% block content %}
+    <header id="landing-hd">
+        <article class="jumbo col-md-8 col-md-offset-2">
+            <h1 class="h1">{{ 'title'|trans({}, "landing")|raw }}</h1>
+            <h2 class="h3 lead">{{ 'subtitle'|trans({}, "landing")|raw }}</h2>
+
+            <div class="jumbo-cta">
+                <a href="{{ url('pot_create') }}" type="button" class="btn btn-primary btn-xl">{{ 'bob'|trans({}, "landing") }}</a>
+            </div>
+
+            <div class="block-help left">
+                {% image output="image/arrowr.png"
+                    '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/point-to-the-right.png'
+                %}
+                <img src="{{ asset_url }}" alt="{{ 'bob.support-1'|trans({}, "landing") }}"/>
+                {% endimage %}
+                <p class="text-help">{{ 'bob.support-1'|trans({}, "landing") }}</p>
+            </div>
+            <div class="block-help right">
+                {% image output="image/arrowl.png"
+                    '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/point-to-the-left.png'
+                %}
+                <img src="{{ asset_url }}" alt="{{ 'bob.support-2'|trans({}, "landing") }}"/>
+                {% endimage %}
+                <p class="text-help">{{ 'bob.support-2'|trans({}, "landing") }}</p>
+            </div>
+        </article>
+    </header>
+
+    <article class="love container">
+        <header class="title">
+            <h3 class="h1">{{ 'lead'|trans({}, "landing") }}</h3>
+        </header>
+
+        <section class="things">
+            <article class="share">
+                <header>
+                    {% image output="image/dividir-gastos-no-es-problema.png"
+                        '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/icon_heart.png'
+                    %}
+                    <img src="{{ asset_url }}" alt="{{ 'reason1'|trans({}, "landing")|raw }}"/>
+                    {% endimage %}
+                    <h2 class="h4 thing-title">{{ 'reason1'|trans({}, "landing")|raw }}</h2>
+                </header>
+                <div class="advice">{{ 'reason1.explanation'|trans({}, "landing")|raw }}</div>
+            </article>
+
+            <article class="safe">
+                <header>
+                    {% image output="image/claro-facil-seguro.png"
+                        '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/icon_safe.png'
+                    %}
+                    <img src="{{ asset_url }}" alt="{{ 'reason2'|trans({}, "landing")|raw }}"/>
+                    {% endimage %}
+                    <h2 class="h4 thing-title">{{ 'reason2'|trans({}, "landing")|raw }}</h2>
+                </header>
+                <div class="advice">{{ 'reason2.explanation'|trans({}, "landing")|raw }}</div>
+            </article>
+
+            <article class="gift">
+                <header>
+                    {% image output="image/no-estaras-solo.png"
+                        '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/icon_together.png'
+                    %}
+                    <img src="{{ asset_url }}" alt="{{ 'reason3'|trans({}, "landing")|raw }}"/>
+                    {% endimage %}
+                    <h2 class="h4 thing-title">{{ 'reason3'|trans({}, "landing")|raw }}</h2>
+                </header>
+                <div class="advice">{{ 'reason3.explanation'|trans({}, "landing")|raw }}</div>
+            </article>
+        </section>
+
+        <footer class="cta-net">
+            <div class="jumbo-cta">
+                <a href="{{ url('pot_create') }}" type="button" class="btn btn-primary btn-xl">{{ 'bob'|trans({}, "landing") }}</a>
+            </div>
+
+            <div class="block-help right">
+                {% image output="image/arrowl-big.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/arrow_big.png'
+                %}
+                <img src="{{ asset_url }}" class="img-help" alt="{{ 'bob.support-3'|trans({}, "landing") }}"/>
+                {% endimage %}
+                <p class="text-help">{{ 'bob.support-3'|trans({}, "landing")|raw }}</p>
+            </div>
+        </footer>
+    </article>
+
+    <footer class="talking">
+        <div class="container">
+            {% image output="image/wwwhatsnew.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/logo_whatsnew.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="wwwhatsnew habla de letskickin"/>
+            {% endimage %}
+
+            {% image output="image/founder-institute-barcelona.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/logo_founder.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin se gradua en Founder Institute Barcelona"/>
+            {% endimage %}
+
+            {% image output="image/salle-tech-demo-day.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/logo_techdemoday.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin entre las 100 mejores startups de Barcelona"/>
+            {% endimage %}
+
+            {% image output="image/barcelona-startup-weekend.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/logo_startupweekend.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin finalista del Barcelona Startup Weekend 2012"/>
+            {% endimage %}
+
+            {% image output="image/yuzz.png"
+                '@ApplicationLetskickinFrontBundle/Resources/public/image/landing/logo_yuzz.png'
+            %}
+            <img src="{{ asset_url }}" class="logo" alt="letskickin finalista de YUZZ Barcelona 2013"/>
+            {% endimage %}
+        </div>
+    </footer>
+{% endblock %}

@@ -11,6 +11,10 @@ parameters:
     mailer_host:        ~
     mailer_user:        mailer@letskickin.com
     mailer_password:    letskickin9284
+<<<<<<< HEAD
+=======
+    dev_email:          xavi@letskickin.com
+>>>>>>> adds sonataadminbundle + fosuserbundle (pending style)
 
     locale:             es
     secret:             StayHungryStayFoolish

@@ -1,0 +1,23 @@
+<!-- Modal -->
+<article class="modal fade {{ block('modalClasses') }}" id="{{ block('modalId') }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <header class="modal-header">
+                {% block modalHeader %}
+                    {% block modalClose %}<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>{% endblock %}
+                    {% block modalTitle %}<h4 class="modal-title">{{ block('modalTitleText') }}</h4>{% endblock %}
+                {% endblock %}
+            </header>
+
+            <section class="modal-body">{{ block('modalBody') }}</section>
+
+            {% block modalFooter %}
+            <footer class="modal-footer">
+                    {% block modalActions %}
+                        <button type="button" class="btn btn-primary">{{ block('modalActionText') }}</button>
+                    {% endblock %}
+            </footer>
+            {% endblock %}
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</article><!-- /.modal -->

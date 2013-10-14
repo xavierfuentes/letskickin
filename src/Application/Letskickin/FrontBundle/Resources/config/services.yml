@@ -1,0 +1,8 @@
+parameters:
+    letskickin_extension.class: Application\Letskickin\FrontBundle\Twig\ApplicationLetskickinExtension
+
+services:
+    letskickin.twig.letskickin_extension:
+        class: %letskickin_extension.class%
+        tags:
+            - { name: twig.extension }

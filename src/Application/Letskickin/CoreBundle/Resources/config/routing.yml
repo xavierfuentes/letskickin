@@ -1,0 +1,81 @@
+# STATIC PAGES
+landingpage:
+    pattern: /
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'ApplicationLetskickinFrontBundle:Static:landing.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400
+privacy:
+    pattern:  /legal/privacy/
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'ApplicationLetskickinFrontBundle:Static:privacy.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400
+
+terms:
+    pattern:  /legal/terms/
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'ApplicationLetskickinFrontBundle:Static:terms.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400
+
+# POTS
+pot_create:
+    pattern:  /pots/wizard/
+    defaults: { _controller: ApplicationLetskickinCoreBundle:Pot:createPot }
+
+pot_confirm:
+    pattern:  /pots/confirm/{pot_key}
+    defaults: { _controller: ApplicationLetskickinCoreBundle:Pot:confirmPot, pot_key: null }
+
+pot_notify:
+    pattern:  /pots/notify/{pot_key}/{participant_key}
+    defaults: { _controller: ApplicationLetskickinCoreBundle:Pot:notifyPot, pot_key: null }
+
+pot_show:
+    pattern:  /{pot_key}
+    defaults: { _controller: ApplicationLetskickinCoreBundle:Pot:showPot, pot_key: null }
+
+pot_admin:
+    pattern: /pots/edit/{pot_key}
+    defaults: { _controller: ApplicationLetskickinCoreBundle:Pot:adminPot, pot_key: null }
+
+participant_admin:
+    pattern: /participant/{participant_key}
+    defaults: { _controller: ApplicationLetskickinCoreBundle:Pot:adminParticipant, participant_key: null }
+
+# FOS & Sonata
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /change-password
+
+sonata_user:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+    prefix: /admin
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin

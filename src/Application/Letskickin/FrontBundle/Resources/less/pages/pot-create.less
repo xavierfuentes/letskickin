@@ -1,0 +1,135 @@
+#pot-wizard {
+  .page-title {
+    text-align: center;
+  }
+
+  .page-subtitle {
+    .make-row();
+
+    text-align: center;
+
+    .step-list {
+      .list-inline;
+      .list-unstyled;
+
+      margin: 1.5em 0 3em;
+      padding: 0;
+
+      .step {
+        .h4;
+
+        color: @text-muted;
+        margin: 0 1.5em;
+      }
+
+      .current-step {
+        color: @text-color;
+      }
+    }
+  }
+
+  .pot-form{
+    .make-md-column(10);
+    .make-md-column-offset(1);
+
+    .form-step {
+      .make-row();
+
+      .pot_form_buttons {
+        .button-forward {
+          .btn-primary;
+        }
+
+        .button-backward {
+//          .btn-info;
+        }
+      }
+
+      .pot_form_buttons {
+        margin-top: 25px;
+
+        .pot_form_button_last {
+          .pull-right;
+        }
+      }
+
+      .step-data,
+      .step-money {
+        .make-md-column(6);
+        .make-md-column-offset(3);
+      }
+
+      .step-data {
+        .pot-deadline{
+          .form-control {
+            text-align: center;
+
+            input {
+              text-align: center;
+              width: 30%;
+            }
+          }
+        }
+      }
+
+      .step-extra {
+
+        .pot-summary,
+        .pot-extra {
+          .make-md-column(5);
+          .make-md-column-offset(1);
+
+          ul>li {
+            margin-bottom: .8em;
+          }
+
+          .icon {
+            margin-right: .7em;
+            font-size: 1.5em;
+          }
+        }
+      }
+
+      .step-guests {
+        .pot-you-invite,
+        .pot-we-invite {
+          .make-md-column(6);
+
+          padding: 0 3em;
+
+          header {
+            text-align: center;
+            margin-bottom: 2em;
+          }
+        }
+
+        .icon {
+          color: @text-muted;
+          font-size: 4em;
+          line-height: 1.3em;
+          vertical-align: bottom;
+          margin: 0 .3em;
+        }
+
+        .pot-we-invite {
+          border-left: 2px solid @gray-lightest;
+
+          #pot-guests-email-list {
+            .resizable(none);
+
+            min-height: 5em;
+            width: 100%;
+            margin-top: 1em;
+          }
+
+          .button-send {
+            .btn;
+            .btn-default;
+
+            margin-top: 1em;
+          }
+        }
+      }
+    }
+  }
+}

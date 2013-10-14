@@ -1,0 +1,35 @@
+Application\Letskickin\CoreBundle\Entity\Pot:
+    properties:
+        occasion:
+            - NotBlank: { message: "pot.field.not_blank" }
+            - Length:
+                minMessage: "pot.occasion.too_short"
+                min: 5
+        admin_name:
+            - NotBlank: { message: "pot.field.not_blank" }
+            - Length:
+                minMessage: "pot.admin_email.too_short"
+                min: 2
+        admin_email:
+            - NotBlank: { message: "pot.field.not_blank" }
+            - Email:
+                message: "pot.admin_email.not_valid"
+                checkMX: true
+        deadline:
+            - NotBlank: { message: "pot.field.not_blank" }
+            - Date: { message: "pot.deadline.not_valid" }
+
+#        guests:
+#            - Valid: ~
+
+Application\Letskickin\CoreBundle\Entity\Participant:
+    properties:
+        name:
+            - NotBlank: { message: "participant.field.not_blank" }
+            - Length:
+                minMessage: "participant.name.too_short"
+                min: 2
+#        amount:
+#            - GreaterThan:
+#                value: 2
+#                message: "participant.amount.too_small"

@@ -1,0 +1,87 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block form_start %}
+    {% spaceless %}
+        {% set method = method|upper %}
+        {% if method in ["GET", "POST"] %}
+            {% set form_method = method %}
+        {% else %}
+            {% set form_method = "POST" %}
+        {% endif %}
+        <form role="form" method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+        {% if form_method != method %}
+            <input type="hidden" name="_method" value="{{ method }}" />
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_start %}
+
+{% block form_row %}
+    {% spaceless %}
+        {% set field_row_classes = ['form-group'] %}
+        {% if attr.class is defined %}
+            {% set field_row_classes = field_row_classes|merge(attr.class|split(" ")) %}
+        {% endif %}
+        {% if errors|length > 0 %}
+            {% set field_row_classes = field_row_classes|merge(['error']) %}
+        {% endif %}
+
+        <div class="{{ field_row_classes|join(' ') }}">
+            {{ form_label(form, label|default(null)) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form, { 'attr': {
+                'class': 'form-control input-lg'
+            } }) }}
+            {% if help is defined %}
+                <p class="help-block">{{ help }}</p>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_label %}
+{% spaceless %}
+    {% if label is not sameas(false) %}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = form.vars.name ~ '.label' %}
+        {% else %}
+            {% set label = label.label %}
+        {% endif %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block form_widget_simple %}
+    {% spaceless %}
+        {% set type = type|default('text') %}
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} placeholder="{{ placeholder|default(form.vars.name ~ '.placeholder')|trans({}, translation_domain) }}"/>
+    {% endspaceless %}
+{% endblock form_widget_simple %}
+
+{% block money_widget %}
+    {% spaceless %}
+        {% if simple is not defined %}
+        <div class="input-group">
+            <span class="input-group-addon">{{ money_pattern|slice(-1, 1) }}</span>
+            {{ block('form_widget_simple') }}
+        </div>
+        {% else %}
+            {{ block('form_widget_simple') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock money_widget %}
+
+{% block button_widget %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ text|default(label)|trans({}, translation_domain) }}</button>
+    {% endspaceless %}
+{% endblock button_widget %}

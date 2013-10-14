@@ -1,0 +1,18 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: 3306
+    database_socket: null
+    database_name: dev.letskickin.com
+    database_user: letskickin.com
+    database_password: letskickin.com
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: mailer@letskickin.com
+    mailer_password: letskickin9284
+    dev_email: xavi@letskickin.com
+    locale: es
+    secret: StayHungryStayFoolish
+    node_path: /usr/local/bin/node
+    node_modules_path: /usr/local/lib/node_modules

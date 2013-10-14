@@ -1,0 +1,48 @@
+{% extends '@Layouts/frontend.html.twig' %}
+
+{% block body_class %}{{ parent() ~ 'default-layout' }}{% endblock %}
+
+{% block head_style %}
+    {{ parent() }}
+
+    <style>
+        body { padding-top: 80px; }
+
+        html, body { height: 100%; }
+        #app-wrapper {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            margin: 0 auto -90px;
+            padding: 0 0 90px;
+        }
+        .main-footer { min-height: 90px; }
+        #page_content { margin-bottom: 5em; }
+    </style>
+{% endblock %}
+
+{% block body_content %}
+    {% block wrap %}
+    <div id="app-wrapper">
+        {% block page_container %}
+            {% block topbar %}{{ include('ApplicationLetskickinFrontBundle::blocks/topbar.html.twig') }}{% endblock %}
+
+            {#<section id="page_top">{% block page_top %}{% endblock %}</section>#}
+
+            <section id="page_content">{% block content %}{% endblock %}</section>
+
+            <section id="page_bottom">{% block page_bottom %}{% endblock %}</section>
+        {% endblock %}
+    </div>
+    {% endblock %}
+
+    <footer class="main-footer">
+    {% block footer %}{{ include('ApplicationLetskickinFrontBundle::blocks/footer.html.twig') }}{% endblock %}
+    </footer>
+{% endblock %}
+
+{% block body_bottom %}
+    {{ parent() }}
+
+    {{ include('ApplicationLetskickinFrontBundle::blocks/modalComingSoon.html.twig') }}
+{% endblock %}

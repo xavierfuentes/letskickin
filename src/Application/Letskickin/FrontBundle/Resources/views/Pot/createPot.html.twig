@@ -1,0 +1,132 @@
+{% extends '@Layouts/default.html.twig' %}
+
+{% block head_top %}
+    {{ parent() }}
+
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block body_id %}pot-wizard{% endblock %}
+
+{% block content %}
+    <header class="container">
+        <h2 class="page-title">{{ 'create.title'|trans({}, "pot")|capitalize }}</h2>
+
+        <div class="page-subtitle">
+            <ul class="step-list">
+                {% for stepLabel in flow.stepLabels %}
+                    {% if loop.index == flow.currentStepNumber %}
+                        {% set stepListClass = "current-step"  %}
+                    {% elseif flow.isStepDone(loop.index) %}
+                        {% set stepListClass = "done-step"  %}
+                    {% else %}
+                        {% set stepListClass = ""  %}
+                    {% endif %}
+                    <li class="step {{ stepListClass|default("") }}">
+                        {{ loop.index }}. {{ ('create.' ~ stepLabel ~ '.step-name')|trans({}, "pot")|capitalize }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </header>
+
+    <section class="container">
+        <section class="pot-form">
+            <article class="form-step">
+                {{ form_start(form) }}
+                <input type="hidden" name="{{ flow.formStepKey }}" value="{{ flow.currentStepNumber }}" />
+
+                <section class="form-errors">
+                    {{ form_errors(form) }}
+                </section>
+
+                <article class="step step-{{ flow.currentStepLabel }}">
+                    {{ include(
+                    'ApplicationLetskickinFrontBundle:Pot:blocks/' ~ flow.currentStepLabel ~ 'StepForm.html.twig', {
+                        'flow': flow,
+                        'form': form,
+                        'pot': pot
+                    }) }}
+                </article>
+
+                {{ form_end(form) }}
+            </article>
+        </section>
+    </section>
+{% endblock %}
+
+{% block foot_scripts %}
+    {{ parent() }}
+
+    <script>
+        $(function() {
+            createPot.performBinding(new createPot.CommunicationLayer(), ".pot-form");
+        });
+    </script>
+
+    {#<script>
+        // Get the ul that holds the collection of guests
+        var collectionHolder = $('.guests');
+
+        // setup an "add a guest" link
+        var $addParticipantLink = $('<a href="#" class="add_guest_link">Add a guest</a>');
+        var $newLinkLi = $('<li></li>').append($addParticipantLink);
+
+        jQuery(document).ready(function() {
+            // add a delete link to all of the existing guest form li elements
+            collectionHolder.find('li').each(function() {
+                addParticipantFormDeleteLink($(this));
+            });
+
+            // add the "add a guest" anchor and li to the guests ul
+            collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            collectionHolder.data('index', collectionHolder.find(':input').length);
+
+            $addParticipantLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new guest form (see next code block)
+                addParticipantForm(collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addParticipantForm(collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = collectionHolder.data('prototype');
+
+            // get the new index
+            var index = collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a guest" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+
+            // add a delete link to the new form
+            addParticipantFormDeleteLink($newFormLi);
+        }
+
+        function addParticipantFormDeleteLink($guestFormLi) {
+            var $removeFormA = $('<a href="#">delete this guest</a>');
+            $guestFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the guest form
+                $guestFormLi.remove();
+            });
+        }
+    </script>#}
+{% endblock %}

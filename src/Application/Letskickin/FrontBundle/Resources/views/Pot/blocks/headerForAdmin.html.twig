@@ -1,0 +1,132 @@
+<section class="pot-header">
+    <header class="pot-data container">
+        <section class="data-basic">
+            <div class="pot-occasion">
+                <h1>{{ pot.occasion }}</h1>
+            </div>
+            {% if pot.participants|length > 0 %}
+                <span class="pot-participants-mini"><span class="icon glyphicon glyphicon-user"></span>{{ 'show.participants.count'|transchoice(pot.participants|length, {}, "pot") }}</span>
+            {% endif %}
+        </section>
+
+        <section class="data-extended">
+            {{ form_start(form, {
+                'attr': {
+                    'id': 'edit-pot-form',
+                    'class': '-pot-form -ajax container'
+                }
+            }) }}
+
+            <section class="pot-admin-info">
+                <article class="info-name">
+                    <article class="form-group">
+                    {{ form_label(form.admin_name, { 'label': 'edit.admin_name.label' }) }}
+                    {{ form_widget(form.admin_name, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </article>
+
+                <article class="info-email">
+                    <article class="form-group">
+                    {{ form_label(form.admin_email, { 'label': 'edit.admin_email.label' }) }}
+                    {{ form_widget(form.admin_email, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </article>
+
+                <article class="info-deadline">
+                    <article class="form-group">
+                    {{ form_label(form.deadline, { 'label': 'edit.deadline.label' }) }}
+                    {{ form_widget(form.deadline, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </article>
+            </section>
+
+            <section class="pot-admin-money">
+                <article class="money-bank">
+                    <article class="form-group">
+                        <label>Enlace</label>
+                        <p class="form-control-static">{{ url('pot_show', { 'pot_key': pot.potKey }) }}</p>
+                    </article>
+                </article>
+
+                <article class="money-partial">
+                    <article class="form-group">
+                    {{ form_label(form.amount_partial, { 'label': 'edit.amount_partial.label' }) }}
+                    {{ form_widget(form.amount_partial, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </article>
+
+                <article class="money-total">
+                    <article class="form-group">
+                    {{ form_label(form.amount_total, { 'label': 'edit.amount_total.label' }) }}
+                    {{ form_widget(form.amount_total, { 'attr': {
+                        'class': 'form-control'
+                    } }) }}
+                    </article>
+                </article>
+            </section>
+
+            <section class="pot-admin-invite">
+                <article class="invite-account">
+                    <article class="form-group">
+                        {{ form_label(form.bank_account, { 'label': 'edit.bank_account.label' }) }}
+                        {{ form_widget(form.bank_account, { 'attr': {
+                            'class': 'form-control'
+                        } }) }}
+                    </article>
+                </article>
+
+                {% if pot.amountTotal %}
+                <article class="invite-now">
+                    <div class="row">
+                        {% set amountNow = 0 %}
+
+                        {% for contribution in pot.participants %}
+                            {% if contribution.status|statusToString() == 'confirmed' %}
+                                {% set amountNow = amountNow + contribution.amount %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% set amountRelative = amountNow * 100 / pot.amountTotal %}
+                        <span class="pot-amount-sum">{{ amountNow|currency(pot.currency) }}</span>
+                        <section class="progress">
+                            <div class="progress-bar" role="progressbar"
+                                 aria-valuenow="{{ amountNow }}" aria-valuemin="0" aria-valuemax="{{ pot.amountTotal }}" style="width: {{ amountRelative }}%;">
+                                <span class="sr-only">{{ "show.amount-relative"|trans({ '%amount%': amountRelative }, "pot")|capitalize }}</span>
+                            </div>
+                        </section>
+                        <span class="pot-amount-total">{{ pot.amountTotal|currency(pot.currency) }}</span>
+                    </div>
+                </article>
+                {% endif %}
+            </section>
+
+            <section class="admin-actions">
+                <ul class="admin-actions-list">
+                    <li>
+                        {{ form_widget(form.save, {
+                            'label': 'edit.button.save',
+                            'attr': {
+                                'class': 'btn btn-default',
+                                'data-loading-text': 'button.loading-text'|trans({}, "global")
+                            }
+                        }) }}
+                        {#<button id="edit-pot-data" class="btn btn-link">{{ 'edit.button.edit'|trans({}, "pot") }}</button>#}
+                        {#<button type="submit" id="save-pot-edition" class="btn btn-default">{{ 'edit.button.save'|trans({}, "pot") }}</button>#}
+                    </li>
+                    {#<li><button class="btn btn-link">Cerrar</button></li>#}
+                    {#<li><button class="btn btn-link">Borrar</button></li>#}
+                </ul>
+            </section>
+
+            {{ form_end(form) }}
+        </section>
+    </header>
+</section>

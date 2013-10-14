@@ -1,0 +1,11 @@
+services:
+    sonata.admin.pot:
+        class: Application\Letskickin\CoreBundle\Admin\PotAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Pot" }
+        arguments:
+            - ~
+            - Application\Letskickin\CoreBundle\Entity\Pot
+            - ~
+        calls:
+            - [ setTranslationDomain, [ApplicationLetskickinCoreBundle]]
